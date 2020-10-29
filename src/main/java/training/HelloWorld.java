@@ -12,7 +12,7 @@ public class HelloWorld {
         System.out.println("Hello " + name);
         System.out.println("Year of Birth?");
         int yearOfBirth = scanner.nextInt();
-        System.out.println(" Year of Birth" + yearOfBirth);
+        System.out.println(" Year of Birth " + yearOfBirth);
         System.out.println(2019 - yearOfBirth);
     }
 
