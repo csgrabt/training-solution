@@ -6,14 +6,21 @@ public class Trainer {
 
     private int yearOfBirth;
 
+    public Trainer(String name, int yearOfBirth) {
+        this.name = name;
+        this.yearOfBirth = yearOfBirth;
+    }
+
+
     public String getName () {
         return name;
     }
-public String getNameAndYearOfBirth(){
+
+    public String getNameAndYearOfBirth(){
         return name + " " + yearOfBirth;
 }
 
-public void chanegName(String newName) {
+    public void chanegName(String newName) {
         name = newName;
 }
 

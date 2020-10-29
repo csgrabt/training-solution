@@ -1,8 +1,24 @@
 package training;
 
-
-
 public class TrainerMain {
+
+    public static void main(String[] args) {
+        Trainer tariner = new Trainer("John Doe", 1980);
+        System.out.println(tariner.getName());
+        System.out.println(tariner.getYearOfBirth());
+
+        Trainer tariner1 = new Trainer("Jack Doe", 1997);
+        System.out.println(tariner1.getName());
+        System.out.println(tariner1.getYearOfBirth());
+
+
+    }
+
+
+
+}
+
+/* korábbi feladathoz tartozó részek public class TrainerMain {
 
     public static void main(String[] args) {
         Trainer trainer = new Trainer();
@@ -25,5 +41,5 @@ public class TrainerMain {
         anotherTrainer.setName("Jack Doe");
         System.out.println(anotherTrainer.getName());
 
-    }
-}
+    }}*/
+
