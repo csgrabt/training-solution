@@ -1,6 +1,6 @@
 package training;
 
-import java.sql.SQLOutput;
+
 
 public class TrainerMain {
 
