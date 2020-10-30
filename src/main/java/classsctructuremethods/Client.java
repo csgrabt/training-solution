@@ -29,6 +29,7 @@ public class Client {
     public void setAddress(String address) {
         this.address = address;
     }
+
     public void migrate(String newAddress) {
         address = newAddress;
     }
