@@ -25,7 +25,7 @@ public class TimeMain {
 
         Time time2 = new Time(hour1, min1, sec1);
 
-        System.out.println("Az első időpont: " + time1.toString() + "   "+ time1.getInMinutes() + "perc");
+        System.out.println("Az első időpont : " + time1.toString() + "   "+ time1.getInMinutes() + "perc");
 
 
 

@@ -5,7 +5,7 @@ public class Time {
     private int min;
     private int sec;
 
-    public Time(int hour, int min, int sec) {
+    public Time(int hour, int min, int sec){
         this.hour = hour;
         this.min = min;
         this.sec = sec;
