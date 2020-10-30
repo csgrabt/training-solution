@@ -7,7 +7,7 @@ public class Bank {
 
     public static void main(String[] args) {
 
-        Scanner scanner  = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Adja meg a Bankszámla Számot!");
         String number1 = scanner.nextLine();
         System.out.println("Adja meg a nevét!");
@@ -18,9 +18,7 @@ public class Bank {
         scanner.nextLine();
 
 
-
-
-    BankAccount acc1 = new BankAccount(number1,name1, balance1);
+        BankAccount acc1 = new BankAccount(number1, name1, balance1);
 
         System.out.println(acc1.getInfo());
 
@@ -48,8 +46,6 @@ public class Bank {
 
         System.out.println("Mennyi pénzt utalna?");
         acc1.transfer(acc2, scanner.nextInt());
-
-
 
 
         System.out.println(acc1.getInfo());
