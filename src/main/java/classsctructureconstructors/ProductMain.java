@@ -12,7 +12,7 @@ public class ProductMain {
         int price1 = scanner.nextInt();
 
 
-        Product product = new Product (name1, price1);
+        Product product = new Product(name1, price1);
 
 
         System.out.println("A termék neve: " + product.getName() + " A termék ára: " + product.getPrice());
