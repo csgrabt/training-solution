@@ -31,19 +31,22 @@ public class Phone {
 
         Scanner scanner = new Scanner(System.in);
 
+        System.out.println("Adja meg a tjpust");
         String name1 = scanner.nextLine();
+        System.out.println("Adja meg a tjpust");
         String name2 = scanner.nextLine();
+        System.out.println("Adja meg a memoria méretét");
         int mem1 = scanner.nextInt();
+        System.out.println("Adja meg a memoria méretét");
         int mem2 = scanner.nextInt();
 
         Phone phone = new Phone(name1, mem1);
 
         Phone phone2 = new Phone(name2, mem2);
 
-        System.out.println(phone.getMem());
-        System.out.println(phone.getType());
-        System.out.println(phone2.getMem());
-        System.out.println(phone2.getType());
+        System.out.println("A telefon típusa, memóriája " + phone.getMem() + phone.getType());
+        System.out.println("A telefon típusa, memóriája " + phone2.getMem() + phone2.getType());
     }
-
 }
+
+
