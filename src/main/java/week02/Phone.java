@@ -1,5 +1,7 @@
 package week02;
 
+import java.util.Scanner;
+
 public class Phone {
     private String type;
     private int mem;
@@ -27,10 +29,16 @@ public class Phone {
 
     public static void main(String[] args) {
 
+        Scanner scanner = new Scanner(System.in);
 
-        Phone phone = new Phone("samsung", 64);
+        String name1 = scanner.nextLine();
+        String name2 = scanner.nextLine();
+        int mem1 = scanner.nextInt();
+        int mem2 = scanner.nextInt();
 
-        Phone phone2 = new Phone("Apple", 64);
+        Phone phone = new Phone(name1, mem1);
+
+        Phone phone2 = new Phone(name2, mem2);
 
         System.out.println(phone.getMem());
         System.out.println(phone.getType());
