@@ -44,6 +44,7 @@ public class Phone {
 
         Phone phone2 = new Phone(name2, mem2);
 
+
         System.out.println("A telefon típusa, memóriája " + phone.getMem() + phone.getType());
         System.out.println("A telefon típusa, memóriája " + phone2.getMem() + phone2.getType());
     }
