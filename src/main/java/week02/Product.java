@@ -17,8 +17,8 @@ public class Product {
         return code;
     }
 
-    public boolean TheyEqual(Product prodact) {
-        return name.equals(prodact.getName());
+    public boolean TheyEqual(Product product) {
+        return name.equals(product.getName());
     }
 
 
