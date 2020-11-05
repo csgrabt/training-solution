@@ -8,7 +8,7 @@ public class CompaniMain {
     public static void main(String[] args) {
         Employee e1 = new Employee("Pista Béla", 1984);
         Employee e2 = new Employee("Géza", 1980);
-        Employee e3 = new Employee("Balfasz", 1554);
+        Employee e3 = new Employee("Géza2", 1554);
 
 
         Company c1 = new Company(new ArrayList<>());
@@ -18,7 +18,7 @@ public class CompaniMain {
         c1.addEmployee(e2);
         c1.addEmployee(e3);
 
-        e3.setName("Kingának Igaza van");
+        e3.setName("Géza3");
 
         c1.addEmployee(e3);
 
