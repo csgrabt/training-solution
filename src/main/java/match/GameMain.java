@@ -11,7 +11,7 @@ public class GameMain {
         System.out.println(w1.toString());
         System.out.println(w2.toString());
 
-if (Math.abs(w1.getStamina())- w2.getStamina() > 30){
+if (Math.abs((w1.getStamina())- w2.getStamina()) > 30){
     System.out.println("You are too WEEK go away");
 }else {
 
