@@ -1,4 +1,4 @@
-package attributes.book;
+package attributes.Book;
 
 public class BookMain {
     public static void main(String[] args) {
@@ -13,7 +13,14 @@ public class BookMain {
 
         System.out.println(book.getTitle() + " " + book1.getTitle());
 
+
+        book1.setTitle("Alma");
+
+
+        System.out.println(book.getTitle() + " " + book1.getTitle());
+
     }
+
 
 
 

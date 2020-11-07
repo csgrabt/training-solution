@@ -1,4 +1,4 @@
-package attributes.book;
+package attributes.Book;
 
 public class Book {
 
