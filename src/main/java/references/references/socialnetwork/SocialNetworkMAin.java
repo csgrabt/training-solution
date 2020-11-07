@@ -1,5 +1,6 @@
 package references.references.socialnetwork;
 
+
 public class SocialNetworkMAin {
     public static void main(String[] args) {
         SocialNetwork socialNetwork = new SocialNetwork();
@@ -11,7 +12,10 @@ public class SocialNetworkMAin {
         socialNetwork.connect("Joe", "John");
         socialNetwork.connect("John", "Joe");
 
-        System.out.println(socialNetwork.bidirectionalConnections());
+        //ystem.out.println(socialNetwork.bidirectionalConnections());
+
+        //System.out.println(socialNetwork.toString());
+        System.out.println(socialNetwork.getMembers().get(2).toString1());
 
     }
 }

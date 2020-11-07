@@ -7,6 +7,11 @@ public class SocialNetwork {
 
     private List<Member> members = new ArrayList<>();
 
+
+    public List<Member> getMembers() {
+        return members;
+    }
+
     public void addMember(String name) {
         members.add(new Member(name));
     }
@@ -40,6 +45,10 @@ public class SocialNetwork {
 
         return a;
     }
+
+public String toString(){
+
+        return members.toString();}
 
 
 }
