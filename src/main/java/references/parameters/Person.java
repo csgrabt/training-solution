@@ -1,4 +1,4 @@
-package reference.parameters;
+package references.parameters;
 
 public class Person {
     private String name;
