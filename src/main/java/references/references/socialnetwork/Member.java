@@ -28,7 +28,7 @@ public class Member {
 
     public List<String> connectedNames(){
         List<String> a = new ArrayList<>();
-        for (Member connected:connections
+        for (Member connected : connections
              ) {String b = connected.getName();
             a.add(b);}
 
