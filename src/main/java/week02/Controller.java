@@ -3,8 +3,10 @@ package week02;
 import java.util.Scanner;
 
 public class Controller {
+private Office office;
 
-    public static void main(String[] args) {
+
+public static void main(String[] args) {
         Controller controller = new Controller();
 
         Scanner scanner = new Scanner(System.in);
