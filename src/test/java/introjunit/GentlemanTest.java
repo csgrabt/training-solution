@@ -1,7 +1,7 @@
-package introjunit;
+/*package introjunit;
 
-import com.sun.tools.attach.AgentInitializationException;
-import org.junit.Test;
+//import com.sun.tools.attach.AgentInitializationException;
+//import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
@@ -51,4 +51,4 @@ public void testCase2(){
 
 
 
-}
+}*/
