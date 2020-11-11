@@ -2,7 +2,7 @@ package controliteration.pi;
 
 public class PiGenerator {
 
-    public static void main(String[] args) {
+
         int c = 0;
 
 
@@ -12,26 +12,30 @@ public class PiGenerator {
     String vers2 ="";
     boolean a;
 
-    for(int i = 0; i < vers.length(); i++){
-if(vers2.length() == 1 ){ vers2 = vers2 + '.';}
-a=vers.charAt(i) == '.' || vers.charAt(i) == ' ' || vers.charAt(i) == ',';
-        if  (a){
-            if (c != 0){
-                vers2 = vers2 + c;
-                c = 0;}
-        }
-        if(!a){
-            c++;
-        }
-    }
+ public String getPi() {
+     for (int i = 0; i < vers.length(); i++) {
+         if (vers2.length() == 1) {
+             vers2 = vers2 + '.';
+         }
+         a = vers.charAt(i) == '.' || vers.charAt(i) == ' ' || vers.charAt(i) == ',';
+         if (a) {
+             if (c != 0) {
+                 vers2 = vers2 + c;
+                 c = 0;
+             }
+         }
+         if (!a) {
+             c++;
+         }
+     }
+return vers2;
+ }
 
 
 
-        System.out.println(vers2);
 
 
 
 
 
-    }
 }
