@@ -1,54 +1,38 @@
-/*package introjunit;
+package introjunit;
 
-//import com.sun.tools.attach.AgentInitializationException;
-//import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertThat;
+import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GentlemanTest {
 
-    @Test
-    public void TestCase1() {
-        //Given
-        Gentleman gentleman = new Gentleman("Jhon Doe");
+@Test
+public void testCreateGentleman(){
+    //Given
 
-        //When
+    Gentleman gentleman = new Gentleman("Jhon");
+
+    //When
+    String name = gentleman.getName();
+
+
+    //Then
+    assertEquals("Jhon", name);
+
+}
+
+
+    @Test
+    void sayHello() {
+ //Given
+ Gentleman gentleman = new Gentleman("Jack");
+
+ //When
         String name = gentleman.getName();
 
         //Then
-        assertThat(name, equalTo("Jhon Doe"));
-    }
-    @Test
-public void testCase2(){
-    //Given
-            Gentleman gentleman = new Gentleman("Jhon Doe");
+        assertEquals("Hello Jack", gentleman.sayHello(name));
 
-//When
-    String name = gentleman.getName();
-
-//Then
-    assertThat(gentleman.sayHello(name), equalTo("Hello Jhon Doe") );
-
-    }
-
-    @Test
-    public void testCase3(){
-        //Given
-        Gentleman gentleman = new Gentleman("Jhon Doe");
-
-//When
-        String name = null;
-
-//Then
-        assertThat(gentleman.sayHello(name), equalTo("Hello Anonymous") );
-
-    }
-
-
-
-
-
-
-}*/
+}
+}
