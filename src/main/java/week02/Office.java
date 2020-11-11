@@ -1,4 +1,4 @@
-package week02;
+/*package week02;
 
 import references.references.socialnetwork.Member;
 
@@ -89,4 +89,4 @@ public class Office {
 
     }
 
-
+*/
