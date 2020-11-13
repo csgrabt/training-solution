@@ -12,6 +12,7 @@ private int yearOfBirth;
         if (name.equals(null)){throw new IllegalArgumentException();}
         if (name.equals("")){throw new IllegalArgumentException();}
         if (yearOfBirth <= MIN_YEAR){throw new IllegalArgumentException();}
+        if (new SsnValidator().isValidSsn(ssn) != true){throw new IllegalArgumentException();}
         this.name = name;
         this.socialSecurityNumber = ssn;
         this.yearOfBirth = yearOfBirth;
