@@ -1,4 +1,4 @@
-/*package week02;
+package week02;
 
 import references.references.socialnetwork.Member;
 
@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static com.sun.tools.javac.util.StringUtils.toUpperCase;
+
 
 public class Office {
     private List<MeetingRoom> meetingRooms = new ArrayList<>();
@@ -89,4 +90,4 @@ public class Office {
 
     }
 
-*/
+
