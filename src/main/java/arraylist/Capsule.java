@@ -12,7 +12,7 @@ public class Capsule {
     public List<String> szinek = new ArrayList<>();
 
 
-    public void addfirst(String szin) {
+    public void addFirst(String szin) {
         szinek.add(0, szin);
     }
 
@@ -37,11 +37,11 @@ public class Capsule {
 
     public static void main(String[] args) {
         Capsule capsule = new Capsule();
-        capsule.addfirst("béla");
+        capsule.addFirst("béla");
 
         System.out.println(capsule.getSzinek());
 
-        capsule.addfirst("béla2");
+        capsule.addFirst("béla2");
 
         System.out.println(capsule.getSzinek());
 
