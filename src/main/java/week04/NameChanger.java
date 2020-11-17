@@ -12,15 +12,16 @@ private String FullName;
         return FullName;
     }
 
-    private String changeFirstname(String fullName, String firstName){
-        int b = fullName.indexOf(" ");
-        String d = firstName.substring(b+1);
-        StringBuilder sb = new StringBuilder(fullName);
-         sb.toString().replaceAll(d, firstName);
+    public String changeFirstname(String firstName){
+        int b = FullName.indexOf(" ");
+        String d = FullName.substring(b+1);
+        StringBuilder sb = new StringBuilder(FullName);
 
-        return sb.toString();
+ FullName = sb.toString().replaceAll(d, firstName);
+        return FullName;
 
 
     }
+
 
 }
