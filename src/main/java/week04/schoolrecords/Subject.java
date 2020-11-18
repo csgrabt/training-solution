@@ -14,6 +14,6 @@ private String subjectName;
         return subjectName;
     }
 
-    public boolean tutorTeachingSubject(Subject subject){return false;}
+
 
 }

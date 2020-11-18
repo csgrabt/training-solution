@@ -7,6 +7,7 @@ public class Mark {
 
 
     public Mark(MarkType markType, Subject subject, Tutor tutor){
+        if (subject == null){throw new NullPointerException("Both subject and tutor must be provided!");}
         this.markType = markType;
         this.subject = subject;
         this.tutor= tutor;
@@ -36,5 +37,8 @@ public class Mark {
         return tutor;
     }
 
-    public String toString(){return null;}
+    @Override
+    public String toString() {
+        return markType.getDescription() + "(" + markType.getValeu() + ")";
+    }
 }
