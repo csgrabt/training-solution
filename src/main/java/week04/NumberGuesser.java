@@ -19,7 +19,7 @@ public class NumberGuesser {
 
         for (int i = 0; i < 6; i++){
             if (i ==5){
-                System.out.println("Nincs több lehetőség vesztettél!");
+                System.out.println("Nincs több lehetőség, vesztettél!");
             return;
             }
             if(randomNumber != tippNumber){
