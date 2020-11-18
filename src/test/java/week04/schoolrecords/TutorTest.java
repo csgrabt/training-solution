@@ -16,6 +16,7 @@ public class TutorTest {
         //Then
 
         assertEquals("Nagy Csilla", tutor.getName());
+        assertTrue(tutor.tutorTeachingSubject(new Subject("matematika")));
         assertTrue(tutor.tutorTeachingSubject(new Subject("fizika")));
     }
 
