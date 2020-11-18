@@ -17,12 +17,16 @@ public class NumberGuesser {
 
         int tippNumber = scanner.nextInt();
 
-        for (int i = 0; i < 5; i++){
+        for (int i = 0; i < 6; i++){
+            if (i ==5){
+                System.out.println("Nincs több lehetőség vesztettél!");
+            return;
+            }
             if(randomNumber != tippNumber){
                 System.out.println("Tippelj újra, adj meg egy számot:");
                 tippNumber = scanner.nextInt();;}else{
                 System.out.println("Eltaláltad!");
-
+return;
             }
             }
         }
