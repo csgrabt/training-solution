@@ -9,9 +9,16 @@ public class Tutor {
     private List<Subject> taughtSubjects = new ArrayList<>();
 
     public Tutor(String name, List<Subject> taughtSubjects) {
+        if (name == null){throw new NullPointerException("Parameter is null!");}
+        if (isEmpty(name)){throw new IllegalArgumentException("Parameter is empty");}
         this.name = name;
         this.taughtSubjects = taughtSubjects;
     }
+
+
+    private boolean isEmpty(String str){
+
+        return str.isEmpty();}
 
     public String getName() {
         return name;

@@ -15,14 +15,22 @@ public class Mark {
 
 
 
-   // public Mark(String markType, Subject subject, Tutor tutor){
-   //     this.markType = ;
-    //    this.subject = subject;
-     //   this.tutor= tutor;
+    public Mark(String markType, Subject subject, Tutor tutor){
+         switch (markType) {
+            case "A" -> {this.markType = MarkType.A; break;}
+            case "B" -> {this.markType = MarkType.B; break;}
+            case "C" -> {this.markType = MarkType.C; break;}
+            case "D" -> {this.markType = MarkType.D; break;}
+            case "F" -> {this.markType = MarkType.F; break;}
+            default -> {
+             }
+         }
+         this.subject = subject;
+         this.tutor= tutor;
 
 
 
-  //  }
+    }
 
 
     public MarkType getMarkType() {

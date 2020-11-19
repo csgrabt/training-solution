@@ -2,23 +2,23 @@ package week04.schoolrecords;
 
 public class StudyResultByName {
 private String studentName;
-private double studyAvarege;
+private double studyAverage;
 
 
-    public StudyResultByName(String studentName, double studyAvarege) {
+    public StudyResultByName(double studyAverage,String studentName) {
+        if (studentName==null){throw new NullPointerException("Parameter is null!");}
+        if (isEmpty(studentName)){throw new IllegalArgumentException("Parameter is empty!");}
+        this.studyAverage = studyAverage;
         this.studentName = studentName;
-        this.studyAvarege = studyAvarege;
     }
 
+    private boolean isEmpty(String str){
 
+        return str.isEmpty();}
     public String getStudentName() {
         return studentName;
     }
 
-    public double getStudyAvarege() {
-        return studyAvarege;
-    }
-
-    public double getStudyAverage() { return 1.0;
+    public double getStudyAverage() { return studyAverage;
     }
 }
