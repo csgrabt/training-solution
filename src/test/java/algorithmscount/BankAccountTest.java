@@ -1,5 +1,6 @@
-package algorithmscount.bankaccounts;
+package algorithmscount;
 
+import algorithmscount.bankaccounts.BankAccount;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

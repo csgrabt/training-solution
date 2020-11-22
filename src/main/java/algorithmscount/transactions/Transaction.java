@@ -1,4 +1,4 @@
-package algorithmssum.transactions;
+package algorithmscount.transactions;
 
 public class Transaction {
     private String accountNumber;

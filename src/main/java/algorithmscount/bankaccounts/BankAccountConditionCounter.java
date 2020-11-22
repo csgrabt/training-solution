@@ -1,5 +1,7 @@
 package algorithmscount.bankaccounts;
 
+import algorithmscount.bankaccounts.BankAccount;
+
 import java.util.List;
 
 public class BankAccountConditionCounter {

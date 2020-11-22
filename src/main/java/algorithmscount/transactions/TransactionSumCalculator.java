@@ -1,4 +1,4 @@
-package algorithmssum.transactions;
+package algorithmscount.transactions;
 
 import java.util.List;
 

@@ -1,5 +1,7 @@
-package algorithmscount.bankaccounts;
+package algorithmscount;
 
+import algorithmscount.bankaccounts.BankAccount;
+import algorithmscount.bankaccounts.BankAccountConditionCounter;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

@@ -1,5 +1,5 @@
 
-package algorithmssum.transactions;
+package algorithmscount.transactions;
 
 import org.junit.jupiter.api.Test;
 
