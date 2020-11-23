@@ -1,26 +1,25 @@
 package gyakorlas;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Operatorok {
 
+    public double kisj(){
+        int k = 3;
+        return (double) k;   }
+
+
+
     public static void main(String[] args) {
-        String delimiter = "";
-        String b = "9:";
-        //String h = b.replace(delimiter,"");
+final int j;
+        j = 3;
 
-        for (int i = 0; i < b.length(); i++){
-            char a =  b.charAt(i);
-            int c = (int) a;
-            //if(c < 48 || c > 58){
-                System.out.println(c);}//else{throw new IllegalArgumentException("Incorrect parameter string!");}
 
-        String g = "";
-
-        boolean c = g.isEmpty();
-
-        // System.out.println(g.isEmpty());
+        System.out.println(j);
 
 
 
-        }
 
-}
+
+    }}
