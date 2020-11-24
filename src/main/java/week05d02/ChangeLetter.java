@@ -1,7 +1,7 @@
 package week05d02;
 
 public class ChangeLetter {
-public static final String VOWELS = "aeiou";
+public static final String VOWELS = "aeiouAEIOU";
 
     public String changeVowels(String str) {
         if (str == null) {
@@ -11,7 +11,7 @@ public static final String VOWELS = "aeiou";
             throw new IllegalArgumentException("String is Empty!");
         }
         String csereltstr = "";
-        str = str.toLowerCase();
+        //str = str.toLowerCase();
         for (int i = 0; i < str.length(); i++) {
             if (VOWELS.contains(str.substring(i, i+1))) {
                 csereltstr = csereltstr + '*';

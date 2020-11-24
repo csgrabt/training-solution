@@ -12,10 +12,10 @@ public class ChangeLetterTest {
     public void changeStringTest() {
 ChangeLetter changeLetter = new ChangeLetter();
         assertEquals("*lm*", changeLetter.changeVowels("alma"));
-        assertEquals("*lm*", changeLetter.changeVowels("ALMA"));
+        assertEquals("*LM*", changeLetter.changeVowels("ALMA"));
         assertEquals("****", changeLetter.changeVowels("eioa"));
-
-        assertEquals("LKBMFRTZHJKC".toLowerCase(), changeLetter.changeVowels("LKBMFRTZHJKC"));
+        assertEquals("*lM*", changeLetter.changeVowels("AlMa"));
+        assertEquals("LKBMFRTZHJKC", changeLetter.changeVowels("LKBMFRTZHJKC"));
     }
 
 
