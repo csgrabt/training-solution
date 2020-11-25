@@ -1,4 +1,4 @@
-package match;
+package math.Game;
 
 public class GameMain {
 
