@@ -38,7 +38,7 @@ public class Store {
 
 
     public boolean isExperied(Product product) {
-        boolean a = false;
+
         return product.getExpirationDate().isAfter(LocalDate.now());
     }
 
@@ -50,5 +50,5 @@ if (isExperied(product)){
         b = productList.add(product);
     }
 }
-    return b;}
+        return b;}
 }
