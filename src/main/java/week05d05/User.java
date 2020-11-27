@@ -6,8 +6,8 @@ public class User {
     private String email;
 
     public User(String firstName, String lastName, String email) {
-        if (email.indexOf("@") ==  -1 && email.indexOf("@") > email.indexOf(".")){throw new IllegalArgumentException("Invalid format, no @");}
-        if (email.indexOf(".") ==  -1 && email.length()-1 > email.indexOf(".")){throw new IllegalArgumentException("Invalid format, no .");}
+        if (email.indexOf("@") ==  -1 && email.indexOf("@") > email.indexOf(".")){throw new IllegalArgumentException("Invalid format!");}
+        if (email.indexOf(".") ==  -1 && email.length()-1 > email.indexOf(".")){throw new IllegalArgumentException("Invalid format!");}
 
         this.firstName = firstName;
         this.lastName = lastName;
