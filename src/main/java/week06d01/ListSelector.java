@@ -16,7 +16,8 @@ public class ListSelector {
         if (list.isEmpty()){return "";}
         StringBuilder sb = new StringBuilder("[");
         for(int i = 0; i < list.size(); i=i+2){
-        sb.append(list.get(i));}
+            sb.append(list.get(i) + ","); }
+        sb.deleteCharAt(sb.length()-1);
         sb.append("]");
         return sb.toString();}
 
