@@ -1,6 +1,5 @@
 package math;
 
-import gyakorlas.Trainer;
 
 import java.util.Random;
 
