@@ -1,11 +1,11 @@
 package week06d02;
 
-public class Judit {
+public class CategoryCounter {
 
     private String type;
     private int pieces;
 
-    public Judit(String type, int pieces) {
+    public CategoryCounter(String type, int pieces) {
         this.type = type;
         this.pieces = pieces;
     }
