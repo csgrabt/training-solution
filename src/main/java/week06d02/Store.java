@@ -1,5 +1,7 @@
 package week06d02;
 
+import com.sun.jdi.PathSearchingVirtualMachine;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +52,7 @@ public class Store {
     public int getProductBakedgoods() {
         int count = 0;
         for (int i = 0; i < productList.size(); i++) {
-            if (productList.get(i).getCategory().toString().equals(BAKEDGOODS.toString())) {
+            if (productList.get(i).getCategory() ==  BAKEDGOODS) {
                 count++;
             }
         }
@@ -78,15 +80,26 @@ public List<String> getProductsByCategory(){
 
 
 return list;}
+//Senior csoport második megoldása
+    public List<String> getProductsByCategoryLessCopy(){
+List<String> list = new ArrayList<>();
+        int g = values().length;
+
+        for (int i = 0; i < g; i++){
+         int a = getProductByCategoryName(Category.values()[i]);
+                list.add(Category.values()[i].toString() + " - " + a + "ps(s)");
+        }
 
 
 
 
-
-
-
+        return list;}
 
 }
+
+
+
+
 
 
 
