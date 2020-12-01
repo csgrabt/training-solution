@@ -207,8 +207,11 @@ public class ProductTest {
         list.add(product7);
         list.add(product8);
 
-        assertEquals("[FROZEN - 2ps(s), DAIRY - 1ps(s), BAKEDGOODS - 4ps(s), OTHER - 1ps(s)]",
-                store.getProductsByCategoryLessCopy().toString());
+        assertEquals(5, store.getProductsByCategoryLessCopy().size());
+        assertEquals("FROZEN", store.getProductsByCategoryLessCopy().get(0).getType());
+        assertEquals(4, store.getProductsByCategoryLessCopy().get(2).getPieces());
+
+
 
     }
 

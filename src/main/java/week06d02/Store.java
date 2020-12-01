@@ -82,16 +82,18 @@ public List<String> getProductsByCategory(){
 
 
         //Senior csoport második megoldása
-    public List<String> getProductsByCategoryLessCopy(){
+    public List<Judit> getProductsByCategoryLessCopy(){
 
-        List<String> list = new ArrayList<>();
-//átírni majd osztályra categorycounter
+        List<Judit> list = new ArrayList<>();
+
         int g = values().length;
 
          for (int i = 0; i < g; i++){
          int a = getProductByCategoryName(Category.values()[i]);
-                list.add(Category.values()[i].toString() + " - " + a + "ps(s)");
-        }
+         String b = Category.values()[i].toString();
+         Judit judit = new Judit(b, a);
+         list.add(judit);
+         }
 
 
 
