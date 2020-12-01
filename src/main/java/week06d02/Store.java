@@ -77,15 +77,18 @@ public List<String> getProductsByCategory(){
         list.add("Frozen - " + getProductFrozen() + " ps(s)");
         list.add("Other - " + getProductOther()+ " ps(s)");
         list.add("Daity - " + getProductDaity()+ " ps(s)");
+        return list;}
 
 
-return list;}
-//Senior csoport második megoldása
+
+        //Senior csoport második megoldása
     public List<String> getProductsByCategoryLessCopy(){
-List<String> list = new ArrayList<>();
+
+        List<String> list = new ArrayList<>();
+//átírni majd osztályra categorycounter
         int g = values().length;
 
-        for (int i = 0; i < g; i++){
+         for (int i = 0; i < g; i++){
          int a = getProductByCategoryName(Category.values()[i]);
                 list.add(Category.values()[i].toString() + " - " + a + "ps(s)");
         }
