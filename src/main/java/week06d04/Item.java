@@ -6,6 +6,8 @@ public class Item {
     private String name;
 
     public Item(int price, int month, String name) {
+        if (month <=0 || month < 12){throw new IllegalArgumentException("Date is not valid!");}
+        if (price <= 0){throw new IllegalArgumentException("Price is not valid!");}
         this.price = price;
         this.month = month;
         this.name = name;

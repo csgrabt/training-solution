@@ -34,6 +34,7 @@ public class BudgetTest {
         Budget budget = new Budget(list);
 
         assertEquals(1, budget.getItemsByMonth(1).size());
+        assertEquals(3, budget.getItemsByMonth(5).size());
 
 
     }
