@@ -1,9 +1,6 @@
 package week07d01;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import week05d05.User;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static week07d01.MathAlgorithms.isPrime;
 import static week07d01.MathAlgorithms.knownPrim;
