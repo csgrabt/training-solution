@@ -10,10 +10,10 @@ public class MathAlgorithms {
 
 public static void fullList(){
 
-    knownPrim.add(2);
-    knownPrim.add(3);
-    knownPrim.add(5);
-    knownPrim.add(7);
+  //  knownPrim.add(2);
+  //  knownPrim.add(3);
+   // knownPrim.add(5);
+  //  knownPrim.add(7);
     //feltölteném egy fájlból az ismert prímekkel egy fájlból
 }
 
@@ -40,7 +40,7 @@ public static void fullList(){
 
 
        MathAlgorithms.knownPrim.add(x); //a listát itt kimenteném egy adat fájlba,
-
+       System.out.println(knownPrim);
 
 return true;}
 
