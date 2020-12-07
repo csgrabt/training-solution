@@ -18,6 +18,7 @@ public void primTest1() {
     assertEquals(false, isPrime(6));
     assertEquals(false, isPrime(102));
     assertEquals(true, isPrime(9973));
+    assertEquals(false, isPrime(1));
 
 
 
@@ -33,7 +34,7 @@ public void primTest1() {
 
     public void xIsbelow1() {
         Exception ex = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            isPrime(1);
+            isPrime(0);
         });
         assertEquals("Invalid number!", ex.getMessage());
     }

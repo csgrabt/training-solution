@@ -21,8 +21,8 @@ public static void fullList(){
 
 
    public static  boolean  isPrime(int x){
-    if (x <=1){throw new IllegalArgumentException("Invalid number!");}
-
+    if (x <1){throw new IllegalArgumentException("Invalid number!");}
+    if (x == 1){return false;}
     if (knownPrim.isEmpty()){fullList();}
 
     for (Integer n:knownPrim) {
