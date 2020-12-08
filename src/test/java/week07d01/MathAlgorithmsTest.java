@@ -16,10 +16,9 @@ public void primTest1() {
     assertEquals(false, isPrime(102));
     assertEquals(true, isPrime(9973));
     assertEquals(false, isPrime(1));
+    }
 
-
-
-}@Test
+@Test
     public void primList(){
         assertEquals(true, isPrime(9973)); // a lista max eleménél nagyobb prím
         assertEquals(2, knownPrim.size()); }// a lista max eleménél nagyobb prím
