@@ -19,8 +19,22 @@ public static int sumOfDigits(int x){
 return sumOfDigits;}
 
 
+
+
+
+    public static int sumOfDigits2(int x) {
+
+        String szamjegyek = Integer.toString(x);
+        int sum = 0;
+
+        for (int i = 0; i < szamjegyek.length(); i++) {
+            sum += (Integer.parseInt(szamjegyek.substring(i, i + 1)));
+        }
+        return sum;
+    }
+
     public static void main(String[] args) {
-        System.out.println(sumOfDigits(12));
+        System.out.println(sumOfDigits2(112));
     }
 
 
