@@ -37,4 +37,16 @@ public class NumberListTest {
 
     }
 
+
+
+    @Test
+    public void numberListTestNegativ() {
+        List<Integer> intList = Arrays.asList(10, 10, 10, -10, 10, 10, 10);
+        assertEquals(false, NumberList.isIncreasing(intList));
+
+    }
+
+
+
+
 }
