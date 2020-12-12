@@ -7,4 +7,15 @@ public class Car extends Vehicle{
     transmission = TransmissionType.AUTOMATIC;
 
     }
+
+
+    public static void main(String[] args) {
+        Car car = new Car();
+
+
+        System.out.println(car.getNumberOfGears());
+
+    }
+
+
 }
