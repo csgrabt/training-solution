@@ -23,15 +23,30 @@ public class Jeep extends Car{
 
 
     public void modifyFuelAmount(double fuel){
+        if (fuel < 0){
+      if ((extraFuel + fuel) < 0){
+          double  a = extraFuel + fuel;
+
+            super.modifyFuelAmount(a);
+        }}
+      if (super.calculateRefillAmount() >= fuel){super.modifyFuelAmount(fuel);}else{
+          if(fuel-super.calculateRefillAmount() > extraCapacity-extraFuel){throw new IllegalArgumentException("Nincs ennyi hely!");}
+          double tank = super.calculateRefillAmount();
+          super.modifyFuelAmount(tank);
+          this.extraFuel = extraFuel + (fuel-tank);
+      }
+      }
 
 
-    }
 
 
 
 
 
-    // public double calculateRefillAmount() //kiszámolja, mennyit lehet tankolni
+
+     public double calculateRefillAmount(){
+        return 0.0;
+     }
 
 
 
