@@ -2,6 +2,7 @@ package week08d1;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Robot {
 
@@ -13,18 +14,28 @@ public class Robot {
         this.y = y;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
     private List steps(String string){
+
+        String string2 = string.toUpperCase();
         List<String> stepsList = new ArrayList<>() ;
         for (int i = 0; i < string.length(); i++){
-            stepsList.add(string.substring(i, i+1));
+            stepsList.add(string2.substring(i, i+1));
         }
 return stepsList;
     }
 
 
-    public Robot robotMoves(String string){
+    public List<Robot> robotMoves(String string){
 
-     List<String> stepsList =  steps(string);
+        List<String> stepsList =  steps(string);
 int y = 0;
 int x = 0;
 
@@ -34,8 +45,24 @@ for (int i = 0; i < stepsList.size(); i++){
     if (stepsList.get(i).equals("B")){x = x-1;}
     if (stepsList.get(i).equals("J")){x = x+1;}
 }
+List<Robot> robotok = new ArrayList<>();
    Robot robot = new Robot(x, y);
 
-  return robot;}
+
+   robotok.add(robot);
+
+  return robotok;}
+
+
+    public static void main(String[] args) {
+
+        Robot robot = new Robot(0,0);
+
+        System.out.println(robot.robotMoves("llll").get(0).getY());
+
+
+    }
+
+
 
 }
