@@ -1,8 +1,7 @@
-package week08d1;
+package week08d01;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class Robot {
 
