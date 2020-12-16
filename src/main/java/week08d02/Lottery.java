@@ -1,9 +1,6 @@
 package week08d02;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Lottery {
 
@@ -20,7 +17,7 @@ public class Lottery {
         if (!(list.contains(s))){list.add(s);}else{numberOfInteger++;}
 
         }
-
+       Collections.sort(list);
         return list;
     }
 

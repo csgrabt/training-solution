@@ -21,7 +21,12 @@ public class LotteryTest {
     }
 
 
+    @Test
+    public void getnumbersTest2() {
+
+        assertEquals("[1, 2, 3, 4, 5]", Lottery.getNumbers(5, 5).toString());
 
     }
 
 
+}
