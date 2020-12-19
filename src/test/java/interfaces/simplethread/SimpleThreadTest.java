@@ -1,5 +1,6 @@
 package interfaces.simplethread;
 
+import interfaces.simplethread.SimpleThread;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
