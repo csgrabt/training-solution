@@ -1,4 +1,4 @@
-package gyakorlas.interfacedep;
+package interfacedep;
 
 public interface BonusCalculator {
 
