@@ -3,17 +3,16 @@ package gyakorlas.Interface;
 public class TrainerMain {
 
     public static void main(String[] args) {
- //       Trainer trainer = new Trainer();
-        //      Human human = trainer;
-
-//    Human human = new Trainer();
 
 
-        HasName trainer = new Trainer();
-trainer.getname();
+        HasName hasName = new Trainer("béla", 19);
+        HasNameAndAge hasNameAndAge = new Trainer("géza", 25);
 
 
-HasName course = new Course();
+
+
+
+
 
 
     }
