@@ -1,4 +1,4 @@
-/*package interfaceextends.robot;
+package interfaceextends.robot;
 
 import org.junit.jupiter.api.Test;
 
@@ -73,4 +73,3 @@ public class AstroBoyTest {
         assertEquals(altitude, astroBoy.getAltitude());
     }
 }
-*/
