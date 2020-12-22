@@ -18,7 +18,6 @@ public class FibCalculator {
 
         List<Long> evenFibNumbers = new ArrayList<>();
 
-        evenFibNumbers.add(0L); //mivel csak a negyedik szám páros
 
       do {
 
@@ -58,15 +57,6 @@ private static void firstTwoFibNumbersAddToList(List<Long> list){
         if (list.get(list.size()-1)>bound){
             sum = sum(list)-list.get(list.size()-1);}
         return sum;}
-
-
-
-
-
-
-
-
-
 
 
 
