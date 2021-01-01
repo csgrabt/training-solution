@@ -3,7 +3,7 @@ package catalog;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-
+import static catalog.Validators.biggerThanZero;
 import static catalog.Validators.isBlank;
 import static catalog.Validators.isEmpty;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -28,4 +28,12 @@ public class ValidatorsTest {
         assertFalse(isEmpty(Arrays.asList("aaa")));
         assertFalse(isEmpty(Arrays.asList("aaa", "bbb")));
     }
+
+    @Test
+    public void testBiggerThanZero() {
+        assertTrue(biggerThanZero(-2));
+        assertFalse(biggerThanZero(2));
+
+    }
+
 }

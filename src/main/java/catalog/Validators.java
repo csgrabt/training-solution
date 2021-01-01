@@ -19,4 +19,10 @@ if (list == null) {
 
     return list.isEmpty(); }
 
+
+public static boolean biggerThanZero(int number){
+    return number <0 ;
+}
+
+
 }
