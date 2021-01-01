@@ -12,7 +12,7 @@ private List<String> authors;
     public PrintedFeatures(String title, int numberOfPages, List<String> authors) {
         if (Validators.isBlank(title)){throw new IllegalArgumentException("Empty title");}
         if (Validators.isEmpty(authors)){throw new IllegalArgumentException();}
-        if (Validators.isBlank(Integer.toString(numberOfPages)) || numberOfPages < 0){throw new IllegalArgumentException();}
+        if (Validators.biggerThanZero(numberOfPages)){throw new IllegalArgumentException();}
         this.title = title;
         this.numberOfPages = numberOfPages;
         this.authors = authors;
