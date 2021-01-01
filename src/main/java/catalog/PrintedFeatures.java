@@ -29,7 +29,7 @@ private List<String> authors;
 
     @Override
     public List<String> getContributors() {
-        return authors;
+        return new ArrayList<>(authors);
     }
 
 
