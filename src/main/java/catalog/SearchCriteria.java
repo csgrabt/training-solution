@@ -38,6 +38,7 @@ public final class SearchCriteria {
     }
 
     public String getTitle() {
+
         return title;
     }
 

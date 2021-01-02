@@ -16,14 +16,17 @@ public class CatalogItem {
 
 
     public List<Feature> getFeatures() {
+
         return new ArrayList<>(features);
     }
 
     public int getPrice() {
+
         return price;
     }
 
     public String getRegistrationNumber() {
+
         return registrationNumber;
     }
 
