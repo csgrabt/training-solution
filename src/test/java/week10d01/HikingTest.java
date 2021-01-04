@@ -14,13 +14,13 @@ public class HikingTest {
     @Test
     public void getPlusElevation(){
 
-        List<Double> x = new ArrayList<>();
-        x.add(10.0);
-        x.add(20.0);
-        x.add(15.0);
-        x.add(18.0);
+        List<Double> elevation = new ArrayList<>();
+        elevation.add(10.0);
+        elevation.add(20.0);
+        elevation.add(15.0);
+        elevation.add(18.0);
 
-        Hiking hiking = new Hiking(x);
+        Hiking hiking = new Hiking(elevation);
 
         assertEquals(13, hiking.getPlusElevation());
 
@@ -30,10 +30,19 @@ public class HikingTest {
     }
 
 
+    @Test
+    public void getPlusElevationListsize1() {
+
+        List<Double> elevation = new ArrayList<>();
+        elevation.add(10.0);
 
 
+        Hiking hiking = new Hiking(elevation);
+
+        assertEquals(0, hiking.getPlusElevation());
 
 
+    }
 
 
 
