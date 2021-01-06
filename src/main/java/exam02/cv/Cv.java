@@ -37,16 +37,16 @@ public class Cv {
     public int findSkillLevelByName(String str){
 
         int skillLevel = 0;
-
+int counter = 0;
         for (Skill n : skills
         ) {
             if (n.getName().equals(str)) {
                 skillLevel = n.getLevel();
-
+                counter++;
             }
 
         }
-
+if (counter == 0) {throw new SkillNotFoundException();}
 
         return skillLevel;
     }
