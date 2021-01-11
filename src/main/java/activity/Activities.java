@@ -1,32 +1,15 @@
 package activity;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class Activities {
-private List<Activity> activities;
+private List<Activity> activitieslist;
 
 
     public Activities(List<Activity> activities) {
-        this.activities = activities;
+        this.activitieslist = activities;
     }
-
-    public List<Activity> getActivities() {
-        return activities;
-    }
-
-
-public void addActivity(Activity activity){
-
-        activities.add(activity);
-
-
-
-}
-
-
-
-
 
 
     public List<Report> distancesByTypes() {
@@ -40,10 +23,10 @@ for (int g = 0; g < reports.length; g++){
     double distance = 0.0;
     ActivityType activityType;
 
-    for(int i =0; i <activities.size(); i++){
-        activityType = activities.get(i).getType();
-            if(activities.get(i) instanceof ActivityWithTrack){
-                distance = activities.get(i).getDistance();
+    for(int i = 0; i < activitieslist.size(); i++){
+        activityType = activitieslist.get(i).getType();
+            if(activitieslist.get(i) instanceof ActivityWithTrack){
+                distance = activitieslist.get(i).getDistance();
             }
 
                 reports[activityType.ordinal()] = new Report(activityType, (distance + reports[activityType.ordinal()].getDistance() ));
@@ -52,15 +35,7 @@ distance = 0;
             }
 
 
-List<Report> reports1 = new ArrayList<>();
-        for (Report report:reports
-             ) {reports1.add(report);
-
-        }
-
-
-
-return reports1;}
+return List.of(reports); }
 
 
 
@@ -68,7 +43,7 @@ return reports1;}
 
     public int numberOfTrackActivities() {
 int count = 0;
-        for (Activity activity:activities
+        for (Activity activity: activitieslist
              ) { if (activity instanceof ActivityWithTrack){count++;}
 
         }
@@ -78,7 +53,7 @@ int count = 0;
 
     public int numberOfWithoutTrackActivities() {
         int count = 0;
-        for (Activity activity:activities
+        for (Activity activity: activitieslist
         ) { if (activity instanceof ActivityWithoutTrack){count++;}
 
         }
