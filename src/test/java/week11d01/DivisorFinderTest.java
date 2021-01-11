@@ -15,4 +15,16 @@ class DivisorFinderTest {
 
 
     }
+
+    @Test
+    void findDivisors2() {
+        DivisorFinder divisorFinder = new DivisorFinder();
+
+        assertEquals(1, divisorFinder.findDivisors(420000005));
+
+
+
+    }
+
+
 }

@@ -1,31 +1,45 @@
 package week11d01;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DivisorFinder {
 
 
     public int findDivisors(int i) {
+
         int counter = 0;
 
-        String number = i + "";
+        String number = Integer.toString(i);
 
-        for (int g = 0; g < number.length(); g++) {
-            if (i % Integer.parseInt(number.substring(g, g + 1)) == 0) {
-                counter++;
-            }
+        List<Integer> numberList= new ArrayList<>();
+
+        for(int n = 1; n < number.length(); n++){
+
+            int irma = Integer.parseInt(number.substring(n, n+1));
+
+             if (irma != 0){
+                 numberList.add(irma);
+             }
+
         }
+
+        for (Integer listNumber:numberList
+             ) { if (i%listNumber == 0){
+                 counter++;
+        }
+
+        }
+
+
 
 
         return counter;
     }
 
 
-    public static void main(String[] args) {
 
- DivisorFinder divisorFinder = new DivisorFinder();
-
-        System.out.println(divisorFinder.findDivisors(425));
 
     }
 
 
-}
