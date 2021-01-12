@@ -2,12 +2,12 @@ package activity;
 
 public final class Coordinate {
 
-private final double latitude;
-private final double longitude;
+    private final double latitude;
+    private final double longitude;
 
 
     public Coordinate(double latitude, double longitude) {
-      validator(latitude, longitude);
+        validator(latitude, longitude);
         this.latitude = latitude;
         this.longitude = longitude;
     }
@@ -20,11 +20,15 @@ private final double longitude;
         return longitude;
     }
 
-private void validator(double x, double y){
-        if (!(x >= -90  && x <= 90 )){throw new IllegalArgumentException("The latitude is not valid");}
-        if (!(y >= -180  && x <= 180 )){throw new IllegalArgumentException("The longitude is not valid");}
+    private void validator(double x, double y) {
+        if (!(x >= -90 && x <= 90)) {
+            throw new IllegalArgumentException("The latitude is not valid");
+        }
+        if (!(y >= -180 && x <= 180)) {
+            throw new IllegalArgumentException("The longitude is not valid");
+        }
 
-}
+    }
 
 
 }
