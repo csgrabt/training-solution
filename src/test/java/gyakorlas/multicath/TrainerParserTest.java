@@ -1,7 +1,7 @@
 package gyakorlas.multicath;
 
 import org.junit.jupiter.api.Test;
-import week10d05.Calculator;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
