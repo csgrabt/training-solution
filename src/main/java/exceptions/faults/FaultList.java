@@ -1,4 +1,4 @@
-package exceptionclass.faults;
+package exceptions.faults;
 
 public class FaultList {
 
