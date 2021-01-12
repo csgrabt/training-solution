@@ -57,19 +57,7 @@ Exception exception = assertThrows(ParserException.class, () -> {
 
 
 
- //  @Test
- //  void findMinSum4() {
- //      int[] b = new int[3];
- //      b[0] = 2;
- //      b[1] = 1;
- //      b[2] = -3;
 
-
- //      Exception actualException = assertThrows(IllegalArgumentException.class, () -> {
- //          Calculator.findMinSum(b);
-
- //      });
- //      assertEquals("A 3 méretű tömbben található számok átlaga: 0.0", actualException.getMessage());
 
 
 
