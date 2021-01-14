@@ -9,11 +9,11 @@ class TrainerParserTest {
 
     @Test
     void testNull() {
- TrainerParser trainerParser = new TrainerParser();
-Exception exception = assertThrows(ParserException.class, () -> {
-    trainerParser.parse(null);
-});
-        assertEquals("invalid line: null",exception.getMessage());
+        TrainerParser trainerParser = new TrainerParser();
+        Exception exception = assertThrows(ParserException.class, () -> {
+            trainerParser.parse(null);
+        });
+        assertEquals("invalid line: null", exception.getMessage());
         assertTrue(exception.getCause() instanceof NullPointerException);
     }
 
@@ -24,8 +24,8 @@ Exception exception = assertThrows(ParserException.class, () -> {
         Exception exception = assertThrows(ParserException.class, () -> {
             trainerParser.parse("");
         });
-        assertEquals("invalid line: ",exception.getMessage());
-    assertTrue(exception.getCause() instanceof IndexOutOfBoundsException );
+        assertEquals("invalid line: ", exception.getMessage());
+        assertTrue(exception.getCause() instanceof IndexOutOfBoundsException);
 
     }
 
@@ -36,7 +36,7 @@ Exception exception = assertThrows(ParserException.class, () -> {
         Exception exception = assertThrows(ParserException.class, () -> {
             trainerParser.parse("John Doe; abc");
         });
-        assertEquals("invalid line: John Doe; abc",exception.getMessage());
+        assertEquals("invalid line: John Doe; abc", exception.getMessage());
         assertTrue(exception.getCause() instanceof NumberFormatException);
 
     }
@@ -48,8 +48,8 @@ Exception exception = assertThrows(ParserException.class, () -> {
         Trainer trainer = new TrainerParser().parse("John Doe;30");
 
 
-        assertEquals(30,trainer.getAge());
-        assertEquals("John Doe",trainer.getName());
+        assertEquals(30, trainer.getAge());
+        assertEquals("John Doe", trainer.getName());
     }
 
 }
