@@ -26,7 +26,7 @@ public class FilesSum {
         List<String> fileNames = new ArrayList<>();
 
         for (int i = 0; i < 100; i++) {
-            String filename = "number" + i;
+            String filename = "number" + String.format("%02d", i);
             if (isValid(filename)) {
                 fileNames.add(filename);
 
@@ -53,5 +53,9 @@ public class FilesSum {
         return counter;
     }
 
+    public static void main(String[] args) {
+       int i = 20;
 
+        System.out.println("number" + String.format("%02d", i));
+    }
 }
