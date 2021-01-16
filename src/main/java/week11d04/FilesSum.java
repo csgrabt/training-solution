@@ -48,7 +48,7 @@ public class FilesSum {
             try {
                 counter += Integer.parseInt(Files.readString(Path.of(validFiles.get(i))));
             } catch (IOException | NumberFormatException e ) {
-                   log(      e.toString()  +  " " + validFiles.get(i)  + "\r");
+                   log(e.toString()  +  " " + validFiles.get(i)  + "\r");
                    //System.out.println(e.toString());// throw new IllegalArgumentException("Cannot read file!", e);
             }
 
