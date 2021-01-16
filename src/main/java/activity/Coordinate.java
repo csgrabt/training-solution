@@ -1,6 +1,6 @@
 package activity;
 
-public final class Coordinate {
+public class Coordinate {
 
     private final double latitude;
     private final double longitude;

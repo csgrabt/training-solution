@@ -1,7 +1,7 @@
 package activity;
 
 
-public final class Report {
+public class Report {
     private final ActivityType activityType;
     private final double distance;
 

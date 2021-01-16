@@ -19,7 +19,6 @@ public class Activities {
 
         }
 
-
         double distance = 0.0;
         ActivityType activityType;
 

@@ -1,7 +1,7 @@
 package activity;
 
 public enum ActivityType {
-    BIKING, HIKIG, RUNNING, BASKETBALL
+    BIKING, HIKING, RUNNING, BASKETBALL
 
 
 }

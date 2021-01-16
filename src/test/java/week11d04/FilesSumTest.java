@@ -9,9 +9,19 @@ class FilesSumTest {
     @Test
     void sumNumbers() {
 
-    FilesSum fs = new FilesSum();
+        FilesSum fs = new FilesSum();
 
-    assertEquals(41, fs.sumNumbers());
+        assertEquals(41, fs.sumNumbers());
 
     }
+
+ //  @Test
+ //  void sumNumbersNumberFormat() {
+
+ //      FilesSum fs = new FilesSum();
+
+ //      assertEquals(41, e.toString);
+
+  //  }
+
 }
