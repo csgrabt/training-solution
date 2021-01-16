@@ -1,4 +1,3 @@
-Jhon Doe,200000
-Jane Doe,200000
-Jack Doe,200000
-Árvízt?r? tükörfúrógép,200000
+Jhon Doe, a
+Jane Doe
+Jack Doe
