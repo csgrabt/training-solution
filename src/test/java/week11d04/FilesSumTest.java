@@ -11,7 +11,7 @@ class FilesSumTest {
 
         FilesSum fs = new FilesSum();
 
-        assertEquals(41, fs.sumNumbers());
+        assertEquals(20, fs.sumNumbers());
 
     }
 

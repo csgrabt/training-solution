@@ -8,7 +8,9 @@ package week11d04;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.OpenOption;
 import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,14 +47,25 @@ public class FilesSum {
 
             try {
                 counter += Integer.parseInt(Files.readString(Path.of(validFiles.get(i))));
-            } catch (IOException | NumberFormatException e) {
-                System.out.println(e.toString());// throw new IllegalArgumentException("Cannot read file!", e);
+            } catch (IOException | NumberFormatException e ) {
+                   log(      e.toString()  +  " " + validFiles.get(i)  + "\r");
+                   //System.out.println(e.toString());// throw new IllegalArgumentException("Cannot read file!", e);
             }
 
 
         return counter;
     }
 
+    private void log(String string){
+        Path file = Path.of("log.txt");
+        try{
+            Files.writeString(file, string, StandardOpenOption.APPEND);
+
+        }
+        catch (IOException ioe){
+            throw new IllegalArgumentException("Can not write log file", ioe);
+        }
+    }
 
 
     }
