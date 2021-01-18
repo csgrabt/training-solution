@@ -2,10 +2,13 @@ package gyakorlas.beolvsas;
 
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.Buffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+import java.util.List;
 
 
 public class EmployeeService {
@@ -14,16 +17,19 @@ public class EmployeeService {
         Path file = Path.of("employees.txt");
 
 
-        try (BufferedReader reader = Files.newBufferedReader(file);) {
+        List<String> employees = List.of("Alma", "Géza", "Béla");
 
-            String line;
-            while (( line = reader.readLine()) != null) {
 
-                System.out.println(line);
+        try (BufferedWriter write = Files.newBufferedWriter(file, StandardOpenOption.APPEND)){
+
+            for (String employee: employees
+                 ) { write.write(employee + "\n");
+
             }
 
+
         } catch (IOException e) {
-            throw new IllegalStateException("Cannot read file", e);
+            e.printStackTrace();
         }
 
     }
