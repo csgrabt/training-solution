@@ -1,6 +1,4 @@
-package week02;
-
-import references.references.socialnetwork.Member;
+package meetingrooms;
 
 
 import java.util.ArrayList;
