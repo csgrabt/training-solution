@@ -1,6 +1,5 @@
-package week04.schoolrecords;
+package schoolrecords;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 

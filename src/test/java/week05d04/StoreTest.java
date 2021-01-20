@@ -1,10 +1,5 @@
 package week05d04;
 import org.junit.jupiter.api.Test;
-import week04.schoolrecords.Student;
-import week05d03.ListCounter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;

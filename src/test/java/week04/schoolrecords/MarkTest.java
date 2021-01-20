@@ -2,6 +2,10 @@ package week04.schoolrecords;
 
 
 import org.junit.jupiter.api.Test;
+import schoolrecords.Mark;
+import schoolrecords.MarkType;
+import schoolrecords.Subject;
+import schoolrecords.Tutor;
 
 import java.util.Arrays;
 

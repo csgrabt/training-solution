@@ -1,6 +1,7 @@
 package week04.schoolrecords;
 
 import org.junit.jupiter.api.Test;
+import schoolrecords.*;
 
 import java.util.Arrays;
 
