@@ -42,7 +42,6 @@ public class CountryStatistics {
         int counter = countries.get(0).getBorderCountries();
         int index = 0;
 
-
         for (int i = 1; i < countries.size(); i++) {
             if (countries.get(i).getBorderCountries() > counter) {
                 index = i;
