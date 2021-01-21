@@ -10,9 +10,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
-
 public class StringToBytes {
 
 
@@ -24,7 +22,7 @@ public class StringToBytes {
 
             for (String string : list
             )
-                if (!(string.substring(0, 1).equals("_")))
+                if (!(string.charAt(0) =='_'))
                     bos.write(string.getBytes(StandardCharsets.UTF_8));
 
 
