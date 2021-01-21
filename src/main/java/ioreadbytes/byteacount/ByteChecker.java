@@ -21,6 +21,11 @@ public class ByteChecker {
 
                 counter += arrayCounter(buffer);
 
+for (int i = 0; i < buffer.length; i++ ){
+    buffer[i] = 0;
+
+}
+
             }
 
         } catch (IOException ie) {

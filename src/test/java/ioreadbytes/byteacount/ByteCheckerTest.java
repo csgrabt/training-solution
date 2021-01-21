@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         @Test
         public void readBytesAndFindAsTest() {
 
-            assertEquals(129, byteChecker.readBytesAndFindAs("data2.dat"));
+            assertEquals(116, byteChecker.readBytesAndFindAs("data2.dat"));
         }
     }
 
