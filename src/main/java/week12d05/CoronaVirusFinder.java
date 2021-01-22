@@ -7,16 +7,16 @@ import java.nio.file.Path;
 
 public class CoronaVirusFinder {
 
-    public int searchCorona() {
+    public int searchCorona(String word, String filename) {
         int counter = 0;
-        Path path = Path.of("index.html");
+        Path path = Path.of(filename);
 
         try (BufferedReader bf = Files.newBufferedReader(path)) {
             String line;
 
             while ((line = bf.readLine()) != null) {
 
-                if (line.contains("koronavírus")) {
+                if (line.contains(word)) {
                     counter++;
                 }
 
@@ -30,11 +30,5 @@ public class CoronaVirusFinder {
         return counter;
     }
 
-
-    public static void main(String[] args) {
-        CoronaVirusFinder cvf = new CoronaVirusFinder();
-
-        System.out.println(cvf.searchCorona());
-    }
 
 }
