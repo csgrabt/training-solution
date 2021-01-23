@@ -20,7 +20,7 @@ public class NameWriterTest {
 
     @Test
     public void testWrite() throws IOException {
-        Path file = Files.createFile(temporaryFolder.resolve("test.txt"));
+        Path file = Files.createFile(temporaryFolder.resolve("statistics.dat"));
         System.out.println(file);
         nameWriter = new NameWriter(file);
         nameWriter.addAndWrite("John Smith");
@@ -32,7 +32,7 @@ public class NameWriterTest {
 
     @Test
     public void testAppend() throws IOException {
-        Path file = Files.createFile(temporaryFolder.resolve("test.txt"));
+        Path file = Files.createFile(temporaryFolder.resolve("statistics.dat"));
 
         nameWriter = new NameWriter(file);
         nameWriter.addAndWrite("John Smith");

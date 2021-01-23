@@ -22,7 +22,7 @@ public class RegisterTest {
 
     @Test
     public void newMarkTestIfNotExists() throws IOException {
-        Path file = Files.createFile(temporaryFolder.resolve("test.txt"));
+        Path file = Files.createFile(temporaryFolder.resolve("statistics.dat"));
         register.newMark(file, 5);
         List<String> testList = Files.readAllLines(file);
 
@@ -32,7 +32,7 @@ public class RegisterTest {
 
     @Test
     public void newMarkTestIfExists() throws IOException {
-        Path file = Files.createFile(temporaryFolder.resolve("test.txt"));
+        Path file = Files.createFile(temporaryFolder.resolve("statistics.dat"));
         register.newMark(file, 4);
         register.newMark(file, 2);
 
@@ -45,7 +45,7 @@ public class RegisterTest {
 
     @Test
     public void averageTest() throws IOException {
-        Path file = Files.createFile(temporaryFolder.resolve("test.txt"));
+        Path file = Files.createFile(temporaryFolder.resolve("statistics.dat"));
         Files.writeString(file, "5\n");
         Files.writeString(file, "3\n", StandardOpenOption.APPEND);
         Files.writeString(file, "4\n", StandardOpenOption.APPEND);
