@@ -6,9 +6,9 @@ public class Book {
     private String title;
 
 
-    public Book(String name, String title) {
+    public Book(String author, String title) {
 
-        this.author = name;
+        this.author = author;
         this.title = title;
 
     }
