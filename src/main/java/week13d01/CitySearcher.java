@@ -14,6 +14,7 @@ public class CitySearcher {
 
 
         try (BufferedReader bf = Files.newBufferedReader(Path.of(path))) {
+            bf.readLine();
 
             String line;
 
