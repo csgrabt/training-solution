@@ -21,7 +21,7 @@ public class Classes {
 
 
     public String getNameOfTeacher() {
-        return nameOfTeacher;
+        return  nameOfTeacher;
     }
 
     public String getTopic() {
