@@ -33,7 +33,9 @@ public class TeachingHoursCalculator {
             }
 
         } catch (IOException ioe) {
+
             throw new IllegalStateException("Something is wrong", ioe);
+
         }
 
 
