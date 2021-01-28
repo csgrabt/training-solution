@@ -15,10 +15,11 @@ public class TemplateMerge {
     public String merge(Path file, List<Employee> employees) {
         StringBuilder sb = new StringBuilder();
 
+        String template;
 
         try (BufferedReader bf = Files.newBufferedReader(file)) {
 
-            String template = bf.readLine();
+                template = bf.readLine();
 
             for (int i = 0; i < employees.size(); i++) {
                 String template1 = template.replace("{nev}", employees.get(i).getName());
