@@ -15,7 +15,7 @@ public class Employee {
         return name;
     }
 
-    public String getYearOfBirth() {
-        return yearOfBirth + "";
+    public int getYearOfBirth() {
+        return yearOfBirth;
     }
 }
