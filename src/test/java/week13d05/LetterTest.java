@@ -8,7 +8,7 @@ class LetterTest {
 
     @Test
     void letterCounter() {
-        Letter letter = new Letter(97, 122);
+        Letter letter = new Letter('a', 'z');
 
 
         assertEquals(2, letter.letterCounter("ab"));
@@ -19,7 +19,7 @@ class LetterTest {
 
     @Test
     void letterCounterWithComa() {
-        Letter letter = new Letter(97, 122);
+        Letter letter = new Letter('a', 'z');
 
 
         assertEquals(0, letter.letterCounter("áé"));
@@ -28,7 +28,7 @@ class LetterTest {
 
     @Test
     void letterCounterWithNumber() {
-        Letter letter = new Letter(97, 122);
+        Letter letter = new Letter('a', 'z');
 
 
         assertEquals(1, letter.letterCounter("aa12"));
@@ -38,7 +38,7 @@ class LetterTest {
 
     @Test
     void letterCounterWithOtherCharacter() {
-        Letter letter = new Letter(97, 122);
+        Letter letter = new Letter('a', 'z');
 
 
         assertEquals(1, letter.letterCounter("aá1:_, !%/*-+ \n 123456789"));

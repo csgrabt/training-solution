@@ -8,15 +8,15 @@ package week13d05;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
+
 
 public class Letter {
-    private int min;
-    private int max;
+    private char first;
+    private char last;
 
-    public Letter(int min, int max) {
-        this.min = min;
-        this.max = max;
+    public Letter(char first, char last) {
+        this.first = first;
+        this.last = last;
     }
 
     public int letterCounter(String word) {
@@ -27,9 +27,9 @@ public class Letter {
 
         for (int i = 0; i < wordLowerCase.length(); i++) {
 
-            int number = wordLowerCase.charAt(i);
+            char atIndex = wordLowerCase.charAt(i);
 
-            if (min <= number && max >= number) {
+            if (first <= atIndex && last >= atIndex) {
 
                 if (!(numberOfCharacter.contains(wordLowerCase.charAt(i)))) {
 
