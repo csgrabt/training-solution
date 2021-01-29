@@ -18,11 +18,31 @@ class LetterTest {
 
 
     @Test
-    void letterCounterBad() {
+    void letterCounterWithComa() {
         Letter letter = new Letter(97, 122);
 
 
         assertEquals(0, letter.letterCounter("áé"));
 
     }
+
+    @Test
+    void letterCounterWithNumber() {
+        Letter letter = new Letter(97, 122);
+
+
+        assertEquals(1, letter.letterCounter("aa12"));
+
+    }
+
+
+    @Test
+    void letterCounterWithOtherCharacter() {
+        Letter letter = new Letter(97, 122);
+
+
+        assertEquals(1, letter.letterCounter("aá1:_, !%/*-+ \n 123456789"));
+
+    }
+
 }
