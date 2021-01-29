@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class TemplateMerge {
@@ -38,12 +39,27 @@ public class TemplateMerge {
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public static void main(String[] args) {
 
         TemplateMerge templateMerge = new TemplateMerge();
 
         Path file = Path.of("temaplate.txt");
-        List<Employee> list = new ArrayList<>();
+        List<Employee> list = new LinkedList<>();
 
         list.add(new Employee("Kiss Béla", 1984));
         list.add(new Employee("Harcsa Lajos", 1984));
