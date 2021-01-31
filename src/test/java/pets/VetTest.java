@@ -2,6 +2,9 @@ package pets;
 
 
 import org.junit.jupiter.api.Test;
+import stringbasic.pets.Gender;
+import stringbasic.pets.Pet;
+import stringbasic.pets.Vet;
 
 import java.time.LocalDate;
 
