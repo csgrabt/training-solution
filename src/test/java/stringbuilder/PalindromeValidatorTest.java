@@ -2,7 +2,6 @@
 package stringbuilder;
 
 import org.junit.jupiter.api.Test;
-import sttringbuilder.PalindromeValidator;
 
 import static org.junit.jupiter.api.Assertions.*;
 

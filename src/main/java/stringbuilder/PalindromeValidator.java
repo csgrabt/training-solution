@@ -1,4 +1,4 @@
-package sttringbuilder;
+package stringbuilder;
 
 public class PalindromeValidator {
 
