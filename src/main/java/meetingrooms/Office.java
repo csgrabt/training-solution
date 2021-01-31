@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static com.sun.tools.javac.util.StringUtils.toUpperCase;
+
 
 
 public class Office {
@@ -68,7 +68,7 @@ public class Office {
         List<String> printMeetingRoomsWithNameList = new ArrayList<>();
         for (MeetingRoom name1 : meetingRooms) {
 
-            if (toUpperCase(name1.getName()).indexOf(toUpperCase(part)) != -1) {
+            if ((name1.getName().toUpperCase()).indexOf(part.toUpperCase()) != -1) {
                 printMeetingRoomsWithNameList.add("Tárgyaló neve: " + name1.getName() + "; Tárgyaló szélessége: " + name1.getWidth() + "; Tárgyaló hosszúsága: " + name1.getLenght() + "; Tárgyaló területe: " + name1.getArea());
             }}
         System.out.println(printMeetingRoomsWithNameList);
