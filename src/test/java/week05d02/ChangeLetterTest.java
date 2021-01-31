@@ -1,6 +1,5 @@
 package week05d02;
 
-import employee.Employee;
 import org.junit.jupiter.api.Test;
 
 
