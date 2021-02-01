@@ -11,8 +11,9 @@ import java.util.List;
 
 public class AirPort {
 
+    private List<Flight> f;
 
-    public List<Flight> readFromFile(String string) {
+    public AirPort(String string) {
 
         List<Flight> flights = new ArrayList<>();
 
@@ -36,7 +37,7 @@ public class AirPort {
             throw new IllegalArgumentException("Something went wrong", ioe);
         }
 
-        return flights;
+        this.f = flights;
     }
 
 
@@ -58,12 +59,12 @@ public class AirPort {
     }
 
 
-    public Type typeCounter(List<Flight> flights) {
-        int numberOfFlights = flights.size();
+    public Type typeCounter() {
+        int numberOfFlights = f.size();
 
         int counter = 0;
 
-        for (Flight item : flights
+        for (Flight item : f
         ) {
             if (item.getType().equals(Type.ARRIVAL)) {
                 counter++;
@@ -71,8 +72,7 @@ public class AirPort {
 
 
         }
-        System.out.println(counter);
-        System.out.println(numberOfFlights / 2);
+
         if (counter > numberOfFlights / 2) {
             return Type.ARRIVAL;
         }
@@ -80,9 +80,9 @@ public class AirPort {
     }
 
 
-    public Flight searchByFlightNumber(List<Flight> flights, String numberOfFlight) {
+    public Flight searchByFlightNumber(String numberOfFlight) {
 
-        for (Flight item : flights
+        for (Flight item : f
         ) {
             if (item.getFlightNumber().equals(numberOfFlight)) {
                 return item;
@@ -94,10 +94,10 @@ public class AirPort {
     }
 
 
-    public List<Flight> searchByCityAndType(List<Flight> flights, String city, Type type) {
+    public List<Flight> searchByCityAndType(String city, Type type) {
         List<Flight> flightsByCity = new ArrayList<>();
 
-        for (Flight item : flights
+        for (Flight item : this.f
         ) {
             if (item.getCity().equals(city) && item.getType().equals(type)) {
                 flightsByCity.add(item);
@@ -110,30 +110,29 @@ public class AirPort {
     }
 
 
-    public Flight earliest(List<Flight> flights){
+    public Flight earliest() {
         Time time = new Time(23, 59, 59);
 
         Flight flight = new Flight("aaa", Type.DEPARTURE, "Nan", time);
 
-        for (Flight item:flights
-             ) { if (item.getTime().earlierThan(time) && item.getType().equals(Type.DEPARTURE)){
-                 flight = item;
-                 time = item.getTime();
-        }
+        for (Flight item : this.f
+        ) {
+            if (item.getTime().earlierThan(time) && item.getType().equals(Type.DEPARTURE)) {
+                flight = item;
+                time = item.getTime();
+            }
 
         }
-       return flight;
+        return flight;
     }
-
 
 
     public static void main(String[] args) {
 
-        AirPort ap = new AirPort();
+        AirPort ap = new AirPort("cities.txt");
 
-        List<Flight> flights = ap.readFromFile("cities.txt");
 
-        System.out.println(ap.earliest(flights));
+        System.out.println(ap.earliest());
 
     }
 }
