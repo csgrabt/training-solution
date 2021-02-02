@@ -4,9 +4,9 @@ import java.util.*;
 
 public class Indexer {
     public Map<Character, List<String>> index(List<String> names) {
-      if (validator(names)){
-          throw new IllegalArgumentException("List is emty or null");
-      }
+        if (validator(names)) {
+            throw new IllegalArgumentException("List is emty or null");
+        }
         Map<Character, List<String>> result = new HashMap<>();
         List<String> value;
         for (String item : names) {
@@ -24,13 +24,15 @@ public class Indexer {
         return result;
     }
 
-    private boolean validator(List<String> names){
+    private boolean validator(List<String> names) {
         return names.isEmpty();
     }
 
     public static void main(String[] args) {
 
         System.out.println(new Indexer().index(Arrays.asList("Béla", "Géza", "Géza", "Géla", "Ferenc", "Béza", "Lujza", "Ludmilla", "Abraham", "Adam", "Ajtony", "Magdolna")));
+        ;
+
 
     }
 }
