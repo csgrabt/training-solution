@@ -1,4 +1,4 @@
-/*package collectionsqueue.job;
+package collectionsqueue.job;
 
 import org.junit.jupiter.api.Test;
 
@@ -40,4 +40,4 @@ public class JobDispatcherTest {
         assertEquals("mostImportant", nextJob.getJobDescription());
         assertEquals(1, nextJob.getPriority());
     }
-}*/
+}
