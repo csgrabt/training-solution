@@ -7,14 +7,14 @@ public class ClassNotebook {
     private List<Student> students;
 
 
-    public List<String> ClassNoteBook() {
-        List<String> names = new ArrayList<>();
+    public Set<String> ClassNoteBook() {
+        Set<String> names = new TreeSet<>();
         for (Student item : students
         ) {
             names.add(item.getNameOfStudent());
 
         }
-        Collections.sort(names);
+
 
         return names;
     }
