@@ -22,5 +22,13 @@ public class Contract {
     public List<Integer> getMonthlyPrices() {
         return monthlyPrices;
     }
+
+    @Override
+    public String toString() {
+        return "Contract{" +
+                "name='" + name + '\'' +
+                ", monthlyPrices=" + monthlyPrices +
+                '}';
+    }
 }
 
