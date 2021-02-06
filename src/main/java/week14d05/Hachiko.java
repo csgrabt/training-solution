@@ -2,8 +2,11 @@ package week14d05;
 
 import week10d05.Calculator;
 
+import javax.sound.sampled.AudioFormat;
+import java.beans.Encoder;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
@@ -42,17 +45,21 @@ public class Hachiko {
         String line;
         while ((line = bf.readLine()) != null) {
 
-            for (String item : words
-            ) {
+            fileWorking(mapOfWords, words, line);
+        }
+    }
 
-                if (blablabla(line).contains(item)) {
+    private void fileWorking(Map<String, Integer> mapOfWords, List<String> words, String line) {
+        for (String item : words
+        ) {
+
+            if (blablabla(line).contains(item)) {
 
 
-                    mapOfWords.replace(item, mapOfWords.get(item) + 1);
-
-                }
+                mapOfWords.replace(item, mapOfWords.get(item) + 1);
 
             }
+
         }
     }
 
