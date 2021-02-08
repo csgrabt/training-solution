@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class SearchMaximum {
 
+
     public Coordinate searchMaximum(Map<Double, Double> coordinates) {
         if (coordinates.isEmpty()) {
             throw new IllegalArgumentException("Map is Empty!");
