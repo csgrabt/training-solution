@@ -28,16 +28,16 @@ public class Coordinate {
 
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Coordinate)) return false;
-        Coordinate that = (Coordinate) o;
-        return Double.compare(that.getX(), getX()) == 0 && Double.compare(that.getY(), getY()) == 0;
-    }
+  @Override
+  public boolean equals(Object o) {
+      if (this == o) return true;
+      if (!(o instanceof Coordinate)) return false;
+      Coordinate that = (Coordinate) o;
+      return Double.compare(that.getX(), getX()) == 0 && Double.compare(that.getY(), getY()) == 0;
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getX(), getY());
-    }
+  @Override
+  public int hashCode() {
+      return Objects.hash(getX(), getY());
+  }
 }

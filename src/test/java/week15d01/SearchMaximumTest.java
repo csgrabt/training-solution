@@ -26,11 +26,9 @@ class SearchMaximumTest {
         item.put(6d, 3d);
         item.put(7d, 2d);
         item.put(8d, 1d);
-        System.out.println(Collections.max(item.values()));
         assertEquals("x:4.0" + "\n" + "y:5.0", sm.searchMaximum(item).toString());
         Coordinate coordinate = new Coordinate(4.0, 5.0);
         assertTrue(coordinate.equals(sm.searchMaximum(item)));
-
 
 
     }
@@ -51,8 +49,6 @@ class SearchMaximumTest {
 
 
     }
-
-
 
 
 }
