@@ -11,8 +11,8 @@ public class SearchMaximum {
             throw new IllegalArgumentException("Map is Empty!");
         }
 
-        double x = Double.MIN_VALUE;
-        double y = Double.MIN_VALUE;
+        double x = -Double.MAX_VALUE;
+        double y = -Double.MAX_VALUE;
 
 
         for (Double item : coordinates.keySet()
