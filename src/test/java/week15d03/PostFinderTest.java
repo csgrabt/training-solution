@@ -15,17 +15,19 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PostFinderTest {
 
+
     PostFinder ps = new PostFinder(new ArrayList<>());
-
-    LocalDate date = LocalDate.of(2020, 1, 20);
-
-    Post post = new Post("Budapest, Training360", date, "mellények", "Training360");
-
-
 
 
     @BeforeEach
     void beforeEach() {
+
+
+        LocalDate date = LocalDate.of(2020, 1, 20);
+
+        Post post = new Post("Budapest, Training360", date, "mellények", "Training360");
+
+
         ps.addToList(post);
 
 
