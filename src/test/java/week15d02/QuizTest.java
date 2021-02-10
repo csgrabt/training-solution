@@ -29,6 +29,7 @@ class QuizTest {
 
     @Test
     void randomQuestion() {
+
         String randomQuestion = "Hany lakosa volt Magyarorszag legkisebb telepulesenek, Iborfianak, 2012 januar 1-en? 9 3 foldrajz";
         assertEquals(randomQuestion,quiz.randomQuestion(new Random(5)).toString());
     }

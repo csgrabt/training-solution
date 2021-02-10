@@ -7,7 +7,8 @@ import java.nio.file.Path;
 import java.util.*;
 
 public class Quiz {
-    private List<Question> questions = new ArrayList<>();
+    private static final String SEPARATOR = " ";
+    private final List<Question> questions = new ArrayList<>();
 
     public void readFile(String fileName) {
         Path path = Path.of( fileName);
@@ -15,7 +16,7 @@ public class Quiz {
             String line;
             while ((line = br.readLine()) != null) {
                 String secondLine = br.readLine();
-                String[] parts = secondLine.split(" ");
+                String[] parts = secondLine.split(SEPARATOR);
                 String answer = parts[0];
                 int point = Integer.parseInt(parts[1]);
                 String category = parts[2];
@@ -75,6 +76,6 @@ public class Quiz {
     }
 
     public List<Question> getQuestions() {
-        return questions;
+        return new ArrayList<>(questions);
     }
 }
