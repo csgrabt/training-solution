@@ -54,7 +54,7 @@ public class RegisterTest {
 
         List<String> avgTestList = Files.readAllLines(file);
         assertEquals(4, avgTestList.size());
-        assertEquals("average: 4.0", avgTestList.get(avgTestList.size() - 1));
+        assertEquals("average:4.0", avgTestList.get(avgTestList.size() - 1));
 
     }
 

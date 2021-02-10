@@ -229,6 +229,6 @@ public class FileNameManipulatorTest {
     public void replaceExtension() {
         assertEquals("picture.png", new FileNameManipulator().replaceStringPart("picture.png", "jpeg", "jpg"));
         assertEquals("picture.jpg", new FileNameManipulator().replaceStringPart("picture.jpeg", "jpeg", "jpg"));
-        assertEquals("long_descriptive_name.txt", new FileNameManipulator().replaceStringPart("long descriptive names.txt", " ", "_"));
+        assertEquals("long_descriptive_names.txt", new FileNameManipulator().replaceStringPart("long descriptive names.txt", " ", "_"));
     }
 }
