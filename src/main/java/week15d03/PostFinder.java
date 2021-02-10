@@ -17,7 +17,7 @@ public class PostFinder {
     }
 
 
-    public void addToList(Post post){
+    public void addToList(Post post) {
         posts.add(post);
     }
 
@@ -27,18 +27,20 @@ public class PostFinder {
 
         for (Post item : posts
         ) {
-            if (isEarlier(item) &&
-                    howIsTheOwner(item, user) &&
-                    isEmpty(item)
-
+            if (allIsTrue(item, user)
             ) {
                 postsForUser.add(item);
             }
-
         }
-
-
         return postsForUser;
+    }
+
+
+    private boolean allIsTrue(Post post, String user) {
+        return isEarlier(post)&&
+                whoIsTheOwner(post, user) &&
+                isNotEmpty(post);
+
     }
 
 
@@ -47,12 +49,12 @@ public class PostFinder {
         return post.getPublishedAt().isBefore(LocalDate.now());
     }
 
-    private boolean howIsTheOwner(Post post, String owner) {
+    private boolean whoIsTheOwner(Post post, String owner) {
 
         return owner.equals(post.getOwner());
     }
 
-    private boolean isEmpty(Post post) {
+    private boolean isNotEmpty(Post post) {
         boolean a = !(post.getContent().isEmpty());
         boolean b = !(post.getTitle().isEmpty());
         return a && b;
