@@ -11,7 +11,7 @@ public class CoronaVirusByWeek {
 
 
     private static final int TIME_INTERVAL_WEEKS = 3;
-    private static final String COUNTRY = "HUNGARY";
+    private static final String COUNTRY = "HUNGary";
     private static final String SEPARATOR_TIME = "-";
     private static final String SEPARATOR_DATE = "/";
 
@@ -19,7 +19,7 @@ public class CoronaVirusByWeek {
     public List<Week> findWeeks(String filename) {
         Path path = Path.of(filename);
 
-        //Map<Integer, Data> result = new TreeMap<>();
+
         List<Data> nextTry = new ArrayList<>();
         try (BufferedReader bf = Files.newBufferedReader(path)) {
             bf.readLine();
@@ -38,12 +38,12 @@ public class CoronaVirusByWeek {
             throw new IllegalStateException("Something went wrong!", ioe);
         }
 
-       Collections.sort(nextTry, new Comparator<Data>() {
-           @Override
-           public int compare(Data o1, Data o2) {
-               return o1.getCasesWeekly()-o2.getCasesWeekly();
-           }
-       });
+        Collections.sort(nextTry, new Comparator<Data>() {
+            @Override
+            public int compare(Data o1, Data o2) {
+                return o1.getCasesWeekly() - o2.getCasesWeekly();
+            }
+        });
 
         return weeksWithMostCase(nextTry);
 
@@ -79,7 +79,9 @@ public class CoronaVirusByWeek {
 
     private List<Week> weeksWithMostCase(List<Data> listOfData) {
         List<Week> weekWithMostCase = new ArrayList<>();
-
+        if (listOfData.isEmpty()) {
+            throw new IllegalArgumentException("Nincs ilyen ország!");
+        }
 
         for (int i = listOfData.size() - TIME_INTERVAL_WEEKS; i < listOfData.size(); i++) {
             weekWithMostCase.add(listOfData.get(i).getWeek());
