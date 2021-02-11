@@ -14,6 +14,7 @@ public class CoronaVirusByWeek {
     private static final String COUNTRY = "HUNGary";
     private static final String SEPARATOR_TIME = "-";
     private static final String SEPARATOR_DATE = "/";
+    private static final String SEPARATOR_FILE = ",";
 
 
     public List<Week> findWeeks(String filename) {
@@ -52,7 +53,7 @@ public class CoronaVirusByWeek {
 
     private Data processingData(String string) {
 
-        String[] array = string.split(",");
+        String[] array = string.split(SEPARATOR_FILE);
 
         return new Data(createDate(array),
                 createWeek(array),
