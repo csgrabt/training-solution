@@ -19,8 +19,8 @@ public class CoronaVirusByWeek {
     public List<Week> findWeeks(String filename) {
         Path path = Path.of(filename);
 
-        Map<Integer, Data> result = new TreeMap<>();
-
+        //Map<Integer, Data> result = new TreeMap<>();
+        List<Data> nextTry = new ArrayList<>();
         try (BufferedReader bf = Files.newBufferedReader(path)) {
             bf.readLine();
             String line;
@@ -28,8 +28,8 @@ public class CoronaVirusByWeek {
                 Data data = processingData(line);
 
                 if (data.getCountriesAndTerritories().equalsIgnoreCase(COUNTRY)) {
+                    nextTry.add(data);
 
-                    result.put(data.getCasesWeekly(), data);
                 }
             }
 
@@ -38,7 +38,14 @@ public class CoronaVirusByWeek {
             throw new IllegalStateException("Something went wrong!", ioe);
         }
 
-        return weeksWithMostCase(result);
+       Collections.sort(nextTry, new Comparator<Data>() {
+           @Override
+           public int compare(Data o1, Data o2) {
+               return o1.getCasesWeekly()-o2.getCasesWeekly();
+           }
+       });
+
+        return weeksWithMostCase(nextTry);
 
     }
 
@@ -70,12 +77,12 @@ public class CoronaVirusByWeek {
     }
 
 
-    private List<Week> weeksWithMostCase(Map<Integer, Data> map) {
+    private List<Week> weeksWithMostCase(List<Data> listOfData) {
         List<Week> weekWithMostCase = new ArrayList<>();
-        Integer[] keys = map.keySet().toArray(new Integer[0]);
 
-        for (int i = keys.length - TIME_INTERVAL_WEEKS; i < keys.length; i++) {
-            weekWithMostCase.add(map.get(keys[i]).getWeek());
+
+        for (int i = listOfData.size() - TIME_INTERVAL_WEEKS; i < listOfData.size(); i++) {
+            weekWithMostCase.add(listOfData.get(i).getWeek());
 
         }
         return weekWithMostCase;
