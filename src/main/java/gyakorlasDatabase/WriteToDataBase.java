@@ -23,17 +23,17 @@ public class WriteToDataBase {
         dataSource.setPassword("employess");
         try (Connection conn = dataSource.getConnection();
              PreparedStatement stmt = conn.prepareStatement(command1)) {
-            //   stmt.executeUpdate();
+              // stmt.executeUpdate();
 
-            FileReader fm = new FileReader("ListOfClasses.txt");
-            List<Teacher> names = fm.reader();
-            for (int i = 0; i < names.size(); i++) {
-                stmt.setString(1, names.get(i).getNameOfTeacher());
-                stmt.setString(2, names.get(i).getTopic());
-                stmt.setString(3, names.get(i).getClasses());
-                stmt.setInt(4, names.get(i).getHoursOfWeek());
-                stmt.executeUpdate();
-            }
+        FileReader fm = new FileReader("ListOfClasses.txt");
+        List<Teacher> names = fm.reader();
+        for (int i = 0; i < names.size(); i++) {
+            stmt.setString(1, names.get(i).getNameOfTeacher());
+            stmt.setString(2, names.get(i).getTopic());
+            stmt.setString(3, names.get(i).getClasses());
+            stmt.setInt(4, names.get(i).getHoursOfWeek());
+            stmt.executeUpdate();
+           }
         } catch (SQLException se) {
             throw new IllegalStateException("blabla", se);
         }
