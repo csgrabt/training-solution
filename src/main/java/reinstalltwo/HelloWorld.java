@@ -3,7 +3,7 @@ package reinstalltwo;
 public class HelloWorld {
 
     public static void main(String[] args) {
-        System.out.println("Hello World after reinstall!");
+        System.out.println("Hello World after reinstalll!");
     }
 
 }
