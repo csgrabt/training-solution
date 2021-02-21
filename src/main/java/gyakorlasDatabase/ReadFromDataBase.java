@@ -16,8 +16,8 @@ public class ReadFromDataBase {
 
         MysqlDataSource dataSource = new MysqlDataSource();
         dataSource.setURL("jdbc:mysql://localhost:3306/employees?useUnicode=true");
-        dataSource.setUser("employees");
-        dataSource.setPassword("employess");
+        dataSource.setUser("alma");
+        dataSource.setPassword("alma");
 
 
         try (
