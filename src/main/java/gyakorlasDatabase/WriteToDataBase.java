@@ -19,8 +19,8 @@ public class WriteToDataBase {
         String command3 = "ALTER TABLE teachers AUTO_INCREMENT = 25";
         MysqlDataSource dataSource = new MysqlDataSource();
         dataSource.setURL("jdbc:mysql://localhost:3306/employees?useUnicode=true");
-        dataSource.setUser("employees");
-        dataSource.setPassword("employess");
+        dataSource.setUser("alma");
+        dataSource.setPassword("alma");
         try (Connection conn = dataSource.getConnection();
              PreparedStatement stmt = conn.prepareStatement(command1)) {
               // stmt.executeUpdate();

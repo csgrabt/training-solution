@@ -32,7 +32,7 @@ public class ReadFromDataBase {
                String name =  rs.getString("topic");
                String nam1 = rs.getString(1);
                names.add(name);
-               classes.add(nam1 + "\n");
+               classes.add(nam1);
              }
 
              System.out.println(names);
