@@ -22,7 +22,7 @@ public class EmployeesMain {
 
         EmployeesDao eD = new EmployeesDao(dataSource);
         eD.createEmployee("Jhon Doe");
-List<String> names = eD.listEmployeeNames();
+        List<String> names = eD.listEmployeeNames();
         System.out.println(names);
     }
 }
