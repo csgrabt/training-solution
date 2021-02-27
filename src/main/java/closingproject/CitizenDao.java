@@ -33,7 +33,7 @@ public class CitizenDao {
                 String[] data = line.split(";");
 
                 try (Connection conn = dataSource.getConnection();
-                     PreparedStatement stmt = conn.prepareStatement("insert into zipcodes(zip, city, distingt) values (?, ?, ?)")) {
+                     PreparedStatement stmt = conn.prepareStatement("insert into zipcodes(zip, city, district) values (?, ?, ?)")) {
                     if (data.length == 3) {
                         stmt.setString(1, data[0]);
                         stmt.setString(2, data[1]);
