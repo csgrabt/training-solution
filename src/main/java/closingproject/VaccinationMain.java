@@ -31,24 +31,24 @@ public class VaccinationMain {
         //cd.zipCodeReader(dataSource, "all_zipcodes.csv", "\t");
 
 
-        System.out.println(
-                "1. Regisztráció" + "\n" +
-                        "2. Tömeges regisztráció" + "\n" +
-                        "3. Generálás" + "\n" +
-                        "4. Oltás" + "\n" +
-                        "5. Oltás meghiúsulás");
+     System.out.println(
+             "1. Regisztráció" + "\n" +
+                     "2. Tömeges regisztráció" + "\n" +
+                     "3. Generálás" + "\n" +
+                     "4. Oltás" + "\n" +
+                     "5. Oltás meghiúsulás");
 
-        System.out.println("Adja meg, mit szeretne tenni:");
-        Scanner scanner = new Scanner(System.in);
+     System.out.println("Adja meg, mit szeretne tenni:");
+     Scanner scanner = new Scanner(System.in);
 
-        int number = scanner.nextInt();
-        scanner.nextLine();
+     int number = scanner.nextInt();
+     scanner.nextLine();
 
-        FirstMenuPoint.firstMenuPoint(cz, dataSource, cd, scanner, number);
-        SecondMenuPoint.secondMenuPoint(cz, dataSource, cd, scanner, number);
-        ThirdMenuPoint.thirdMenuPoint(cz, dataSource, cd, scanner, number);
-        FourthMenuPoint.fourthMenuPoint(cz, dataSource, cd, scanner, number);
-        FifthMenuPoint.fifthMenuPoint(cz, dataSource, cd, scanner, number);
+     FirstMenuPoint.firstMenuPoint(cz, dataSource, cd, scanner, number);
+     SecondMenuPoint.secondMenuPoint(cz, dataSource, cd, scanner, number);
+     ThirdMenuPoint.thirdMenuPoint(cz, dataSource, cd, scanner, number);
+     FourthMenuPoint.fourthMenuPoint(cz, dataSource, cd, scanner, number);
+     FifthMenuPoint.fifthMenuPoint(cz, dataSource, cd, scanner, number);
 
 
 

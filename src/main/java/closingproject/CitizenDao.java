@@ -3,11 +3,13 @@ package closingproject;
 import org.mariadb.jdbc.MariaDbDataSource;
 
 import javax.sql.DataSource;
+import javax.sql.XAConnection;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -132,12 +134,117 @@ public class CitizenDao {
 
             } catch (IllegalArgumentException ioe) {
                 conn.rollback();
-                throw new IllegalArgumentException("Rollback, there is an error in the " + counter + "th line!" , ioe);
+                throw new IllegalArgumentException("Rollback, there is an error in the " + counter + "th line!", ioe);
             }
 
 
         } catch (SQLException sql) {
             throw new IllegalArgumentException("Cannot Insert", sql);
+        }
+
+
+    }
+
+
+    public Integer searchCitizenIdBasedOnTaj(DataSource dataSource, String taj) {
+        new Citizen().validatorHealthInsuranceNumber(taj);
+        Integer id = 0;
+        try (
+                Connection conn = dataSource.getConnection();
+                PreparedStatement ps =
+                        conn.prepareStatement("select citizen_id from citizens where taj = ?");
+
+        ) {
+
+            ps.setString(1, taj);
+
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    id = rs.getInt(1);
+
+                } else {
+                    throw new IllegalArgumentException("The Database does not contained this TAJ number!");
+                }
+            } catch (SQLException sql) {
+                throw new IllegalArgumentException("No data", sql);
+            }
+
+        } catch (SQLException sql) {
+
+            throw new IllegalStateException("Cannot select Citizen", sql);
+        }
+
+        return id;
+    }
+
+
+    public Integer vaccination(DataSource dataSource, String taj) {
+        int counter = 0;
+
+        try (
+                Connection conn = dataSource.getConnection();
+                PreparedStatement ps =
+                        conn.prepareStatement("select status from Vaccinations where citizen_id = ?");
+
+        ) {
+
+            ps.setInt(1, searchCitizenIdBasedOnTaj(dataSource, taj));
+
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    counter++;
+
+                }
+            } catch (SQLException sql) {
+                throw new IllegalArgumentException("No data", sql);
+            }
+
+        } catch (SQLException sql) {
+
+            throw new IllegalStateException("Cannot select Citizen based on ID", sql);
+        }
+
+
+        return counter;
+    }
+
+
+    public void firstVaccination(DataSource dataSource, LocalDate date, String type, int id) {
+        try (
+                Connection conn = dataSource.getConnection();
+                PreparedStatement ps =
+                        conn.prepareStatement("insert into Vaccinations(citizen_id, vaccination_date, status, vaccination_type) values (?, ?, ?, ?)");
+        ) {
+            ps.setInt(1, id);
+            ps.setDate(2, java.sql.Date.valueOf(date));
+            ps.setString(3, "1");
+            ps.setString(4, type);
+            ps.executeUpdate();
+
+
+        } catch (SQLException se) {
+            throw new IllegalArgumentException("Cannot registration the first vaccina", se);
+        }
+
+
+    }
+
+    public void setTimeOfVaccination(DataSource dataSource, LocalDate date, int id, int numberofvaccination) {
+        try (
+                Connection conn = dataSource.getConnection();
+                PreparedStatement ps =
+                        conn.prepareStatement("Update citizens set  number_of_vaccination = ?, last_vactination = ? where citizen_id = ? ");
+        ) {
+            ps.setInt(1, numberofvaccination + 1);
+            ps.setDate(2, java.sql.Date.valueOf(date));
+            ps.setInt(3, id);
+            ps.executeUpdate();
+
+
+        } catch (SQLException se) {
+            throw new IllegalArgumentException("Cannot registration the first vaccina", se);
         }
 
 
@@ -159,7 +266,7 @@ public class CitizenDao {
 
         CitizenDao cd = new CitizenDao();
 
-        cd.writeRegisterFromFileToDb(dataSource, "C:/alma/alma.txt", ";");
+        System.out.println(cd.vaccination(dataSource, "123456788"));
     }
 
 

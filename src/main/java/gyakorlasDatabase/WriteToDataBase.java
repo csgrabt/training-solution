@@ -17,12 +17,16 @@ public class WriteToDataBase {
         String command1 = "insert into teachers(name_of_teacher, topic, class, hours_of_week) values (?, ?, ?, ?)";
         String command2 = "TRUNCATE TABLE teachers";
         String command3 = "ALTER TABLE teachers AUTO_INCREMENT = 25";
+
+
+
+
         MysqlDataSource dataSource = new MysqlDataSource();
         dataSource.setURL("jdbc:mysql://localhost:3306/employees?useUnicode=true");
         dataSource.setUser("alma");
         dataSource.setPassword("alma");
         try (Connection conn = dataSource.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(command1)) {
+             PreparedStatement stmt = conn.prepareStatement("insert into teachers(name_of_teacher, topic, class, hours_of_week) values (?, ?, ?, ?)")) {
               // stmt.executeUpdate();
 
         FileReader fm = new FileReader("ListOfClasses.txt");

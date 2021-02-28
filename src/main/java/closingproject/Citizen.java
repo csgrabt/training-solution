@@ -4,6 +4,7 @@ import javax.sql.DataSource;
 
 public class Citizen {
 
+    private int id;
     private String fullName;
     private String zipCode;
     private int age;
@@ -16,6 +17,14 @@ public class Citizen {
     }
 
 
+    public Citizen(int id, String fullName, String zipCode, int age, String email, String healthInsuranceNumber) {
+        this.id = id;
+        this.fullName = fullName;
+        this.zipCode = zipCode;
+        this.age = age;
+        this.email = email;
+        this.healthInsuranceNumber = healthInsuranceNumber;
+    }
 
     public Citizen(String fullName, String zipCode, int age, String email, String healthInsuranceNumber, DataSource dataSource) {
         validatorName(fullName);
