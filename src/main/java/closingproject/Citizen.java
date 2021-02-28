@@ -9,6 +9,12 @@ public class Citizen {
     private String healthInsuranceNumber;
 
 
+    public Citizen() {
+
+    }
+
+
+
     public Citizen(String fullName, String zipCode, int age, String email, String healthInsuranceNumber) {
         validatorName(fullName);
         validatorAge(age);
@@ -48,8 +54,8 @@ public class Citizen {
 
 
     public void validatorName(String name) {
-        if (name == null) {
-            throw new IllegalArgumentException("Name can not be null!");
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Name can not be null or empty!");
         }
     }
 

@@ -1,12 +1,38 @@
 package closingproject;
 
+import org.mariadb.jdbc.MariaDbDataSource;
+
+import java.sql.SQLException;
 import java.util.Scanner;
+
+import static closingproject.FirstMenuPoint.firstMenuPoint;
+
 
 public class VaccinationMain {
 
+
     public static void main(String[] args) {
+        Citizen cz = new Citizen();
+        VaccinationMain vm = new VaccinationMain();
+        MariaDbDataSource dataSource = new MariaDbDataSource();
+        try {
+
+            dataSource.setUrl("jdbc:mariadb://localhost:3306/ClosingProject?useUnicode=true");
+            dataSource.setUser("alma");
+            dataSource.setPassword("alma");
+
+        } catch (SQLException se) {
+            throw new IllegalArgumentException("Some problem with dataSource", se);
+        }
+
+        CitizenDao cd = new CitizenDao();
+
+        //System.out.println(cd.findCityByZipcode(dataSource, "5401"));
+        //cd.zipCodeReader(dataSource, "all_zipcodes.csv", "\t");
+
+
         System.out.println(
-                        "1. Regisztráció" + "\n" +
+                "1. Regisztráció" + "\n" +
                         "2. Tömeges regisztráció" + "\n" +
                         "3. Generálás" + "\n" +
                         "4. Oltás" + "\n" +
@@ -18,30 +44,14 @@ public class VaccinationMain {
         int number = scanner.nextInt();
         scanner.nextLine();
 
-        if (number == 1){
-            System.out.println("Adja meg a páciens nevét!");
-            String name = scanner.nextLine();
-            System.out.println("Adja meg az irányítószámot!");
-            String zipCode = scanner.nextLine();
-            System.out.println("Adja meg az életkort!");
-            int age = scanner.nextInt();
-            scanner.nextLine();
-            System.out.println("Adja meg az email címet!");
-            String email = scanner.nextLine();
-            System.out.println("Adja meg a TAJ számot!");
-            String taj = scanner.nextLine();
-
-            Citizen citizen = new Citizen(name, zipCode, age, email, taj);
-
-
-
-        }else{
-            System.out.println("anyád");
-        }
-
+        firstMenuPoint(cz, dataSource, cd, scanner, number);
 
 
     }
 
 
 }
+
+
+
+

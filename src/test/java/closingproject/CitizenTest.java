@@ -27,7 +27,7 @@ class CitizenTest {
     }
 
     @Test
-    void nameTest() {
+    void nameTestIsNull() {
         Exception ex = Assertions.assertThrows(IllegalArgumentException.class, () -> {
             new Citizen(
                     null,
@@ -36,9 +36,25 @@ class CitizenTest {
                     "m@m",
                     "123456788");
         });
-        assertEquals("Name can not be null!", ex.getMessage());
+        assertEquals("Name can not be null or empty!", ex.getMessage());
 
     }
+    @Test
+    void nameTestIsEmpty() {
+        Exception ex = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            new Citizen(
+                    "",
+                    "5400",
+                    53,
+                    "m@m",
+                    "123456788");
+        });
+        assertEquals("Name can not be null or empty!", ex.getMessage());
+
+    }
+
+
+
     @Test
     void ageTest() {
         Exception ex = Assertions.assertThrows(IllegalArgumentException.class, () -> {
