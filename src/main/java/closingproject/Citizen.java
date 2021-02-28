@@ -1,5 +1,7 @@
 package closingproject;
 
+import javax.sql.DataSource;
+
 public class Citizen {
 
     private String fullName;
@@ -15,10 +17,10 @@ public class Citizen {
 
 
 
-    public Citizen(String fullName, String zipCode, int age, String email, String healthInsuranceNumber) {
+    public Citizen(String fullName, String zipCode, int age, String email, String healthInsuranceNumber, DataSource dataSource) {
         validatorName(fullName);
         validatorAge(age);
-        validatorZipCode(zipCode);
+        validatorZipCode(zipCode, dataSource);
         validatorHealthInsuranceNumber(healthInsuranceNumber);
         emailValidator(email);
         this.fullName = fullName;
@@ -59,10 +61,14 @@ public class Citizen {
         }
     }
 
-    public void validatorZipCode(String code) {
-        if (code.length() != 4) {
+    public void validatorZipCode(String zipCode, DataSource dataSource) {
+        if (zipCode.length() != 4) {
             throw new IllegalArgumentException("Invalid Zip Code!");
         }
+        new CitizenDao().findCityByZipcode(dataSource, zipCode);
+
+
+
     }
 
     public void validatorAge(int age) {

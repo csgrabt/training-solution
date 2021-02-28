@@ -1,15 +1,37 @@
 package closingproject;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mariadb.jdbc.MariaDbDataSource;
 
 
+import javax.sql.DataSource;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class CitizenTest {
+    MariaDbDataSource dataSource;
+
+@BeforeEach
+public void setDataSource(){
+    dataSource = new MariaDbDataSource();
+    try {
+
+        dataSource.setUrl("jdbc:mariadb://localhost:3306/ClosingProject?useUnicode=true");
+        dataSource.setUser("alma");
+        dataSource.setPassword("alma");
+
+    } catch (SQLException se) {
+        throw new IllegalArgumentException("Some problem with dataSource", se);
+    }
+
+}
+
+
 
     @Test
     void constructorTest() {
@@ -18,7 +40,8 @@ class CitizenTest {
                 "5400",
                 53,
                 "m@m",
-                "123456788");
+                "123456788",
+                dataSource);
         assertEquals("Árvíztűrő Tükörfúrógép", citizen.getFullName());
         assertEquals("5400", citizen.getZipCode());
         assertEquals(53, citizen.getAge());
@@ -34,7 +57,8 @@ class CitizenTest {
                     "5400",
                     53,
                     "m@m",
-                    "123456788");
+                    "123456788",
+                    dataSource);
         });
         assertEquals("Name can not be null or empty!", ex.getMessage());
 
@@ -47,7 +71,8 @@ class CitizenTest {
                     "5400",
                     53,
                     "m@m",
-                    "123456788");
+                    "123456788",
+                    dataSource);
         });
         assertEquals("Name can not be null or empty!", ex.getMessage());
 
@@ -63,21 +88,23 @@ class CitizenTest {
                     "5400",
                     3,
                     "m@m",
-                    "123456788");
+                    "123456788",
+                    dataSource);
         });
         assertEquals("Age is not correct!", ex.getMessage());
 
     }
 
     @Test
-    void eamilTestNoAt() {
+    void emailTestNoAt() {
         Exception ex = Assertions.assertThrows(IllegalArgumentException.class, () -> {
             new Citizen(
                     "Kiss Béla",
                     "5400",
                     30,
                     "mmm",
-                    "123456788");
+                    "123456788",
+                    dataSource);
         });
         assertEquals("Email address is not valid!", ex.getMessage());
 
@@ -90,7 +117,8 @@ class CitizenTest {
                     "5400",
                     30,
                     "m@",
-                    "123456788");
+                    "123456788",
+                    dataSource);
         });
         assertEquals("Email address is not valid!", ex.getMessage());
 
@@ -105,7 +133,8 @@ class CitizenTest {
                     "5400",
                     30,
                     "m@",
-                    "a12345678");
+                    "a12345678",
+                    dataSource);
         });
         assertEquals("One of the Character is not number!", ex.getMessage());
 
@@ -119,7 +148,8 @@ class CitizenTest {
                     "5400",
                     30,
                     "m@",
-                    "2345678");
+                    "2345678",
+                    dataSource);
         });
         assertEquals("The length of the insurance number is wrong!", ex.getMessage());
 
@@ -133,13 +163,26 @@ class CitizenTest {
                     "5400",
                     30,
                     "m@",
-                    "023456708");
+                    "023456708",
+                    dataSource);
         });
         assertEquals("Health insurance number is wrong!", ex.getMessage());
 
     }
 
 
-
+    @Test
+    void zipCodeTest() {
+        Exception ex = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            new Citizen(
+                    "Kiss Béla",
+                    "5401",
+                    30,
+                    "m@m",
+                    "123456788",
+                    dataSource);
+        });
+        assertEquals("Db does not contain the ZipCode!", ex.getMessage());
+    }
 
 }

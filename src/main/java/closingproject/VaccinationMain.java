@@ -5,7 +5,7 @@ import org.mariadb.jdbc.MariaDbDataSource;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import static closingproject.FirstMenuPoint.firstMenuPoint;
+
 
 
 public class VaccinationMain {
@@ -44,7 +44,12 @@ public class VaccinationMain {
         int number = scanner.nextInt();
         scanner.nextLine();
 
-        firstMenuPoint(cz, dataSource, cd, scanner, number);
+        FirstMenuPoint.firstMenuPoint(cz, dataSource, cd, scanner, number);
+        SecondMenuPoint.secondMenuPoint(cz, dataSource, cd, scanner, number);
+        ThirdMenuPoint.thirdMenuPoint(cz, dataSource, cd, scanner, number);
+        FourthMenuPoint.fourthMenuPoint(cz, dataSource, cd, scanner, number);
+        FifthMenuPoint.fifthMenuPoint(cz, dataSource, cd, scanner, number);
+
 
 
     }

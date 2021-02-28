@@ -30,7 +30,7 @@ public class FirstMenuPoint {
             String taj = scanner.nextLine();
             cz.validatorHealthInsuranceNumber(taj);
 
-            Citizen citizen = new Citizen(name, zipCode, age, email, taj);
+            Citizen citizen = new Citizen(name, zipCode, age, email, taj, dataSource);
 
             cd.writeRegistrationToDB(dataSource, citizen);
 
