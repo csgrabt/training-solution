@@ -10,8 +10,9 @@ public class SecondMenuPoint {
 
 
     public static void secondMenuPoint(Citizen cz, MariaDbDataSource dataSource, CitizenDao cd, Scanner scanner, int number) {
-        String inprogress = "1";
-        do {
+        //String inprogress;
+        //do {
+
             if (number == 2) {
                 System.out.println("Adja meg a fájl elérési útvonalát(pl: C:/alma/alma.txt)!");
                 String path = scanner.nextLine();
@@ -30,13 +31,13 @@ public class SecondMenuPoint {
                 }
             }
 
-            System.out.println("Mit kíván tenni? \n Üssön 1-est majd entert további fájlbeolvasáshoz! \n Minden más karakter bevitelével kilép a programból!");
+            // System.out.println("Mit kíván tenni? \n Üssön 1-est majd entert további fájlbeolvasáshoz! \n Minden más karakter bevitelével kilép a programból!");
 
-            inprogress = scanner.nextLine();
+           // inprogress = scanner.nextLine();
 
 
 
-        } while (inprogress.equals('1'));
+        //} while (inprogress.equals("1"));
     }
 
 

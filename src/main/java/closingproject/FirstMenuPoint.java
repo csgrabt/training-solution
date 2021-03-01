@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 public class FirstMenuPoint {
     public static void firstMenuPoint(Citizen cz, MariaDbDataSource dataSource, CitizenDao cd, Scanner scanner, int number) {
-        String inprogress = "0";
-        do {
+
+
             if (number == 1) {
 
                 String name;
@@ -106,12 +106,10 @@ public class FirstMenuPoint {
                 ) {
                     System.out.println("Hiba történt az adatbázis írása sorám (Esetleg az adatbázis már tartalmazza a taj számot)!");
                 }
-                System.out.println("Mit kíván tenni? \n Üssön 1-est majd entert további adatok beviteléhet! \n Minden más karakter bevitelével kilép a programból!");
 
-                inprogress = scanner.nextLine();
 
 
             }
-        } while (inprogress.equals("1"));
+
     }
 }

@@ -6,8 +6,6 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 
-
-
 public class VaccinationMain {
 
 
@@ -27,29 +25,35 @@ public class VaccinationMain {
 
         CitizenDao cd = new CitizenDao();
 
-        //System.out.println(cd.findCityByZipcode(dataSource, "5401"));1
-        //cd.zipCodeReader(dataSource, "all_zipcodes.csv", "\t");
+        String progress = "0";
+
+        do {
+
+            System.out.println(
+                    "1. Regisztráció" + "\n" +
+                            "2. Tömeges regisztráció" + "\n" +
+                            "3. Generálás" + "\n" +
+                            "4. Oltás" + "\n" +
+                            "5. Oltás meghiúsulás");
+
+            System.out.println("Adja meg, mit szeretne tenni:");
+            Scanner scanner = new Scanner(System.in);
+
+            int number = scanner.nextInt();
+            scanner.nextLine();
+
+            FirstMenuPoint.firstMenuPoint(cz, dataSource, cd, scanner, number);
+            SecondMenuPoint.secondMenuPoint(cz, dataSource, cd, scanner, number);
+            ThirdMenuPoint.thirdMenuPoint(cz, dataSource, cd, scanner, number);
+            FourthMenuPoint.fourthMenuPoint(cz, dataSource, cd, scanner, number);
+            FifthMenuPoint.fifthMenuPoint(cz, dataSource, cd, scanner, number);
 
 
-     System.out.println(
-             "1. Regisztráció" + "\n" +
-                     "2. Tömeges regisztráció" + "\n" +
-                     "3. Generálás" + "\n" +
-                     "4. Oltás" + "\n" +
-                     "5. Oltás meghiúsulás");
+            System.out.println("Mit kíván tenni? \n Üssön 1-est majd entert további adatok beviteléhet! \n Minden más karakter bevitelével kilép a programból!");
 
-     System.out.println("Adja meg, mit szeretne tenni:");
-     Scanner scanner = new Scanner(System.in);
+            progress = scanner.nextLine();
 
-     int number = scanner.nextInt();
-     scanner.nextLine();
-
-     FirstMenuPoint.firstMenuPoint(cz, dataSource, cd, scanner, number);
-     SecondMenuPoint.secondMenuPoint(cz, dataSource, cd, scanner, number);
-     ThirdMenuPoint.thirdMenuPoint(cz, dataSource, cd, scanner, number);
-     FourthMenuPoint.fourthMenuPoint(cz, dataSource, cd, scanner, number);
-     FifthMenuPoint.fifthMenuPoint(cz, dataSource, cd, scanner, number);
-
+        } while (progress.equals("1"));
 
 
     }

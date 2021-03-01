@@ -11,8 +11,8 @@ import java.util.Scanner;
 
 public class FourthMenuPoint {
 
-    public static void fourthMenuPoint(Citizen cz, MariaDbDataSource dataSource, CitizenDao cd, Scanner scanner, int number){
-        if (number == 4){
+    public static void fourthMenuPoint(Citizen cz, MariaDbDataSource dataSource, CitizenDao cd, Scanner scanner, int number) {
+        if (number == 4) {
             System.out.println("Adja meg a TAJ számot!");
             String taj = scanner.nextLine();
 
@@ -21,24 +21,22 @@ public class FourthMenuPoint {
             int numberOfVaccinations = cd.vaccination(dataSource, taj);
             System.out.println("Oltások száma: " + numberOfVaccinations);
 
-            switch(numberOfVaccinations) {
+            switch (numberOfVaccinations) {
                 case 0:
                     System.out.println("Adja meg a dátumot (yyyy-mm-dd)!");
                     String date = scanner.nextLine();
                     LocalDate dateToDB = LocalDate.parse(date);
-                    //Date dateToDB = new SimpleDateFormat("dd/MM/yyyy").parse(date);
                     System.out.println("Adja meg a vakcina típusát!");
                     String type = scanner.nextLine();
                     cd.firstVaccination(dataSource, dateToDB, type, citizen_id);
                     cd.setTimeOfVaccination(dataSource, dateToDB, citizen_id, numberOfVaccinations);
                     break;
                 case 1:
-                    System.out.println("dddddd");
+                    System.out.println("In progress");
                     break;
                 default:
-                throw new IllegalArgumentException("Megkapta a maximális oltást!");
+                    throw new IllegalArgumentException("Megkapta a maximális oltást!");
             }
-
 
 
         }

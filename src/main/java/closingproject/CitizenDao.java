@@ -137,7 +137,7 @@ public class CitizenDao {
 
 
         } catch (SQLException sql) {
-            throw new IllegalArgumentException("Cannot Insert", sql);
+            throw new IllegalArgumentException("Cannot Insert" + sql.toString(), sql);
         }
 
 
@@ -249,23 +249,7 @@ public class CitizenDao {
     }
 
 
-    public static void main(String[] args) {
-        MariaDbDataSource dataSource = new MariaDbDataSource();
-        try {
 
-            dataSource.setUrl("jdbc:mariadb://localhost:3306/ClosingProject?useUnicode=true");
-            dataSource.setUser("alma");
-            dataSource.setPassword("alma");
-
-        } catch (SQLException se) {
-            throw new IllegalArgumentException("Some problem with dataSource", se);
-        }
-
-
-        CitizenDao cd = new CitizenDao();
-
-        System.out.println(cd.vaccination(dataSource, "123456788"));
-    }
 
 
 }
