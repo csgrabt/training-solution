@@ -1,6 +1,7 @@
 package closingproject;
 
 import org.mariadb.jdbc.MariaDbDataSource;
+import week15d04.Data;
 
 import javax.sql.DataSource;
 import java.io.BufferedReader;
@@ -9,6 +10,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class CitizenDao {
@@ -218,8 +221,6 @@ public class CitizenDao {
         } catch (SQLException se) {
             throw new IllegalArgumentException("Cannot registration the first vaccina", se);
         }
-
-
     }
 
     public void setTimeOfVaccination(DataSource dataSource, LocalDate date, int id, int numberofvaccination) {
@@ -295,7 +296,58 @@ public class CitizenDao {
     }
 
 
+    public void failedVaccination(DataSource dataSource, LocalDate date, String note, int id, String status) {
+        try (
+                Connection conn = dataSource.getConnection();
+                PreparedStatement ps =
+                        conn.prepareStatement("insert into Vaccinations(citizen_id, vaccination_date, status, note) values (?, ?, ?, ?)");
+        ) {
+            ps.setInt(1, id);
+            ps.setDate(2, java.sql.Date.valueOf(date));
+            ps.setString(3, status);
+            ps.setString(4, note);
+            ps.executeUpdate();
+        } catch (SQLException se) {
+            throw new IllegalArgumentException("Cannot registration the first vaccina", se);
+        }
+    }
 
+    public List<Integer> statisticBasedOnZip(DataSource dataSource, String zip) {
+        List<Integer> result = new ArrayList<>();
+        int counter1 = 0;
+        int counter2 = 0;
+        int counter3 = 0;
+
+        try (
+                Connection conn = dataSource.getConnection();
+                PreparedStatement ps =
+                        conn.prepareStatement("select number_of_vaccination from citizens where zip = ?");
+        ) {
+            ps.setString(1, zip);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    String numberOfV = rs.getString(1);
+
+                    if (numberOfV.equals("0")) {
+                        counter1++;
+                    }
+                    if (numberOfV.equals("1")) {
+                        counter2++;
+                    }
+                    if (numberOfV.equals("2")) {
+                        counter3++;
+                    }
+                }
+            } catch (SQLException sql) {
+                throw new IllegalArgumentException("No data", sql);
+            }
+        } catch (SQLException sql) {
+            throw new IllegalStateException("Cannot select Citizen based on ID", sql);
+        }
+
+result = List.of(counter1, counter2, counter3);
+        return result;
+    }
 
 
     public static void main(String[] args) {
@@ -313,7 +365,7 @@ public class CitizenDao {
 
         CitizenDao cd = new CitizenDao();
 
-        System.out.println(cd.typeOfVaccination(dataSource, "123456829"));
+        System.out.println(cd.statisticBasedOnZip(dataSource, "5400"));
 
 
     }

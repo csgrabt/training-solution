@@ -46,12 +46,16 @@ public class FourthMenuPoint {
     private static void recordingVaccination(MariaDbDataSource dataSource, CitizenDao cd, Scanner scanner, int citizen_id, int numberOfVaccinations) {
         System.out.println("Adja meg a dátumot (yyyy-mm-dd)!");
         String date = scanner.nextLine();
-        LocalDate dateToDB = LocalDate.parse(date);
+
+        try{LocalDate dateToDB = LocalDate.parse(date);
         System.out.println("Adja meg a vakcina típusát!");
         String type = scanner.nextLine();
         String status = "OK";
         cd.firstVaccination(dataSource, dateToDB, type, citizen_id, status);
-        cd.setTimeOfVaccination(dataSource, dateToDB, citizen_id, numberOfVaccinations);
+        cd.setTimeOfVaccination(dataSource, dateToDB, citizen_id, numberOfVaccinations);}
+        catch (RuntimeException e){
+            throw new IllegalArgumentException("Invalid data form" + e.getMessage());
+        }
     }
 
 }

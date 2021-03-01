@@ -12,7 +12,7 @@ public class SecondMenuPoint {
     public static void secondMenuPoint(Citizen cz, MariaDbDataSource dataSource, CitizenDao cd, Scanner scanner, int number) {
         //String inprogress;
         //do {
-
+try{
             if (number == 2) {
                 System.out.println("Adja meg a fájl elérési útvonalát(pl: C:/alma/alma.txt)!");
                 String path = scanner.nextLine();
@@ -38,6 +38,10 @@ public class SecondMenuPoint {
 
 
         //} while (inprogress.equals("1"));
+    } catch (ArrayIndexOutOfBoundsException ie) {
+    System.out.println(ie.toString() + " Hiba a feldolgozás közben");
+
+}
     }
 
 
