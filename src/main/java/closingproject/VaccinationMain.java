@@ -49,7 +49,7 @@ public class VaccinationMain {
             FifthMenuPoint.fifthMenuPoint(cz, dataSource, cd, scanner, number);
 
 
-            System.out.println("Mit kíván tenni? \n Üssön 1-est majd entert további adatok beviteléhet! \n Minden más karakter bevitelével kilép a programból!");
+            System.out.println("Mit kíván tenni? \n Üssön 1-est majd entert, hogy visszatérjen a főmenübe! \n Minden más karakter bevitelével kilép a programból!");
 
             progress = scanner.nextLine();
 

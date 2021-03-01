@@ -1,6 +1,7 @@
 package closingproject;
 
 import org.mariadb.jdbc.MariaDbDataSource;
+
 import javax.sql.DataSource;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,8 +9,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.*;
 import java.time.LocalDate;
-
-
 
 
 public class CitizenDao {
@@ -92,7 +91,6 @@ public class CitizenDao {
 
     public void writeRegisterFromFileToDb(DataSource dataSource, String str, String regex) {
         Path path1 = Path.of(str);
-
 
         try (Connection conn = dataSource.getConnection()) {
             conn.setAutoCommit(false);
@@ -177,39 +175,34 @@ public class CitizenDao {
     }
 
 
-    public Integer vaccination(DataSource dataSource, String taj) {
+    public Integer numberOfVaccination(DataSource dataSource, String taj) {
         int counter = 0;
-
         try (
                 Connection conn = dataSource.getConnection();
                 PreparedStatement ps =
-                        conn.prepareStatement("select status from Vaccinations where citizen_id = ?");
-
+                        conn.prepareStatement("select number_of_vaccination from citizens where citizen_id = ?");
         ) {
-
             ps.setInt(1, searchCitizenIdBasedOnTaj(dataSource, taj));
-
-
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    counter++;
-
+                    String numberOfVaccination = rs.getString(1);
+                    if (numberOfVaccination == null) {
+                        counter = 0;
+                    } else {
+                        counter = Integer.parseInt(numberOfVaccination);
+                    }
                 }
             } catch (SQLException sql) {
                 throw new IllegalArgumentException("No data", sql);
             }
-
         } catch (SQLException sql) {
-
             throw new IllegalStateException("Cannot select Citizen based on ID", sql);
         }
-
-
         return counter;
     }
 
 
-    public void firstVaccination(DataSource dataSource, LocalDate date, String type, int id) {
+    public void firstVaccination(DataSource dataSource, LocalDate date, String type, int id, String status) {
         try (
                 Connection conn = dataSource.getConnection();
                 PreparedStatement ps =
@@ -217,7 +210,7 @@ public class CitizenDao {
         ) {
             ps.setInt(1, id);
             ps.setDate(2, java.sql.Date.valueOf(date));
-            ps.setString(3, "1");
+            ps.setString(3, status);
             ps.setString(4, type);
             ps.executeUpdate();
 
@@ -249,7 +242,81 @@ public class CitizenDao {
     }
 
 
+    public String dateOfVaccination(DataSource dataSource, String taj) {
+        String timeOfVaccination = null;
 
+        try (
+                Connection conn = dataSource.getConnection();
+                PreparedStatement ps =
+                        conn.prepareStatement("select last_vactination from citizens where taj = ?");
+
+        ) {
+
+            ps.setString(1, taj);
+
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    timeOfVaccination = rs.getString(1);
+                }
+            } catch (SQLException sql) {
+                throw new IllegalArgumentException("No data", sql);
+            }
+
+        } catch (SQLException sql) {
+
+            throw new IllegalStateException("Cannot select Citizen based on ID", sql);
+        }
+
+
+        return timeOfVaccination;
+    }
+
+    public String typeOfVaccination(DataSource dataSource, String taj) {
+        String typeOfVaccina = null;
+        try (
+                Connection conn = dataSource.getConnection();
+                PreparedStatement ps =
+                        conn.prepareStatement("select vaccination_type from vaccinations where citizen_id = ?");
+        ) {
+            ps.setInt(1, searchCitizenIdBasedOnTaj(dataSource, taj));
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    typeOfVaccina = rs.getString(1);
+
+                }
+            } catch (SQLException sql) {
+                throw new IllegalArgumentException("No data", sql);
+            }
+        } catch (SQLException sql) {
+            throw new IllegalStateException("Cannot select Citizen based on ID", sql);
+        }
+        return typeOfVaccina;
+    }
+
+
+
+
+
+    public static void main(String[] args) {
+
+        MariaDbDataSource dataSource = new MariaDbDataSource();
+        try {
+
+            dataSource.setUrl("jdbc:mariadb://localhost:3306/ClosingProject?useUnicode=true");
+            dataSource.setUser("alma");
+            dataSource.setPassword("alma");
+
+        } catch (SQLException se) {
+            throw new IllegalArgumentException("Some problem with dataSource", se);
+        }
+
+        CitizenDao cd = new CitizenDao();
+
+        System.out.println(cd.typeOfVaccination(dataSource, "123456829"));
+
+
+    }
 
 
 }
