@@ -27,7 +27,7 @@ public class VaccinationMain {
 
         CitizenDao cd = new CitizenDao();
 
-        //System.out.println(cd.findCityByZipcode(dataSource, "5401"));
+        //System.out.println(cd.findCityByZipcode(dataSource, "5401"));1
         //cd.zipCodeReader(dataSource, "all_zipcodes.csv", "\t");
 
 

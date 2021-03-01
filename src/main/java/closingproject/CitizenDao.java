@@ -1,18 +1,16 @@
 package closingproject;
 
 import org.mariadb.jdbc.MariaDbDataSource;
-
 import javax.sql.DataSource;
-import javax.sql.XAConnection;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
+
+
 
 public class CitizenDao {
 
@@ -148,7 +146,7 @@ public class CitizenDao {
 
     public Integer searchCitizenIdBasedOnTaj(DataSource dataSource, String taj) {
         new Citizen().validatorHealthInsuranceNumber(taj);
-        Integer id = 0;
+        int id = 0;
         try (
                 Connection conn = dataSource.getConnection();
                 PreparedStatement ps =
