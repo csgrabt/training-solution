@@ -182,7 +182,7 @@ public void setDataSource(){
                     "123456788",
                     dataSource);
         });
-        assertEquals("Db does not contain the ZipCode!", ex.getMessage());
+        assertEquals("Db does not contain the ZipCode, or digit is not 4!", ex.getMessage());
     }
 
 }
