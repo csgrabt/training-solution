@@ -27,9 +27,15 @@ public class Citizen {
     }
 
     public Citizen(String fullName, String zipCode, int age, String email, String healthInsuranceNumber, DataSource dataSource) {
-        validatorName(fullName);
-        validatorAge(age);
-        validatorZipCode(zipCode, dataSource);
+        if (!validatorName(fullName)) {
+            throw new IllegalArgumentException("Name can not be null or empty!");
+        }
+        if (!validatorAge(age)) {
+            throw new IllegalArgumentException("Age is not correct!");
+        }
+        if (!validatorZipCode(zipCode, dataSource)) {
+            throw new IllegalArgumentException("Db does not contain the ZipCode, or digit is not 4!");
+        }
         validatorHealthInsuranceNumber(healthInsuranceNumber);
         emailValidator(email);
         this.fullName = fullName;
@@ -65,28 +71,36 @@ public class Citizen {
 
 
     public boolean validatorName(String name) {
-        if (name == null || name.isEmpty()) {
+        if (name == null || name.isBlank()) {
             //throw new IllegalArgumentException("Name can not be null or empty!");
 
-            System.out.println("Incorrect name, give it again!");
+            //System.out.println("Incorrect name, give it again!");
             return false;
         }
         return true;
     }
 
-    public void validatorZipCode(String zipCode, DataSource dataSource) {
+    public boolean validatorZipCode(String zipCode, DataSource dataSource) {
         if (zipCode.length() != 4) {
-            throw new IllegalArgumentException("Invalid Zip Code!");
+            //throw new IllegalArgumentException("Invalid Zip Code!");
+
+            System.out.println("The zip code does not legal! (Must be 4 digits!)");
+            return false;
         }
-        new CitizenDao().findCityByZipcode(dataSource, zipCode);
+        try {
+            new CitizenDao().findCityByZipcode(dataSource, zipCode);
+        } catch (IllegalArgumentException io) {
+            return false;
+        }
 
 
+        return true;
     }
 
     public boolean validatorAge(int age) {
         if (age < 10 || age > 150) {
             //throw new IllegalArgumentException("Age is not correct!");
-            System.out.println("Age is not correct, give it again!");
+            // System.out.println("Age is not correct, give it again!");
             return false;
         }
         return true;
@@ -138,3 +152,4 @@ public class Citizen {
 
     }
 }
+
