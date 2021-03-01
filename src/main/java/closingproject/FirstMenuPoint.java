@@ -8,16 +8,31 @@ public class FirstMenuPoint {
     public static void firstMenuPoint(Citizen cz, MariaDbDataSource dataSource, CitizenDao cd, Scanner scanner, int number) {
 
         if (number == 1) {
-            System.out.println("Adja meg a páciens nevét!");
-            String name = scanner.nextLine();
-            cz.validatorName(name);
+
+            String name;
+
+            do {
+                System.out.println("Adja meg a páciens nevét!");
+                name = scanner.nextLine();
+
+            }while (!cz.validatorName(name));
+
+
+
+
+
             System.out.println("Adja meg az irányítószámot!");
             String zipCode = scanner.nextLine();
             System.out.println(cd.findCityByZipcode(dataSource, zipCode));
-            System.out.println("Adja meg az életkort!");
-            int age = scanner.nextInt();
-            cz.validatorAge(age);
-            scanner.nextLine();
+
+            int age = 0;
+
+            for (boolean g = false; !g; g = cz.validatorAge(age)) {
+                System.out.println("Adja meg az életkort!");
+                age = scanner.nextInt();
+                scanner.nextLine();
+            }
+
             System.out.println("Adja meg az email címet!");
             String email = scanner.nextLine();
             cz.emailValidator(email);
