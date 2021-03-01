@@ -64,10 +64,14 @@ public class Citizen {
     }
 
 
-    public void validatorName(String name) {
+    public boolean validatorName(String name) {
         if (name == null || name.isEmpty()) {
-            throw new IllegalArgumentException("Name can not be null or empty!");
+            //throw new IllegalArgumentException("Name can not be null or empty!");
+
+            System.out.println("Incorrect name, give it again!");
+            return false;
         }
+        return true;
     }
 
     public void validatorZipCode(String zipCode, DataSource dataSource) {
@@ -77,14 +81,15 @@ public class Citizen {
         new CitizenDao().findCityByZipcode(dataSource, zipCode);
 
 
-
     }
 
-    public void validatorAge(int age) {
+    public boolean validatorAge(int age) {
         if (age < 10 || age > 150) {
-            throw new IllegalArgumentException("Age is not correct!");
+            //throw new IllegalArgumentException("Age is not correct!");
+            System.out.println("Age is not correct, give it again!");
+            return false;
         }
-
+        return true;
     }
 
 
