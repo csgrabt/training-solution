@@ -1,5 +1,7 @@
 package closingproject;
 
+
+import org.flywaydb.core.Flyway;
 import org.mariadb.jdbc.MariaDbDataSource;
 
 import java.sql.SQLException;
@@ -25,7 +27,13 @@ public class VaccinationMain {
             throw new IllegalArgumentException("Some problem with dataSource", se);
         }
 
+        Flyway flyway = Flyway.configure().dataSource(dataSource).load();
+        flyway.migrate();
+
+
         CitizenDao cd = new CitizenDao();
+
+        //cd.zipCodeReader(dataSource,"all_zipcodes.csv", "\t");
 
         String progress = "0";
 

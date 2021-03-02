@@ -1,6 +1,7 @@
 package closingproject;
 
 import org.mariadb.jdbc.MariaDbDataSource;
+import week13d04.Employee;
 import week15d04.Data;
 
 import javax.sql.DataSource;
@@ -313,7 +314,7 @@ public class CitizenDao {
     }
 
     public List<Integer> statisticBasedOnZip(DataSource dataSource, String zip) {
-        List<Integer> result = new ArrayList<>();
+        List<Integer> result;
         int counter1 = 0;
         int counter2 = 0;
         int counter3 = 0;
@@ -345,7 +346,46 @@ public class CitizenDao {
             throw new IllegalStateException("Cannot select Citizen based on ID", sql);
         }
 
-result = List.of(counter1, counter2, counter3);
+        result = List.of(counter1, counter2, counter3);
+        return result;
+    }
+
+    public List<Citizen> dailyVaccinationBasedOnZip(DataSource dataSource, String zip) {
+        List<Citizen> result = new ArrayList<>();
+
+
+        try (
+                Connection conn = dataSource.getConnection();
+                PreparedStatement ps =
+                        conn.prepareStatement("SELECT citizen_name, zip, age, email, taj, vaccination_type, number_of_vaccination FROM citizens Left JOIN vaccinations " +
+                                "ON citizens.citizen_id = vaccinations.citizen_id WHERE zip = ? and NUMBER_of_vaccination <=1 " +
+                                "AND (last_vaccination  < ? OR last_vaccination is NULL) " +
+                                "ORDER BY `age` DESC, citizen_name " +
+                                "LIMIT 16"
+                        );
+        ) {
+            ps.setString(1, zip);
+            ps.setString(2, LocalDate.now().minusDays(15).toString());
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    result.add(
+                            new Citizen(
+                                    rs.getString(1),
+                                    rs.getString(2),
+                                    rs.getInt(3),
+                                    rs.getString(4),
+                                    rs.getString(5),
+                                    rs.getString(6),
+                                    rs.getString(7)));
+                }
+            } catch (SQLException sql) {
+                throw new IllegalArgumentException("No data", sql);
+            }
+        } catch (SQLException sql) {
+            throw new IllegalStateException("Cannot select Citizen based on ID", sql);
+        }
+
+
         return result;
     }
 
@@ -365,9 +405,19 @@ result = List.of(counter1, counter2, counter3);
 
         CitizenDao cd = new CitizenDao();
 
-        System.out.println(cd.statisticBasedOnZip(dataSource, "5400"));
+        System.out.println(cd.dailyVaccinationBasedOnZip(dataSource, "5400"));
 
-
+//SELECT * FROM citizens, vaccinations WHERE last_vactination  < '2021-03-21 00:00:00' and zip = '1007' -- and number_of_vaccination = 1
+//AND citizens.citizen_id = vaccinations.citizen_id
+//
+//
+//
+//
+//
+//
+//
+//ORDER BY `age` DESC, citizen_name
+//;
     }
 
 

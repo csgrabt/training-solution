@@ -10,12 +10,23 @@ public class Citizen {
     private int age;
     private String email;
     private String healthInsuranceNumber;
+    private String vaccinationType;
+    private String numberOfVaccination;
 
 
     public Citizen() {
 
     }
 
+    public Citizen(String fullName, String zipCode, int age, String email, String healthInsuranceNumber, String vaccinationType, String numberOfVaccination) {
+        this.fullName = fullName;
+        this.zipCode = zipCode;
+        this.age = age;
+        this.email = email;
+        this.healthInsuranceNumber = healthInsuranceNumber;
+        this.vaccinationType = vaccinationType;
+        this.numberOfVaccination = numberOfVaccination;
+    }
 
     public Citizen(int id, String fullName, String zipCode, int age, String email, String healthInsuranceNumber) {
         this.id = id;
@@ -24,6 +35,14 @@ public class Citizen {
         this.age = age;
         this.email = email;
         this.healthInsuranceNumber = healthInsuranceNumber;
+    }
+
+    public String getVaccinationType() {
+        return vaccinationType;
+    }
+
+    public String getNumberOfVaccination() {
+        return numberOfVaccination;
     }
 
     public Citizen(String fullName, String zipCode, int age, String email, String healthInsuranceNumber, DataSource dataSource) {
@@ -113,6 +132,8 @@ public class Citizen {
         }
     }
 
+
+
     public void validatorHealthInsuranceNumber(String insuranceNumber) {
 
 
@@ -151,5 +172,9 @@ public class Citizen {
 
 
     }
-}
+
+    }
+
+
+
 
