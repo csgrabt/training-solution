@@ -2,7 +2,6 @@ package closingproject;
 
 import org.mariadb.jdbc.MariaDbDataSource;
 
-import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -36,8 +35,8 @@ public class FourthMenuPoint {
 
                 System.out.println("Minden adatot rögzítettünk!");
             }
-        }catch (IllegalArgumentException ioe){
-            System.out.println( ioe.getMessage() + "Térjen vissza a főmenübe és kezdje elölről!");
+        } catch (IllegalArgumentException ioe) {
+            System.out.println(ioe.getMessage() + "Térjen vissza a főmenübe és kezdje elölről!");
         }
 
 
@@ -47,13 +46,14 @@ public class FourthMenuPoint {
         System.out.println("Adja meg a dátumot (yyyy-mm-dd)!");
         String date = scanner.nextLine();
 
-        try{LocalDate dateToDB = LocalDate.parse(date);
-        System.out.println("Adja meg a vakcina típusát!");
-        String type = scanner.nextLine();
-        String status = "OK";
-        cd.firstVaccination(dataSource, dateToDB, type, citizen_id, status);
-        cd.setTimeOfVaccination(dataSource, dateToDB, citizen_id, numberOfVaccinations);}
-        catch (RuntimeException e){
+        try {
+            LocalDate dateToDB = LocalDate.parse(date);
+            System.out.println("Adja meg a vakcina típusát!");
+            String type = scanner.nextLine();
+            String status = "OK";
+            cd.vacctinationSetTimeAndType(dataSource, dateToDB, type, citizen_id, status, numberOfVaccinations);
+            // cd.setTimeOfVaccination(dataSource, dateToDB, citizen_id, numberOfVaccinations);}
+        } catch (RuntimeException e) {
             throw new IllegalArgumentException("Invalid data form" + e.getMessage());
         }
     }

@@ -177,7 +177,7 @@ public class CitizenDao {
     }
 
 
-    public void firstVaccination(DataSource dataSource, LocalDate date, String type, int id, String status) {
+    public void vacctinationSetTimeAndType(DataSource dataSource, LocalDate date, String type, int id, String status, int numberofvaccination) {
         try (Connection conn = dataSource.getConnection()) {
             conn.setAutoCommit(false);
             try (
@@ -190,20 +190,9 @@ public class CitizenDao {
                 ps.setString(3, status);
                 ps.setString(4, type);
                 ps.executeUpdate();
-                conn.commit();
 
-            } catch (SQLException se) {
-                conn.rollback();
-                throw new IllegalArgumentException("Cannot registration the first vaccina", se);
+
             }
-        } catch (SQLException sql) {
-            throw new IllegalArgumentException(sql.getMessage());
-        }
-    }
-
-    public void setTimeOfVaccination(DataSource dataSource, LocalDate date, int id, int numberofvaccination) {
-        try (Connection conn = dataSource.getConnection()) {
-            conn.setAutoCommit(false);
             try (
                     PreparedStatement ps =
                             conn.prepareStatement("Update citizens set  number_of_vaccination = ?, last_vaccination = ? where citizen_id = ? ")) {
@@ -212,18 +201,14 @@ public class CitizenDao {
                 ps.setInt(3, id);
                 ps.executeUpdate();
 
-            conn.commit();
-        }catch (SQLException sql){
-            conn.rollback();
-            throw new IllegalArgumentException(sql.toString(), sql);
-
-
+                conn.commit();
+            } catch (SQLException se) {
+                conn.rollback();
+                throw new IllegalArgumentException("Cannot registration the first vaccina", se);
+            }
+        } catch (SQLException sql) {
+            throw new IllegalArgumentException(sql.getMessage());
         }
-        } catch (SQLException se) {
-            throw new IllegalArgumentException("Cannot registration the first vaccina", se);
-        }
-
-
     }
 
 
