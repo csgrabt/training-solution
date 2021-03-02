@@ -117,7 +117,7 @@ public class Citizen {
     }
 
     public boolean validatorAge(int age) {
-        if (age < 10 || age > 150) {
+        if (age <= 10 || age >= 150) {
             //throw new IllegalArgumentException("Age is not correct!");
             // System.out.println("Age is not correct, give it again!");
             return false;

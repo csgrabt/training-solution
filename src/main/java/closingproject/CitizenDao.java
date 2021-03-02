@@ -18,35 +18,6 @@ import java.util.List;
 public class CitizenDao {
 
 
-    public void zipCodeReader(DataSource dataSource, String filename, String regex) {
-        try (BufferedReader bf = Files.newBufferedReader(Path.of(filename))) {
-            String line;
-            bf.readLine();
-            while ((line = bf.readLine()) != null) {
-                String[] data = line.split(regex);
-                try (Connection conn = dataSource.getConnection();
-                     PreparedStatement stmt = conn.prepareStatement("insert into zipcodes(zip, city, district) values (?, ?, ?)")) {
-                    if (data.length == 3) {
-                        stmt.setString(1, data[0]);
-                        stmt.setString(2, data[1]);
-                        stmt.setString(3, data[2]);
-                        stmt.executeUpdate();
-                    } else {
-                        stmt.setString(1, data[0]);
-                        stmt.setString(2, data[1]);
-                        stmt.setString(3, null);
-                        stmt.executeUpdate();
-                    }
-                } catch (SQLException se) {
-                    throw new IllegalArgumentException("Something went wrong during writing database", se);
-                }
-            }
-        } catch (IOException ioe) {
-            throw new IllegalArgumentException("Something went wrong during reading file!");
-        }
-    }
-
-
     public String findCityByZipcode(DataSource dataSource, String zipCode) {
         String city = null;
         try (
@@ -61,11 +32,11 @@ public class CitizenDao {
                     city = rs.getString(1);
                 }
             } catch (SQLException se) {
-                throw new IllegalStateException("Something went wrong during reading the DB!", se);
+                throw new IllegalArgumentException("Something went wrong during reading the DB!", se);
             }
         } catch (SQLException sql) {
 
-            throw new IllegalStateException("Cannot select city", sql);
+            throw new IllegalArgumentException(sql.getMessage(), sql);
         }
         if (city == null) {
             throw new IllegalArgumentException("Db does not contain the ZipCode!");
@@ -128,7 +99,7 @@ public class CitizenDao {
 
                     }
                     conn.commit();
-                } catch (IOException ioe) {
+                } catch (IOException | ArrayIndexOutOfBoundsException ioe) {
                     throw new IllegalArgumentException("Cannot read file", ioe);
                 }
 
@@ -139,7 +110,7 @@ public class CitizenDao {
 
 
         } catch (SQLException sql) {
-            throw new IllegalArgumentException("Cannot Insert" + sql.toString(), sql);
+            throw new IllegalArgumentException(sql.getMessage(), sql);
         }
 
 
@@ -200,7 +171,7 @@ public class CitizenDao {
                 throw new IllegalArgumentException("No data", sql);
             }
         } catch (SQLException sql) {
-            throw new IllegalStateException("Cannot select Citizen based on ID", sql);
+            throw new IllegalArgumentException(sql.getMessage(), sql);
         }
         return counter;
     }
