@@ -178,35 +178,47 @@ public class CitizenDao {
 
 
     public void firstVaccination(DataSource dataSource, LocalDate date, String type, int id, String status) {
-        try (
-                Connection conn = dataSource.getConnection();
-                PreparedStatement ps =
-                        conn.prepareStatement("insert into Vaccinations(citizen_id, vaccination_date, status, vaccination_type) values (?, ?, ?, ?)");
-        ) {
-            ps.setInt(1, id);
-            ps.setDate(2, java.sql.Date.valueOf(date));
-            ps.setString(3, status);
-            ps.setString(4, type);
-            ps.executeUpdate();
+        try (Connection conn = dataSource.getConnection()) {
+            conn.setAutoCommit(false);
+            try (
 
+                    PreparedStatement ps =
+                            conn.prepareStatement("insert into Vaccinations(citizen_id, vaccination_date, status, vaccination_type) values (?, ?, ?, ?)")) {
 
-        } catch (SQLException se) {
-            throw new IllegalArgumentException("Cannot registration the first vaccina", se);
+                ps.setInt(1, id);
+                ps.setDate(2, java.sql.Date.valueOf(date));
+                ps.setString(3, status);
+                ps.setString(4, type);
+                ps.executeUpdate();
+                conn.commit();
+
+            } catch (SQLException se) {
+                conn.rollback();
+                throw new IllegalArgumentException("Cannot registration the first vaccina", se);
+            }
+        } catch (SQLException sql) {
+            throw new IllegalArgumentException(sql.getMessage());
         }
     }
 
     public void setTimeOfVaccination(DataSource dataSource, LocalDate date, int id, int numberofvaccination) {
-        try (
-                Connection conn = dataSource.getConnection();
-                PreparedStatement ps =
-                        conn.prepareStatement("Update citizens set  number_of_vaccination = ?, last_vactination = ? where citizen_id = ? ");
-        ) {
-            ps.setInt(1, numberofvaccination + 1);
-            ps.setDate(2, java.sql.Date.valueOf(date));
-            ps.setInt(3, id);
-            ps.executeUpdate();
+        try (Connection conn = dataSource.getConnection()) {
+            conn.setAutoCommit(false);
+            try (
+                    PreparedStatement ps =
+                            conn.prepareStatement("Update citizens set  number_of_vaccination = ?, last_vaccination = ? where citizen_id = ? ")) {
+                ps.setInt(1, numberofvaccination + 1);
+                ps.setDate(2, java.sql.Date.valueOf(date));
+                ps.setInt(3, id);
+                ps.executeUpdate();
+
+            conn.commit();
+        }catch (SQLException sql){
+            conn.rollback();
+            throw new IllegalArgumentException(sql.toString(), sql);
 
 
+        }
         } catch (SQLException se) {
             throw new IllegalArgumentException("Cannot registration the first vaccina", se);
         }
@@ -221,7 +233,7 @@ public class CitizenDao {
         try (
                 Connection conn = dataSource.getConnection();
                 PreparedStatement ps =
-                        conn.prepareStatement("select last_vactination from citizens where taj = ?");
+                        conn.prepareStatement("select last_vaccination from citizens where taj = ?");
 
         ) {
 
@@ -378,17 +390,6 @@ public class CitizenDao {
 
         System.out.println(cd.dailyVaccinationBasedOnZip(dataSource, "5400"));
 
-//SELECT * FROM citizens, vaccinations WHERE last_vactination  < '2021-03-21 00:00:00' and zip = '1007' -- and number_of_vaccination = 1
-//AND citizens.citizen_id = vaccinations.citizen_id
-//
-//
-//
-//
-//
-//
-//
-//ORDER BY `age` DESC, citizen_name
-//;
     }
 
 
