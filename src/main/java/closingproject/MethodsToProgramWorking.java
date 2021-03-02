@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-public class WriteTheReport {
+public class MethodsToProgramWorking {
     public static StringBuilder vaccinationListToPrint(List<Citizen> citizens) {
         StringBuilder sb = new StringBuilder();
         sb.append("date;name;ZIP;age;email;taj;number_of_vaccination\n");
