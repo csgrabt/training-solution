@@ -6,35 +6,28 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Scanner;
 
+import static closingproject.MessageHun.*;
+
 public class SecondMenuPoint {
 
 
     public static void secondMenuPoint(Citizen cz, MariaDbDataSource dataSource, CitizenDao cd, Scanner scanner) {
 
         try {
-
-            System.out.println("Adja meg a fájl elérési útvonalát(pl: C:/alma/alma.txt)!");
+            secondMenuPritnln1();
             String path = scanner.nextLine();
-
             try {
                 if (!(Files.exists(Path.of(path)))) {
-                    throw new IllegalArgumentException("A fájl nem létezik!");
+                    throw new IllegalArgumentException(secondExeptionMassege1());
                 }
-
-                System.out.println("Adja meg az elválasztó karaktert a fájlon belül!");
+                secondMenuPritnln2();
                 String regex = scanner.nextLine();
-
                 cd.writeRegisterFromFileToDb(dataSource, path, regex);
             } catch (IllegalArgumentException ioe) {
-                System.out.println(" A művelet egy hiba miatt megszakadt!" + ioe);
+                secondMenuPritnln3(ioe);
             }
-
-
         } catch (ArrayIndexOutOfBoundsException ie) {
-            System.out.println(ie.toString() + " Hiba a feldolgozás közben");
-
+            secondMenuPritnln4(ie);
         }
     }
-
-
 }

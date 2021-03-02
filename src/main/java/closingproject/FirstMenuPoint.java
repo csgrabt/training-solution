@@ -2,109 +2,93 @@ package closingproject;
 
 import org.mariadb.jdbc.MariaDbDataSource;
 
+import static closingproject.MessageHun.*;
 
 import java.util.Scanner;
 
 public class FirstMenuPoint {
+
+    private static final int AGE_DEFAULT = 0;
+    private static final String CITY_DEFAULT = "";
+    private static final String EMAIL1_DEFAULT = "AAA";
+    private static final String EMAIL2_DEFAULT = "BBB";
+
     public static void firstMenuPoint(Citizen cz, MariaDbDataSource dataSource, CitizenDao cd, Scanner scanner) {
-
-
         String name;
         int counterName = 0;
         do {
-
-
             if (counterName == 0) {
-                System.out.println("Adja meg a páciens nevét!");
+                firstMenuPrintln1();
                 name = scanner.nextLine();
                 counterName++;
             } else {
-
-                System.out.println("Helytelen név páciens nevét!");
+                firstMenuPrintln2();
                 name = scanner.nextLine();
             }
-
         } while (!cz.validatorName(name));
-
-
-        String nameOfTheCity = "";
+        String nameOfTheCity = CITY_DEFAULT;
         String zipCode;
         do {
-            System.out.println("Adja meg az irányítószámot!");
+            fistMenuPrintln3();
             zipCode = scanner.nextLine();
             if (cz.validatorZipCode(zipCode, dataSource))
-
                 try {
                     {
                         nameOfTheCity = cd.findCityByZipcode(dataSource, zipCode);
                     }
                 } catch (IllegalArgumentException ie) {
-                    System.out.println("A táblázat nem tartalmazza a megadott irányító számot " + zipCode);
+                    fistMenuPrintln4(zipCode);
                 }
-
         } while (nameOfTheCity.isEmpty());
-
-
         System.out.println(nameOfTheCity);
-
-        int age = 0;
-
+        int age = AGE_DEFAULT;
         do {
             try {
-                System.out.println("Adja meg az életkort!");
+                fistMenuPrintln5();
                 String ageAsAString = scanner.nextLine();
                 age = Integer.parseInt(ageAsAString);
             } catch
             (NumberFormatException ioe) {
-                System.out.println("Az életkort számmal kell megadni, ne legyen szóköz a végén!");
+                fistMenuPrintln6();
             }
         } while (!cz.validatorAge(age));
-
-        String email = "aaa";
-        String email2 = "bbb";
+        String email = EMAIL1_DEFAULT;
+        String email2 = EMAIL2_DEFAULT;
         int counterEmail = 0;
         do {
             try {
                 if (counterEmail != 0) {
-                    System.out.println("A két eamik cím nem egyezik!");
+                    fistMenuPrintln7();
                 }
-                System.out.println("Adja meg az email címet!");
+                fistMenuPrintln8();
                 email = scanner.nextLine();
                 cz.emailValidator(email);
-                System.out.println("Ismételje  meg az email címet!");
+                fistMenuPrintln9();
                 email2 = scanner.nextLine();
                 counterEmail++;
             } catch (IllegalArgumentException ioe) {
-                System.out.println("Az email formátuma nem megfelelő");
+                fistMenuPrintln10();
             }
-
         } while (!email.equals(email2));
-
         boolean tajValidator = true;
-
         String taj;
         do {
-            System.out.println("Adja meg a TAJ számot!");
+            fistMenuPrintln11();
             taj = scanner.nextLine();
             try {
                 cz.validatorHealthInsuranceNumber(taj);
                 tajValidator = false;
             } catch (IllegalArgumentException iae) {
-                System.out.println("Hibás taj szám!");
+                fistMenuPrintln12();
             }
         } while (tajValidator);
-
         try {
-
             Citizen citizen = new Citizen(name, zipCode, age, email, taj, dataSource);
-
             cd.writeRegistrationToDB(dataSource, citizen);
         } catch (
                 IllegalArgumentException ioe
         ) {
-            System.out.println("Hiba történt az adatbázis írása sorám (Esetleg az adatbázis már tartalmazza a taj számot)!");
+            fistMenuPrintln13();
         }
-
-
     }
 }
