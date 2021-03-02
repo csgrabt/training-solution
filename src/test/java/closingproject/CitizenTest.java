@@ -31,6 +31,45 @@ public void setDataSource(){
 
 }
 
+    @Test
+    void constructorTestWithVaccinationTypeAndNumber() {
+        Citizen citizen = new Citizen(
+
+                "Árvíztűrő Tükörfúrógép",
+                "5400",
+                53,
+                "m@m",
+                "123456788",
+                "Kínai szar",
+                "5");
+        assertEquals("Árvíztűrő Tükörfúrógép", citizen.getFullName());
+        assertEquals("5400", citizen.getZipCode());
+        assertEquals(53, citizen.getAge());
+        assertEquals("m@m", citizen.getEmail());
+        assertEquals("123456788", citizen.getHealthInsuranceNumber());
+        assertEquals("Kínai szar", citizen.getVaccinationType());
+        assertEquals("5", citizen.getNumberOfVaccination());
+    }
+
+
+
+
+    @Test
+    void constructorTestWithID() {
+        Citizen citizen = new Citizen(
+                1,
+                "Árvíztűrő Tükörfúrógép",
+                "5400",
+                53,
+                "m@m",
+                "123456788");
+        assertEquals("Árvíztűrő Tükörfúrógép", citizen.getFullName());
+        assertEquals("5400", citizen.getZipCode());
+        assertEquals(53, citizen.getAge());
+        assertEquals("m@m", citizen.getEmail());
+        assertEquals("123456788", citizen.getHealthInsuranceNumber());
+        assertEquals(1, citizen.getId());
+    }
 
 
     @Test

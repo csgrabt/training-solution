@@ -1,4 +1,4 @@
-package closingproject;
+package readerFromFileWriteToDb;
 
 import javax.sql.DataSource;
 import java.io.BufferedReader;

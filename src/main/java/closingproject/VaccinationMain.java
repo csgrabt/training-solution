@@ -15,27 +15,14 @@ public class VaccinationMain {
     public static void main(String[] args) {
         List<String> menuPoints = List.of("1", "2", "3", "4", "5", "6");
         Citizen cz = new Citizen();
-        VaccinationMain vm = new VaccinationMain();
         MariaDbDataSource dataSource = new MariaDbDataSource();
-        try {
-
-            dataSource.setUrl("jdbc:mariadb://localhost:3306/ClosingProject?useUnicode=true");
-            dataSource.setUser("alma");
-            dataSource.setPassword("alma");
-
-        } catch (SQLException se) {
-            throw new IllegalArgumentException("Some problem with dataSource", se);
-        }
-
+        createDbConnection(dataSource);
         Flyway flyway = Flyway.configure().dataSource(dataSource).load();
         flyway.migrate();
 
-
         CitizenDao cd = new CitizenDao();
 
-        //cd.zipCodeReader(dataSource,"all_zipcodes.csv", "\t");
-
-        String progress = "0";
+        String progress;
 
         do {
 
@@ -66,12 +53,27 @@ public class VaccinationMain {
             } while (menu);
 
 
-            FirstMenuPoint.firstMenuPoint(cz, dataSource, cd, scanner, number);
-            SecondMenuPoint.secondMenuPoint(cz, dataSource, cd, scanner, number);
-            ThirdMenuPoint.thirdMenuPoint(cz, dataSource, cd, scanner, number);
-            FourthMenuPoint.fourthMenuPoint(cz, dataSource, cd, scanner, number);
-            FifthMenuPoint.fifthMenuPoint(cz, dataSource, cd, scanner, number);
-            SixthMenuPoint.sixthMenuPoint(cz, dataSource, cd, scanner, number);
+            switch (number) {
+                case 1:
+                    FirstMenuPoint.firstMenuPoint(cz, dataSource, cd, scanner);
+                    break;
+                case 2:
+                    SecondMenuPoint.secondMenuPoint(cz, dataSource, cd, scanner);
+                    break;
+                case 3:
+                    ThirdMenuPoint.thirdMenuPoint(cz, dataSource, cd, scanner);
+                    break;
+                case 4:
+                    FourthMenuPoint.fourthMenuPoint(cz, dataSource, cd, scanner);
+                    break;
+                case 5:
+                    FifthMenuPoint.fifthMenuPoint(cz, dataSource, cd, scanner);
+                    break;
+                case 6:
+                    SixthMenuPoint.sixthMenuPoint(cz, dataSource, cd, scanner);
+                    break;
+            }
+
 
             System.out.println("Mit kíván tenni? \n Üssön 1-est majd entert, hogy visszatérjen a főmenübe! \n Minden más karakter bevitelével kilép a programból!");
 
@@ -80,6 +82,18 @@ public class VaccinationMain {
         } while (progress.equals("1"));
 
 
+    }
+
+    private static void createDbConnection(MariaDbDataSource dataSource) {
+        try {
+
+            dataSource.setUrl("jdbc:mariadb://localhost:3306/ClosingProject?useUnicode=true");
+            dataSource.setUser("alma");
+            dataSource.setPassword("alma");
+
+        } catch (SQLException se) {
+            throw new IllegalArgumentException("Some problem with dataSource", se);
+        }
     }
 
 

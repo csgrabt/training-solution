@@ -177,7 +177,7 @@ public class CitizenDao {
     }
 
 
-    public void vacctinationSetTimeAndType(DataSource dataSource, LocalDate date, String type, int id, String status, int numberofvaccination) {
+    public void vaccinationSetTimeAndType(DataSource dataSource, LocalDate date, String type, int id, String status, int numberofvaccination) {
         try (Connection conn = dataSource.getConnection()) {
             conn.setAutoCommit(false);
             try (
@@ -196,15 +196,18 @@ public class CitizenDao {
             try (
                     PreparedStatement ps =
                             conn.prepareStatement("Update citizens set  number_of_vaccination = ?, last_vaccination = ? where citizen_id = ? ")) {
+                if (numberofvaccination >= 2) {
+                    throw new IllegalStateException("Túl sok oltás: " + numberofvaccination + "!");
+                }
                 ps.setInt(1, numberofvaccination + 1);
                 ps.setDate(2, java.sql.Date.valueOf(date));
                 ps.setInt(3, id);
                 ps.executeUpdate();
 
                 conn.commit();
-            } catch (SQLException se) {
+            } catch (SQLException | IllegalStateException se) {
                 conn.rollback();
-                throw new IllegalArgumentException("Cannot registration the first vaccina", se);
+                throw new IllegalArgumentException(se.getMessage(), se);
             }
         } catch (SQLException sql) {
             throw new IllegalArgumentException(sql.getMessage());
@@ -235,7 +238,7 @@ public class CitizenDao {
 
         } catch (SQLException sql) {
 
-            throw new IllegalStateException("Cannot select Citizen based on ID", sql);
+            throw new IllegalStateException("SQL Error", sql);
         }
 
 

@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.mariadb.jdbc.MariaDbDataSource;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -131,16 +132,18 @@ class CitizenDaoTest {
         assertEquals("Access denied for user 'alma'@'localhost' (using password: YES)", ex1.getMessage());
 
     }
+
     @Test
     void numberOfVaccinationTableNotContainedTajLengthIsWrong() {
         Exception ex1 = Assertions.assertThrows(IllegalArgumentException.class, () -> {
             cd.writeRegisterFromFileToDb(dataSource, "TestClosingProject.txt", ";");
-             cd.numberOfVaccination(dataSource, "1234568120");
+            cd.numberOfVaccination(dataSource, "1234568120");
         });
         assertEquals("The length of the insurance number is wrong!", ex1.getMessage());
 
     }
-@Test
+
+    @Test
     void numberOfVaccinationTableNotContainedTaj() {
         Exception ex1 = Assertions.assertThrows(IllegalArgumentException.class, () -> {
             cd.writeRegisterFromFileToDb(dataSource, "TestClosingProject.txt", ";");
@@ -150,4 +153,37 @@ class CitizenDaoTest {
 
     }
 
+
+    @Test
+    void vaccinationSetTimeAndTypeAllIsOK() {
+        cd.writeRegistrationToDB(dataSource, citizen);
+        cd.vaccinationSetTimeAndType(dataSource, LocalDate.now(), "finom", 1, "OK", 1);
+        assertEquals("finom", cd.typeOfVaccination(dataSource, "000000000"));
+    }
+
+
+    @Test
+    void vaccinationSetTimeAndTypeRollBackTest() {
+        Exception ex1 = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            cd.writeRegistrationToDB(dataSource, citizen);
+            cd.vaccinationSetTimeAndType(dataSource, LocalDate.now(), "finom", 1, "OK", 3);
+
+        });
+        assertEquals("Túl sok oltás: 3!", ex1.getMessage());
+
+    }
+
+    @Test
+    void dateOfVaccinationTest() {
+        cd.writeRegistrationToDB(dataSource, citizen);
+        cd.vaccinationSetTimeAndType(dataSource, LocalDate.of(2020, 01, 30), "finom", 1, "OK", 1);
+        assertEquals("2020-01-30 00:00:00.0", cd.dateOfVaccination(dataSource, "000000000"));
+    }
+
+    @Test
+    void dateOfVaccinationTajIsNotExitsInTheTable() {
+        cd.writeRegistrationToDB(dataSource, citizen);
+        cd.vaccinationSetTimeAndType(dataSource, LocalDate.of(2020, 01, 30), "finom", 1, "OK", 1);
+        assertEquals(null, cd.dateOfVaccination(dataSource, "000000001"));
+    }
 }

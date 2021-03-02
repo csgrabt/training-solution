@@ -9,39 +9,31 @@ import java.util.Scanner;
 public class SecondMenuPoint {
 
 
-    public static void secondMenuPoint(Citizen cz, MariaDbDataSource dataSource, CitizenDao cd, Scanner scanner, int number) {
-        //String inprogress;
-        //do {
-try{
-            if (number == 2) {
-                System.out.println("Adja meg a fájl elérési útvonalát(pl: C:/alma/alma.txt)!");
-                String path = scanner.nextLine();
+    public static void secondMenuPoint(Citizen cz, MariaDbDataSource dataSource, CitizenDao cd, Scanner scanner) {
 
-                try {
-                    if (!(Files.exists(Path.of(path)))) {
-                        throw new IllegalArgumentException("A fájl nem létezik!");
-                    }
+        try {
 
-                    System.out.println("Adja meg az elválasztó karaktert a fájlon belül!");
-                    String regex = scanner.nextLine();
+            System.out.println("Adja meg a fájl elérési útvonalát(pl: C:/alma/alma.txt)!");
+            String path = scanner.nextLine();
 
-                    cd.writeRegisterFromFileToDb(dataSource, path, regex);
-                } catch (IllegalArgumentException ioe) {
-                    System.out.println(" A művelet egy hiba miatt megszakadt!" + ioe);
+            try {
+                if (!(Files.exists(Path.of(path)))) {
+                    throw new IllegalArgumentException("A fájl nem létezik!");
                 }
+
+                System.out.println("Adja meg az elválasztó karaktert a fájlon belül!");
+                String regex = scanner.nextLine();
+
+                cd.writeRegisterFromFileToDb(dataSource, path, regex);
+            } catch (IllegalArgumentException ioe) {
+                System.out.println(" A művelet egy hiba miatt megszakadt!" + ioe);
             }
 
-            // System.out.println("Mit kíván tenni? \n Üssön 1-est majd entert további fájlbeolvasáshoz! \n Minden más karakter bevitelével kilép a programból!");
 
-           // inprogress = scanner.nextLine();
+        } catch (ArrayIndexOutOfBoundsException ie) {
+            System.out.println(ie.toString() + " Hiba a feldolgozás közben");
 
-
-
-        //} while (inprogress.equals("1"));
-    } catch (ArrayIndexOutOfBoundsException ie) {
-    System.out.println(ie.toString() + " Hiba a feldolgozás közben");
-
-}
+        }
     }
 
 

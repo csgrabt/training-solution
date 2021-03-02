@@ -17,6 +17,25 @@ public class Citizen {
     public Citizen() {
 
     }
+    public Citizen(String fullName, String zipCode, int age, String email, String healthInsuranceNumber, DataSource dataSource) {
+        if (!validatorName(fullName)) {
+            throw new IllegalArgumentException("Name can not be null or empty!");
+        }
+        if (!validatorAge(age)) {
+            throw new IllegalArgumentException("Age is not correct!");
+        }
+        if (!validatorZipCode(zipCode, dataSource)) {
+            throw new IllegalArgumentException("Db does not contain the ZipCode, or digit is not 4!");
+        }
+        validatorHealthInsuranceNumber(healthInsuranceNumber);
+        emailValidator(email);
+        this.fullName = fullName;
+        this.zipCode = zipCode;
+        this.age = age;
+        this.email = email;
+        this.healthInsuranceNumber = healthInsuranceNumber;
+    }
+
 
     public Citizen(String fullName, String zipCode, int age, String email, String healthInsuranceNumber, String vaccinationType, String numberOfVaccination) {
         this.fullName = fullName;
@@ -37,31 +56,17 @@ public class Citizen {
         this.healthInsuranceNumber = healthInsuranceNumber;
     }
 
-    public String getVaccinationType() {
-        return vaccinationType;
-    }
 
     public String getNumberOfVaccination() {
         return numberOfVaccination;
     }
 
-    public Citizen(String fullName, String zipCode, int age, String email, String healthInsuranceNumber, DataSource dataSource) {
-        if (!validatorName(fullName)) {
-            throw new IllegalArgumentException("Name can not be null or empty!");
-        }
-        if (!validatorAge(age)) {
-            throw new IllegalArgumentException("Age is not correct!");
-        }
-        if (!validatorZipCode(zipCode, dataSource)) {
-            throw new IllegalArgumentException("Db does not contain the ZipCode, or digit is not 4!");
-        }
-        validatorHealthInsuranceNumber(healthInsuranceNumber);
-        emailValidator(email);
-        this.fullName = fullName;
-        this.zipCode = zipCode;
-        this.age = age;
-        this.email = email;
-        this.healthInsuranceNumber = healthInsuranceNumber;
+    public int getId() {
+        return id;
+    }
+
+    public String getVaccinationType() {
+        return vaccinationType;
     }
 
     public String getFullName() {
@@ -91,9 +96,6 @@ public class Citizen {
 
     public boolean validatorName(String name) {
         if (name == null || name.isBlank()) {
-            //throw new IllegalArgumentException("Name can not be null or empty!");
-
-            //System.out.println("Incorrect name, give it again!");
             return false;
         }
         return true;
@@ -101,8 +103,6 @@ public class Citizen {
 
     public boolean validatorZipCode(String zipCode, DataSource dataSource) {
         if (zipCode.length() != 4) {
-            //throw new IllegalArgumentException("Invalid Zip Code!");
-
             System.out.println("The zip code does not legal! (Must be 4 digits!)");
             return false;
         }
@@ -111,15 +111,11 @@ public class Citizen {
         } catch (IllegalArgumentException io) {
             return false;
         }
-
-
         return true;
     }
 
     public boolean validatorAge(int age) {
         if (age <= 10 || age >= 150) {
-            //throw new IllegalArgumentException("Age is not correct!");
-            // System.out.println("Age is not correct, give it again!");
             return false;
         }
         return true;
@@ -131,7 +127,6 @@ public class Citizen {
             throw new IllegalArgumentException("Email address is not valid!");
         }
     }
-
 
 
     public void validatorHealthInsuranceNumber(String insuranceNumber) {
@@ -173,7 +168,7 @@ public class Citizen {
 
     }
 
-    }
+}
 
 
 
