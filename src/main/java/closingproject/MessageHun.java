@@ -1,5 +1,7 @@
 package closingproject;
 
+import org.mariadb.jdbc.MariaDbDataSource;
+
 public class MessageHun {
     public static void menuPrintln4() {
         System.out.println("Mit kíván tenni? \n Üssön 1-est majd entert, hogy visszatérjen a főmenübe! \n Minden más karakter bevitelével kilép a programból!");
@@ -31,7 +33,7 @@ public class MessageHun {
         System.out.println("Hibás taj szám!");
     }
 
-    public static void fistMenuPrintln11() {
+    public static void giveTheTajNumber() {
         System.out.println("Adja meg a TAJ számot!");
     }
 
@@ -63,7 +65,7 @@ public class MessageHun {
         System.out.println("A táblázat nem tartalmazza a megadott irányító számot " + zipCode);
     }
 
-    public static void fistMenuPrintln3() {
+    public static void giveTheZipCode() {
         System.out.println("Adja meg az irányítószámot!");
     }
 
@@ -74,6 +76,7 @@ public class MessageHun {
     public static void firstMenuPrintln1() {
         System.out.println("Adja meg a páciens nevét!");
     }
+
     public static String secondExeptionMassege1() {
         return "A fájl nem létezik!";
     }
@@ -92,5 +95,64 @@ public class MessageHun {
 
     public static void secondMenuPritnln1() {
         System.out.println("Adja meg a fájl elérési útvonalát(pl: C:/alma/alma.txt)!");
+    }
+
+    public static void printTheNumberOfVaccinaDateOfVaccinaTypeOfVaccina(MariaDbDataSource dataSource, CitizenDao cd, String taj, int numberOfVaccinations) {
+        System.out.println("Oltások száma: " + numberOfVaccinations);
+        System.out.println("Az oltás dátuma: " + cd.dateOfVaccination(dataSource, taj));
+        System.out.println("Az oltás típusa: " + cd.typeOfVaccination(dataSource, taj));
+    }
+
+    public static void defultMessageSwithIn4thMenu(int numberOfVaccinations) {
+        System.out.println(("Oltások száma: " + numberOfVaccinations + ", nincs szükség több oltásra! "));
+    }
+
+    public static void dataRecorded() {
+        System.out.println("Minden adatot rögzítettünk!");
+    }
+
+    public static String backToMainMenu() {
+        return "Térjen vissza a főmenübe és kezdje elölről!";
+    }
+
+
+    public static String invalidDateForm() {
+        return "Invalid data form";
+    }
+
+    public static void typeOfVaccina() {
+        System.out.println("Adja meg a vakcina típusát!");
+    }
+
+    public static void giveMeTheDate() {
+        System.out.println("Adja meg a dátumot (yyyy-mm-dd)!");
+    }
+
+    public static String generatedFileFirstRow() {
+        return "date;name;ZIP;age;email;taj;number_of_vaccination\n";
+    }
+
+    public static String errorMessageBufferedWriter() {
+        return "Something went wrong";
+    }
+
+    public static String errorDuringWriteTheFile() {
+        return "Hiba az írás sorám";
+    }
+
+    public static String generatedFileNamesEnd() {
+        return "_namesToVaccination";
+
+    }
+
+    public static String getStatusWhenTheVaccinationIsOk() {
+        return "OK";
+    }
+    public static String statusWhenVaccinationIsNotOk() {
+        return "not ok";
+    }
+
+    public static void whyItFailed() {
+        System.out.println("Adja meg a meghiúsúlás okát:");
     }
 }

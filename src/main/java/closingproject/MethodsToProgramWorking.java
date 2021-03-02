@@ -1,5 +1,7 @@
 package closingproject;
 
+import org.mariadb.jdbc.MariaDbDataSource;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -8,11 +10,15 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Scanner;
+
+import static closingproject.MessageHun.*;
+
 
 public class MethodsToProgramWorking {
     public static StringBuilder vaccinationListToPrint(List<Citizen> citizens) {
         StringBuilder sb = new StringBuilder();
-        sb.append("date;name;ZIP;age;email;taj;number_of_vaccination\n");
+        sb.append(generatedFileFirstRow());
         String template;
 
         try (BufferedReader bf = Files.newBufferedReader(Path.of("template_closingproject.txt"))) {
@@ -35,21 +41,40 @@ public class MethodsToProgramWorking {
 
 
         } catch (IOException ioe) {
-            throw new IllegalArgumentException("Something went wrong", ioe);
+            throw new IllegalArgumentException(errorMessageBufferedWriter(), ioe);
         }
 
 
         return sb;
     }
 
+
     public static void writeTheNamesBasedOnZipToPrint(StringBuilder sb) {
-        Path path = Path.of(LocalDate.now().toString() + "_namesToVaccination");
+        Path path = Path.of(LocalDate.now().toString() + generatedFileNamesEnd());
 
         try (BufferedWriter bw = Files.newBufferedWriter(path)) {
             bw.write(sb.toString());
         } catch (IOException ioe) {
-            System.out.println("Hiba az írás sorám" + ioe.getMessage());
+            System.out.println(errorDuringWriteTheFile() + ioe.getMessage());
         }
     }
+
+    public static void recordingVaccination(MariaDbDataSource dataSource, CitizenDao cd, Scanner scanner, int citizen_id, int numberOfVaccinations) {
+        giveMeTheDate();
+        String date = scanner.nextLine();
+        try {
+            LocalDate dateToDB = LocalDate.parse(date);
+            typeOfVaccina();
+            String type = scanner.nextLine();
+            String status = getStatusWhenTheVaccinationIsOk();
+            cd.vaccinationSetTimeAndType(dataSource, dateToDB, type, citizen_id, status, numberOfVaccinations);
+        } catch (RuntimeException e) {
+            throw new IllegalArgumentException(invalidDateForm() + e.getMessage());
+        }
+    }
+
+
 }
+
+
 

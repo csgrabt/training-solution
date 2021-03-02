@@ -5,16 +5,18 @@ import org.mariadb.jdbc.MariaDbDataSource;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+import static closingproject.MessageHun.*;
+
 public class FifthMenuPoint {
     public static void fifthMenuPoint(Citizen cz, MariaDbDataSource dataSource, CitizenDao cd, Scanner scanner) {
 
-        System.out.println("Adja meg a taj számot:");
+        giveTheTajNumber();
         String taj = scanner.nextLine();
-        System.out.println("Adja meg a meghiúsúlás okát:");
+        whyItFailed();
         String note = scanner.nextLine();
-        System.out.println("Adja meg a dátumot (yyyy-mm-dd)!");
+        giveMeTheDate();
         String date = scanner.nextLine();
-        String status = "not ok";
+        String status = statusWhenVaccinationIsNotOk();
         try {
             int citizen_id = cd.searchCitizenIdBasedOnTaj(dataSource, taj);
             LocalDate timeToDB = LocalDate.parse(date);
@@ -24,6 +26,5 @@ public class FifthMenuPoint {
             System.out.println(ioe.getMessage());
         }
     }
-
 }
 

@@ -1,15 +1,13 @@
 package closingproject;
 
 import org.mariadb.jdbc.MariaDbDataSource;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Scanner;
-
 import static closingproject.MessageHun.*;
 
-public class SecondMenuPoint {
 
+public class SecondMenuPoint {
 
     public static void secondMenuPoint(Citizen cz, MariaDbDataSource dataSource, CitizenDao cd, Scanner scanner) {
 

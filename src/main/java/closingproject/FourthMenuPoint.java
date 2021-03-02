@@ -5,12 +5,15 @@ import org.mariadb.jdbc.MariaDbDataSource;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+import static closingproject.MessageHun.*;
+import static closingproject.MethodsToProgramWorking.*;
+
 public class FourthMenuPoint {
 
     public static void fourthMenuPoint(Citizen cz, MariaDbDataSource dataSource, CitizenDao cd, Scanner scanner) {
         try {
 
-            System.out.println("Adja meg a TAJ számot!");
+            giveTheTajNumber();
             String taj = scanner.nextLine();
 
             int citizen_id = cd.searchCitizenIdBasedOnTaj(dataSource, taj);
@@ -23,37 +26,22 @@ public class FourthMenuPoint {
                     recordingVaccination(dataSource, cd, scanner, citizen_id, numberOfVaccinations);
                     break;
                 case 1:
-                    System.out.println("Oltások száma: " + numberOfVaccinations);
-                    System.out.println("Az oltás dátuma: " + cd.dateOfVaccination(dataSource, taj));
-                    System.out.println("Az oltás típusa: " + cd.typeOfVaccination(dataSource, taj));
+                    printTheNumberOfVaccinaDateOfVaccinaTypeOfVaccina(dataSource, cd, taj, numberOfVaccinations);
                     recordingVaccination(dataSource, cd, scanner, citizen_id, numberOfVaccinations);
 
                     break;
                 default:
-                    System.out.println(("Oltások száma: " + numberOfVaccinations + ", nincs szükség több oltásra! "));
+                    defultMessageSwithIn4thMenu(numberOfVaccinations);
             }
 
-            System.out.println("Minden adatot rögzítettünk!");
+            dataRecorded();
 
         } catch (IllegalArgumentException ioe) {
-            System.out.println(ioe.getMessage() + "Térjen vissza a főmenübe és kezdje elölről!");
+            System.out.println(ioe.getMessage() + backToMainMenu());
         }
 
 
     }
 
-    private static void recordingVaccination(MariaDbDataSource dataSource, CitizenDao cd, Scanner scanner, int citizen_id, int numberOfVaccinations) {
-        System.out.println("Adja meg a dátumot (yyyy-mm-dd)!");
-        String date = scanner.nextLine();
-        try {
-            LocalDate dateToDB = LocalDate.parse(date);
-            System.out.println("Adja meg a vakcina típusát!");
-            String type = scanner.nextLine();
-            String status = "OK";
-            cd.vaccinationSetTimeAndType(dataSource, dateToDB, type, citizen_id, status, numberOfVaccinations);
-        } catch (RuntimeException e) {
-            throw new IllegalArgumentException("Invalid data form" + e.getMessage());
-        }
-    }
 
 }

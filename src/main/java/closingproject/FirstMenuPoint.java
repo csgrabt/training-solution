@@ -29,7 +29,7 @@ public class FirstMenuPoint {
         String nameOfTheCity = CITY_DEFAULT;
         String zipCode;
         do {
-            fistMenuPrintln3();
+            giveTheZipCode();
             zipCode = scanner.nextLine();
             if (cz.validatorZipCode(zipCode, dataSource))
                 try {
@@ -73,7 +73,7 @@ public class FirstMenuPoint {
         boolean tajValidator = true;
         String taj;
         do {
-            fistMenuPrintln11();
+            giveTheTajNumber();
             taj = scanner.nextLine();
             try {
                 cz.validatorHealthInsuranceNumber(taj);

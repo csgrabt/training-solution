@@ -2,6 +2,8 @@ package closingproject;
 
 import org.mariadb.jdbc.MariaDbDataSource;
 
+import static closingproject.MessageHun.*;
+
 import java.util.Scanner;
 
 import static closingproject.MethodsToProgramWorking.vaccinationListToPrint;
@@ -11,16 +13,12 @@ public class ThirdMenuPoint {
 
     public static void thirdMenuPoint(Citizen cz, MariaDbDataSource dataSource, CitizenDao cd, Scanner scanner) {
         try {
-
-            System.out.println("Adta meg az irányító számot");
+            giveTheZipCode();
             String zip = scanner.nextLine();
-
             writeTheNamesBasedOnZipToPrint(
                     vaccinationListToPrint(cd.dailyVaccinationBasedOnZip(dataSource, zip)));
-
         } catch (IllegalArgumentException ioe) {
             System.out.println(ioe.getMessage());
-            System.out.println("Zárja be a programot a fájl megnyitásához");
         }
     }
 }
