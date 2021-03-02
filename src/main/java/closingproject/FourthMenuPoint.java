@@ -2,10 +2,9 @@ package closingproject;
 
 import org.mariadb.jdbc.MariaDbDataSource;
 
-import java.time.LocalDate;
 import java.util.Scanner;
 
-import static closingproject.MessageHun.*;
+import static closingproject.Language.MessageHun.*;
 import static closingproject.MethodsToProgramWorking.*;
 
 public class FourthMenuPoint {

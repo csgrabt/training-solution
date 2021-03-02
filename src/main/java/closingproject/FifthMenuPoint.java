@@ -5,7 +5,7 @@ import org.mariadb.jdbc.MariaDbDataSource;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-import static closingproject.MessageHun.*;
+import static closingproject.Language.MessageHun.*;
 
 public class FifthMenuPoint {
     public static void fifthMenuPoint(Citizen cz, MariaDbDataSource dataSource, CitizenDao cd, Scanner scanner) {

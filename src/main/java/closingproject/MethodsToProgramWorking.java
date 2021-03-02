@@ -12,7 +12,7 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Scanner;
 
-import static closingproject.MessageHun.*;
+import static closingproject.Language.MessageHun.*;
 
 
 public class MethodsToProgramWorking {

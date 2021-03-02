@@ -10,9 +10,6 @@ public class VaccinationMain {
         SysClosing sys = new SysClosing();
         Flyway flyway = Flyway.configure().dataSource(sys.getDataSource()).load();
         flyway.migrate();
-
-
-
         String progress;
 
         menu(sys);

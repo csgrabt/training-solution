@@ -1,5 +1,6 @@
-package closingproject;
+package closingproject.Language;
 
+import closingproject.CitizenDao;
 import org.mariadb.jdbc.MariaDbDataSource;
 
 public class MessageHun {
@@ -155,4 +156,17 @@ public class MessageHun {
     public static void whyItFailed() {
         System.out.println("Adja meg a meghiúsúlás okát:");
     }
+    public String errorMessageZipIsNotOk() {
+        return "Db does not contain the ZipCode, or digit is not 4!";
+    }
+
+    public String errorMessageAgeIsWrong() {
+        return "Age is not correct!";
+    }
+
+    public String errorMessageCannotNull() {
+        return "Name can not be null or empty!";
+    }
+
+
 }

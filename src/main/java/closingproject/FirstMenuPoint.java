@@ -2,7 +2,7 @@ package closingproject;
 
 import org.mariadb.jdbc.MariaDbDataSource;
 
-import static closingproject.MessageHun.*;
+import static closingproject.Language.MessageHun.*;
 
 import java.util.Scanner;
 

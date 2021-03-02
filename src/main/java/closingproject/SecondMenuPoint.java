@@ -4,7 +4,7 @@ import org.mariadb.jdbc.MariaDbDataSource;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Scanner;
-import static closingproject.MessageHun.*;
+import static closingproject.Language.MessageHun.*;
 
 
 public class SecondMenuPoint {
