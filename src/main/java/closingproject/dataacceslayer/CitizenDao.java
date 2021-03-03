@@ -115,7 +115,7 @@ public class CitizenDao {
     }
 
 
-    public Integer searchCitizenIdBasedOnTaj(DataSource dataSource, String taj) {
+    public Integer searchCitizenIdBasedOnTaj(String taj) {
         new Citizen().validatorHealthInsuranceNumber(taj);
         int id = 0;
         try (
@@ -155,7 +155,7 @@ public class CitizenDao {
                 PreparedStatement ps =
                         conn.prepareStatement("select number_of_vaccination from citizens where citizen_id = ?");
         ) {
-            ps.setInt(1, searchCitizenIdBasedOnTaj(dataSource, taj));
+            ps.setInt(1, searchCitizenIdBasedOnTaj(taj));
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     String numberOfVaccination = rs.getString(1);
@@ -175,7 +175,7 @@ public class CitizenDao {
     }
 
 
-    public void vaccinationSetTimeAndType(DataSource dataSource, LocalDate date, String type, int id, String status, int numberofvaccination) {
+    public void vaccinationSetTimeAndType(DataSource dataSource, LocalDate date, String type, int id, String status, int numberOfVaccination) {
         try (Connection conn = dataSource.getConnection()) {
             conn.setAutoCommit(false);
             try (
@@ -192,10 +192,10 @@ public class CitizenDao {
                     PreparedStatement ps =
                             conn.prepareStatement("Update citizens set  number_of_vaccination = ?, last_vaccination = ? where citizen_id = ? ")) {
 
-                if (numberofvaccination >= 2) {
-                    throw new IllegalStateException("Túl sok oltás: " + numberofvaccination + "!");
+                if (numberOfVaccination >= 2) {
+                    throw new IllegalStateException("Túl sok oltás: " + numberOfVaccination + "!");
                 }
-                ps.setInt(1, numberofvaccination + 1);
+                ps.setInt(1, numberOfVaccination + 1);
                 ps.setDate(2, java.sql.Date.valueOf(date));
                 ps.setInt(3, id);
                 ps.executeUpdate();
@@ -248,7 +248,7 @@ public class CitizenDao {
                 PreparedStatement ps =
                         conn.prepareStatement("select vaccination_type from vaccinations where citizen_id = ?");
         ) {
-            ps.setInt(1, searchCitizenIdBasedOnTaj(dataSource, taj));
+            ps.setInt(1, searchCitizenIdBasedOnTaj(taj));
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     typeOfVaccina = rs.getString(1);
@@ -363,7 +363,7 @@ public class CitizenDao {
                 PreparedStatement ps =
                         conn.prepareStatement("select note from vaccinations where citizen_id = ?");
         ) {
-            ps.setInt(1, searchCitizenIdBasedOnTaj(dataSource, taj));
+            ps.setInt(1, searchCitizenIdBasedOnTaj(taj));
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     typeOfVaccina = rs.getString(1);

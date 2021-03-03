@@ -10,7 +10,7 @@ public class FifthMenuMethods {
 
     public static void failedVaccinationRegister(String taj, String note, String date, String status) {
         try {
-            int citizen_id = cd.searchCitizenIdBasedOnTaj(cd.getDataSource(), taj);
+            int citizen_id = cd.searchCitizenIdBasedOnTaj(taj);
             LocalDate timeToDB = LocalDate.parse(date);
             cd.failedVaccination(cd.getDataSource(), timeToDB, note, citizen_id, status);
 

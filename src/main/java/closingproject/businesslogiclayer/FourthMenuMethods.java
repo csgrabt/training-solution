@@ -29,7 +29,7 @@ public class FourthMenuMethods {
     }
 
     public static Integer getCitizenIdBasedOnTaj(String taj) {
-        return cd.searchCitizenIdBasedOnTaj(cd.getDataSource(), taj);
+        return cd.searchCitizenIdBasedOnTaj(taj);
     }
 
     public static void typeOfVaccinationFromDB(String taj) {

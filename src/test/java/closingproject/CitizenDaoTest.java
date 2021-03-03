@@ -62,7 +62,7 @@ class CitizenDaoTest {
     void writeRegistrationToDb() {
         cd.writeRegistrationToDB(dataSource, citizen);
 
-        assertEquals(1, cd.searchCitizenIdBasedOnTaj(dataSource, "000000000"));
+        assertEquals(1, cd.searchCitizenIdBasedOnTaj("000000000"));
     }
 
 
@@ -77,12 +77,12 @@ class CitizenDaoTest {
     @Test
     void writeRegisterFromFileToDbTest() {
         cd.writeRegisterFromFileToDb("TestClosingProject.txt", ";");
-        assertEquals(1, cd.searchCitizenIdBasedOnTaj(dataSource, "123456788"));
-        assertEquals(2, cd.searchCitizenIdBasedOnTaj(dataSource, "123456795"));
-        assertEquals(3, cd.searchCitizenIdBasedOnTaj(dataSource, "123456805"));
-        assertEquals(4, cd.searchCitizenIdBasedOnTaj(dataSource, "123456812"));
-        assertEquals(5, cd.searchCitizenIdBasedOnTaj(dataSource, "123456829"));
-        assertEquals(6, cd.searchCitizenIdBasedOnTaj(dataSource, "123456836"));
+        assertEquals(1, cd.searchCitizenIdBasedOnTaj("123456788"));
+        assertEquals(2, cd.searchCitizenIdBasedOnTaj("123456795"));
+        assertEquals(3, cd.searchCitizenIdBasedOnTaj("123456805"));
+        assertEquals(4, cd.searchCitizenIdBasedOnTaj("123456812"));
+        assertEquals(5, cd.searchCitizenIdBasedOnTaj("123456829"));
+        assertEquals(6, cd.searchCitizenIdBasedOnTaj("123456836"));
     }
 
     @Test
