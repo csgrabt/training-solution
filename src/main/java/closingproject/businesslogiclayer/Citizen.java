@@ -106,7 +106,7 @@ public class Citizen {
             return false;
         }
         try {
-            new CitizenDao().findCityByZipcode(zipCode);
+            new CitizenDao().findCityByZipCode(zipCode);
         } catch (IllegalArgumentException io) {
             return false;
         }

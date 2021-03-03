@@ -16,7 +16,7 @@ public class FirstMenuMethods{
         if (cz.validatorZipCode(zipCode))
             try {
                 {
-                    nameOfTheCity = cd.findCityByZipcode(zipCode);
+                    nameOfTheCity = cd.findCityByZipCode(zipCode);
                 }
             } catch (IllegalArgumentException ie) {
                 fistMenuPrintln4(zipCode);

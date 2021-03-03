@@ -46,14 +46,14 @@ class CitizenDaoTest {
 
     @Test
     void zipCodeTestOK() {
-        assertEquals("Budapest", cd.findCityByZipcode("1007"));
-        assertEquals("Mezőtúr", cd.findCityByZipcode("5400"));
+        assertEquals("Budapest", cd.findCityByZipCode("1007"));
+        assertEquals("Mezőtúr", cd.findCityByZipCode("5400"));
     }
 
     @Test
     void zipCodeTestZipIsNotExits() {
         Exception ex = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            cd.findCityByZipcode("1000");
+            cd.findCityByZipCode("1000");
         });
         assertEquals("Db does not contain the ZipCode!", ex.getMessage());
     }

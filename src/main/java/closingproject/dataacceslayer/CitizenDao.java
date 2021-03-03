@@ -27,7 +27,7 @@ public class CitizenDao {
         return dataSource;
     }
 
-    public String findCityByZipcode(String zipCode) {
+    public String findCityByZipCode(String zipCode) {
         String city = null;
         try (
                 Connection conn = dataSource.getConnection();
