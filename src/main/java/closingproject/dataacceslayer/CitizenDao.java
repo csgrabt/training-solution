@@ -20,7 +20,7 @@ public class CitizenDao {
     private MariaDbDataSource dataSource = new MariaDbDataSource();
 
     public CitizenDao() {
-        this.dataSource = createDbConnection(dataSource);
+        createDbConnection(dataSource);
     }
 
     public MariaDbDataSource getDataSource() {
@@ -34,70 +34,65 @@ public class CitizenDao {
                 PreparedStatement ps =
                         conn.prepareStatement("select city from zipcodes where zip = ?");
         ) {
-
             ps.setString(1, zipCode);
-            try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
-                    city = rs.getString(1);
-                }
-            } catch (SQLException se) {
-                throw new IllegalArgumentException("Something went wrong during reading the DB!", se);
-            }
+            city = fetCityFromDB(city, ps);
         } catch (SQLException sql) {
-
             throw new IllegalArgumentException(sql.getMessage(), sql);
         }
+        checkThatDBContainsZipCode(city);
+        return city;
+    }
+
+    private String fetCityFromDB(String city, PreparedStatement ps) {
+        try (ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                city = rs.getString(1);
+            }
+        } catch (SQLException se) {
+            throw new IllegalArgumentException("Something went wrong during reading the DB!", se);
+        }
+        return city;
+    }
+
+    private void checkThatDBContainsZipCode(String city) {
         if (city == null) {
             throw new IllegalArgumentException("Db does not contain the ZipCode!");
         }
-        return city;
     }
 
 
     public void writeRegistrationToDB(DataSource dataSource, Citizen citizen) {
         try (Connection conn = dataSource.getConnection();
              PreparedStatement stmt = conn.prepareStatement("insert into citizens(citizen_name, zip, age, email, taj) values (?, ?, ?, ?, ?)")) {
-
             stmt.setString(1, citizen.getFullName());
             stmt.setString(2, citizen.getZipCode());
             stmt.setInt(3, citizen.getAge());
             stmt.setString(4, citizen.getEmail());
             stmt.setString(5, citizen.getHealthInsuranceNumber());
             stmt.executeUpdate();
-
-
         } catch (SQLException se) {
             throw new IllegalArgumentException("Something went wrong during writing database", se);
         }
-
-
     }
 
-    public void writeRegisterFromFileToDb(DataSource dataSource, String str, String regex) {
+    public void writeRegisterFromFileToDb(String str, String regex) {
         Path path1 = Path.of(str);
-
         try (Connection conn = dataSource.getConnection()) {
             conn.setAutoCommit(false);
             int counter = 1;
             try (PreparedStatement stmt = conn.prepareStatement("insert into citizens(citizen_name, zip, age, email, taj) values (?, ?, ?, ?, ?)")) {
-
-
                 try (BufferedReader bf = Files.newBufferedReader(path1)) {
-
                     String line;
                     bf.readLine();
-
                     while ((line = bf.readLine()) != null) {
                         counter++;
                         String[] citizenArray = line.split(regex);
-
                         Citizen cz = new Citizen(
                                 citizenArray[0],
                                 citizenArray[1],
                                 Integer.parseInt(citizenArray[2]),
                                 citizenArray[3],
-                                citizenArray[4],
-                                dataSource
+                                citizenArray[4]
                         );
                         stmt.setString(1, cz.getFullName());
                         stmt.setString(2, cz.getZipCode());
@@ -105,24 +100,18 @@ public class CitizenDao {
                         stmt.setString(4, cz.getEmail());
                         stmt.setString(5, cz.getHealthInsuranceNumber());
                         stmt.executeUpdate();
-
                     }
                     conn.commit();
                 } catch (IOException | ArrayIndexOutOfBoundsException ioe) {
                     throw new IllegalArgumentException("Cannot read file", ioe);
                 }
-
             } catch (IllegalArgumentException ioe) {
                 conn.rollback();
                 throw new IllegalArgumentException("Rollback, there is an error in the " + counter + "th line!", ioe);
             }
-
-
         } catch (SQLException sql) {
             throw new IllegalArgumentException(sql.getMessage(), sql);
         }
-
-
     }
 
 
@@ -190,7 +179,6 @@ public class CitizenDao {
         try (Connection conn = dataSource.getConnection()) {
             conn.setAutoCommit(false);
             try (
-
                     PreparedStatement ps =
                             conn.prepareStatement("insert into Vaccinations(citizen_id, vaccination_date, status, vaccination_type) values (?, ?, ?, ?)")) {
 
@@ -199,12 +187,11 @@ public class CitizenDao {
                 ps.setString(3, status);
                 ps.setString(4, type);
                 ps.executeUpdate();
-
-
             }
             try (
                     PreparedStatement ps =
                             conn.prepareStatement("Update citizens set  number_of_vaccination = ?, last_vaccination = ? where citizen_id = ? ")) {
+
                 if (numberofvaccination >= 2) {
                     throw new IllegalStateException("Túl sok oltás: " + numberofvaccination + "!");
                 }
@@ -369,7 +356,27 @@ public class CitizenDao {
         return result;
     }
 
+    public String noteOfVaccinationFailed(DataSource dataSource, String taj) {
+        String typeOfVaccina = null;
+        try (
+                Connection conn = dataSource.getConnection();
+                PreparedStatement ps =
+                        conn.prepareStatement("select note from vaccinations where citizen_id = ?");
+        ) {
+            ps.setInt(1, searchCitizenIdBasedOnTaj(dataSource, taj));
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    typeOfVaccina = rs.getString(1);
 
+                }
+            } catch (SQLException sql) {
+                throw new IllegalArgumentException("No data", sql);
+            }
+        } catch (SQLException sql) {
+            throw new IllegalStateException("Cannot select Citizen based on ID", sql);
+        }
+        return typeOfVaccina;
+    }
 }
 
 

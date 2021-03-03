@@ -21,7 +21,7 @@ public class SecondMenuMethods {
             }
             secondMenuPritnln2();
             String regex = scanner.nextLine();
-            cd.writeRegisterFromFileToDb(cd.getDataSource(), path, regex);
+            cd.writeRegisterFromFileToDb(path, regex);
         } catch (IllegalArgumentException ioe) {
             secondMenuPritnln3(ioe);
         }

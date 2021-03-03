@@ -26,7 +26,7 @@ public class FirstMenuMethods{
 
     public static void citizenToDB(String name, String email, String taj, int age, String zipCode) {
         try {
-            Citizen citizen = new Citizen(name, zipCode, age, email, taj, cd.getDataSource());
+            Citizen citizen = new Citizen(name, zipCode, age, email, taj);
             cd.writeRegistrationToDB(cd.getDataSource(), citizen);
         } catch (
                 IllegalArgumentException ioe

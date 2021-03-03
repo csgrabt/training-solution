@@ -1,7 +1,5 @@
 package closingproject.businesslogiclayer.language;
 
-import closingproject.dataacceslayer.CitizenDao;
-import org.mariadb.jdbc.MariaDbDataSource;
 
 public class MessageHun {
     public static void menuPrintln4() {
@@ -155,6 +153,7 @@ public class MessageHun {
     public static void printTheNumberOfVaccination(int numberOfVaccinations) {
         System.out.println("Oltások száma: " + numberOfVaccinations);
     }
+
     public static String typeOfTheVaccination() {
         return "Az oltás típusa: ";
     }
@@ -162,6 +161,7 @@ public class MessageHun {
     public static String dateOfTheLastVaccination() {
         return "Az oltás dátuma: ";
     }
+
     public static String newLine() {
         return "\n";
     }

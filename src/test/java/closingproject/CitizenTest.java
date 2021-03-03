@@ -14,20 +14,20 @@ import static org.junit.jupiter.api.Assertions.*;
 class CitizenTest {
     MariaDbDataSource dataSource;
 
-@BeforeEach
-public void setDataSource(){
-    dataSource = new MariaDbDataSource();
-    try {
+    @BeforeEach
+    public void setDataSource() {
+        dataSource = new MariaDbDataSource();
+        try {
 
-        dataSource.setUrl("jdbc:mariadb://localhost:3306/ClosingProject?useUnicode=true");
-        dataSource.setUser("alma");
-        dataSource.setPassword("alma");
+            dataSource.setUrl("jdbc:mariadb://localhost:3306/ClosingProject?useUnicode=true");
+            dataSource.setUser("alma");
+            dataSource.setPassword("alma");
 
-    } catch (SQLException se) {
-        throw new IllegalArgumentException("Some problem with dataSource", se);
+        } catch (SQLException se) {
+            throw new IllegalArgumentException("Some problem with dataSource", se);
+        }
+
     }
-
-}
 
     @Test
     void constructorTestWithVaccinationTypeAndNumber() {
@@ -48,8 +48,6 @@ public void setDataSource(){
         assertEquals("Kínai szar", citizen.getVaccinationType());
         assertEquals("5", citizen.getNumberOfVaccination());
     }
-
-
 
 
     @Test
@@ -77,8 +75,7 @@ public void setDataSource(){
                 "5400",
                 53,
                 "m@m",
-                "123456788",
-                dataSource);
+                "123456788");
         assertEquals("Árvíztűrő Tükörfúrógép", citizen.getFullName());
         assertEquals("5400", citizen.getZipCode());
         assertEquals(53, citizen.getAge());
@@ -94,12 +91,12 @@ public void setDataSource(){
                     "5400",
                     53,
                     "m@m",
-                    "123456788",
-                    dataSource);
+                    "123456788");
         });
         assertEquals("Name can not be null or empty!", ex.getMessage());
 
     }
+
     @Test
     void nameTestIsEmpty() {
         Exception ex = Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -108,13 +105,12 @@ public void setDataSource(){
                     "5400",
                     53,
                     "m@m",
-                    "123456788",
-                    dataSource);
+                    "123456788"
+            );
         });
         assertEquals("Name can not be null or empty!", ex.getMessage());
 
     }
-
 
 
     @Test
@@ -125,8 +121,8 @@ public void setDataSource(){
                     "5400",
                     3,
                     "m@m",
-                    "123456788",
-                    dataSource);
+                    "123456788"
+            );
         });
         assertEquals("Age is not correct!", ex.getMessage());
 
@@ -140,12 +136,13 @@ public void setDataSource(){
                     "5400",
                     30,
                     "mmm",
-                    "123456788",
-                    dataSource);
+                    "123456788"
+            );
         });
         assertEquals("Email address is not valid!", ex.getMessage());
 
     }
+
     @Test
     void eamilTestShort() {
         Exception ex = Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -154,8 +151,8 @@ public void setDataSource(){
                     "5400",
                     30,
                     "m@",
-                    "123456788",
-                    dataSource);
+                    "123456788"
+            );
         });
         assertEquals("Email address is not valid!", ex.getMessage());
 
@@ -170,8 +167,8 @@ public void setDataSource(){
                     "5400",
                     30,
                     "m@",
-                    "a12345678",
-                    dataSource);
+                    "a12345678"
+            );
         });
         assertEquals("One of the Character is not number!", ex.getMessage());
 
@@ -185,8 +182,8 @@ public void setDataSource(){
                     "5400",
                     30,
                     "m@",
-                    "2345678",
-                    dataSource);
+                    "2345678"
+            );
         });
         assertEquals("The length of the insurance number is wrong!", ex.getMessage());
 
@@ -200,8 +197,8 @@ public void setDataSource(){
                     "5400",
                     30,
                     "m@",
-                    "023456708",
-                    dataSource);
+                    "023456708"
+            );
         });
         assertEquals("Health insurance number is wrong!", ex.getMessage());
 
@@ -216,8 +213,8 @@ public void setDataSource(){
                     "5401",
                     30,
                     "m@m",
-                    "123456788",
-                    dataSource);
+                    "123456788"
+            );
         });
         assertEquals("Db does not contain the ZipCode, or digit is not 4!", ex.getMessage());
     }

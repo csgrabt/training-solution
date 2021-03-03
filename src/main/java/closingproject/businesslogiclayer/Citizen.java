@@ -20,7 +20,7 @@ public class Citizen {
 
     }
 
-    public Citizen(String fullName, String zipCode, int age, String email, String healthInsuranceNumber, DataSource dataSource) {
+    public Citizen(String fullName, String zipCode, int age, String email, String healthInsuranceNumber) {
         if (validatorName(fullName)) {
             throw new IllegalArgumentException("Name can not be null or empty!");
         }

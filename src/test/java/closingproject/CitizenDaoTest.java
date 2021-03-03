@@ -40,7 +40,7 @@ class CitizenDaoTest {
         flyway = Flyway.configure().dataSource(dataSource).load();
         flyway.clean();
         flyway.migrate();
-        citizen = new Citizen("Kiss Géza", "1007", 35, "m@m", "000000000", dataSource);
+        citizen = new Citizen("Kiss Géza", "1007", 35, "m@m", "000000000");
     }
 
 
@@ -76,7 +76,7 @@ class CitizenDaoTest {
 
     @Test
     void writeRegisterFromFileToDbTest() {
-        cd.writeRegisterFromFileToDb(dataSource, "TestClosingProject.txt", ";");
+        cd.writeRegisterFromFileToDb("TestClosingProject.txt", ";");
         assertEquals(1, cd.searchCitizenIdBasedOnTaj(dataSource, "123456788"));
         assertEquals(2, cd.searchCitizenIdBasedOnTaj(dataSource, "123456795"));
         assertEquals(3, cd.searchCitizenIdBasedOnTaj(dataSource, "123456805"));
@@ -88,7 +88,7 @@ class CitizenDaoTest {
     @Test
     void writeRegisterFromFileToDbTestBadRegex() {
         Exception ex1 = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            cd.writeRegisterFromFileToDb(dataSource, "TestClosingProject.txt", "\n");
+            cd.writeRegisterFromFileToDb("TestClosingProject.txt", "\n");
         });
         assertEquals("Rollback, there is an error in the 2th line!", ex1.getMessage());
     }
@@ -97,22 +97,14 @@ class CitizenDaoTest {
     @Test
     void writeRegisterFromFileToDbTestBadPath() {
         Exception ex1 = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            cd.writeRegisterFromFileToDb(dataSource, "TestClosingProject", ";");
+            cd.writeRegisterFromFileToDb("TestClosingProject", ";");
         });
         assertEquals("Rollback, there is an error in the 1th line!", ex1.getMessage());
     }
 
     @Test
-    void writeRegisterFromFileToDbTestSQLConnectionFailed() {
-        Exception ex1 = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            cd.writeRegisterFromFileToDb(dataSource1, "TestClosingProject.txt", ";");
-        });
-        assertEquals("Access denied for user 'alma'@'localhost' (using password: YES)", ex1.getMessage());
-    }
-
-    @Test
     void numberOfVaccination() {
-        cd.writeRegisterFromFileToDb(dataSource, "TestClosingProject.txt", ";");
+        cd.writeRegisterFromFileToDb("TestClosingProject.txt", ";");
         assertEquals(0, cd.numberOfVaccination(dataSource, "123456812"));
 
     }
@@ -120,7 +112,7 @@ class CitizenDaoTest {
     @Test
     void numberOfVaccinationSQLConnectionFailed() {
         Exception ex1 = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            cd.writeRegisterFromFileToDb(dataSource, "TestClosingProject.txt", ";");
+            cd.writeRegisterFromFileToDb("TestClosingProject.txt", ";");
             cd.numberOfVaccination(dataSource1, "123456812");
         });
         assertEquals("Access denied for user 'alma'@'localhost' (using password: YES)", ex1.getMessage());
@@ -130,7 +122,7 @@ class CitizenDaoTest {
     @Test
     void numberOfVaccinationTableNotContainedTajLengthIsWrong() {
         Exception ex1 = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            cd.writeRegisterFromFileToDb(dataSource, "TestClosingProject.txt", ";");
+            cd.writeRegisterFromFileToDb("TestClosingProject.txt", ";");
             cd.numberOfVaccination(dataSource, "1234568120");
         });
         assertEquals("The length of the insurance number is wrong!", ex1.getMessage());
@@ -140,7 +132,7 @@ class CitizenDaoTest {
     @Test
     void numberOfVaccinationTableNotContainedTaj() {
         Exception ex1 = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            cd.writeRegisterFromFileToDb(dataSource, "TestClosingProject.txt", ";");
+            cd.writeRegisterFromFileToDb("TestClosingProject.txt", ";");
             cd.numberOfVaccination(dataSource, "000000000");
         });
         assertEquals("The Database does not contained this TAJ number!", ex1.getMessage());
@@ -180,4 +172,46 @@ class CitizenDaoTest {
         cd.vaccinationSetTimeAndType(dataSource, LocalDate.of(2020, 01, 30), "finom", 1, "OK", 1);
         assertEquals(null, cd.dateOfVaccination(dataSource, "000000001"));
     }
+
+    @Test
+    void failedVaccinationTest() {
+        cd.writeRegistrationToDB(dataSource, citizen);
+        cd.failedVaccination(dataSource, LocalDate.now(), "Várandós", 1, "Not Ok" );
+
+        assertEquals("Várandós", cd.noteOfVaccinationFailed(dataSource, "000000000"));
+
+    }
+
+
+
+    @Test
+    void statisticBasedOnZipTest() {
+        cd.writeRegisterFromFileToDb("C:/Alma/alma.txt", ";");
+        cd.writeRegistrationToDB(dataSource, citizen);
+        cd.vaccinationSetTimeAndType(dataSource, LocalDate.now(), "Szar", 1, "OK", 0);
+        cd.vaccinationSetTimeAndType(dataSource, LocalDate.now(), "Szar", 1, "OK", 1);
+        cd.vaccinationSetTimeAndType(dataSource, LocalDate.now(), "Szar", 2, "OK", 0);
+        cd.vaccinationSetTimeAndType(dataSource, LocalDate.now(), "Szar", 3, "OK", 0);
+
+        assertEquals(2, cd.statisticBasedOnZip(dataSource,"5400").get(0));
+        assertEquals(2, cd.statisticBasedOnZip(dataSource,"5400").get(1));
+        assertEquals(1, cd.statisticBasedOnZip(dataSource,"5400").get(2));
+
+    }
+
+
+    @Test
+    void dailyVaccinationBasedOnZipTest() {
+        cd.writeRegisterFromFileToDb("C:/Alma/alma.txt", ";");
+        cd.writeRegistrationToDB(dataSource, citizen);
+        cd.vaccinationSetTimeAndType(dataSource, LocalDate.now(), "Szar", 1, "OK", 0);
+        cd.vaccinationSetTimeAndType(dataSource, LocalDate.of(2000,10,10), "Szar", 2, "OK", 0);
+        cd.vaccinationSetTimeAndType(dataSource, LocalDate.of(2000,10,10), "Szar", 5, "OK", 1);
+        assertEquals(3, cd.dailyVaccinationBasedOnZip(dataSource, "5400").size());
+        //  assertEquals(2, cd.statisticBasedOnZip(dataSource,"5400").get(1));
+      //  assertEquals(1, cd.statisticBasedOnZip(dataSource,"5400").get(2));
+
+    }
+
+
 }
