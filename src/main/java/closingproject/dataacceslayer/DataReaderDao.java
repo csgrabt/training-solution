@@ -1,4 +1,4 @@
-package readerFromFileWriteToDb;
+package closingproject.dataacceslayer;
 
 import javax.sql.DataSource;
 import java.io.BufferedReader;
@@ -9,7 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class DataReader {
+public class DataReaderDao {
     public void zipCodeReader(DataSource dataSource, String filename, String regex) {
         try (BufferedReader bf = Files.newBufferedReader(Path.of(filename))) {
             String line;

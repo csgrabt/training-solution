@@ -1,4 +1,6 @@
-package closingproject;
+package closingproject.businesslogiclayer;
+
+import closingproject.dataacceslayer.CitizenDao;
 
 import javax.sql.DataSource;
 
@@ -18,10 +20,10 @@ public class Citizen {
 
     }
     public Citizen(String fullName, String zipCode, int age, String email, String healthInsuranceNumber, DataSource dataSource) {
-        if (!validatorName(fullName)) {
+        if (validatorName(fullName)) {
             throw new IllegalArgumentException("Name can not be null or empty!");
         }
-        if (!validatorAge(age)) {
+        if (validatorAge(age)) {
             throw new IllegalArgumentException("Age is not correct!");
         }
         if (!validatorZipCode(zipCode, dataSource)) {
@@ -95,10 +97,7 @@ public class Citizen {
 
 
     public boolean validatorName(String name) {
-        if (name == null || name.isBlank()) {
-            return false;
-        }
-        return true;
+        return name == null || name.isBlank();
     }
 
     public boolean validatorZipCode(String zipCode, DataSource dataSource) {
@@ -115,10 +114,7 @@ public class Citizen {
     }
 
     public boolean validatorAge(int age) {
-        if (age <= 10 || age >= 150) {
-            return false;
-        }
-        return true;
+        return age <= 10 || age >= 150;
     }
 
 
@@ -129,43 +125,55 @@ public class Citizen {
     }
 
 
-    public void validatorHealthInsuranceNumber(String insuranceNumber) {
+    public void validatorHealthInsuranceNumber(String tajNumber) {
 
 
-        if (insuranceNumber.length() != 9) {
+        if (tajNumber.length() != 9) {
             throw new IllegalArgumentException("The length of the insurance number is wrong!");
         }
 
-        int b = insuranceNumber.length();
-        int even = 0;
-        int odd = 0;
+        int b = tajNumber.length();
 
-        for (int i = 1; i < b - 1; i = i + 2) {
-            int d;
-            try {
-                d = Integer.parseInt("" + insuranceNumber.charAt(i));
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("One of the Character is not number!");
-            }
-            even += (d * 7);
+        int even = getEven(tajNumber, b);
+
+        int odd = getOdd(tajNumber, b);
+
+        boolean isValidTaj = (even + odd) % 10 == Integer.parseInt("" + tajNumber.charAt(b - 1));
+
+        if (!isValidTaj) {
+            throw new IllegalArgumentException("Health insurance number is wrong!");
         }
+
+
+    }
+
+    public int getOdd(String tajNumber, int b) {
+        int odd = 0;
         for (int i = 0; i < b - 1; i = i + 2) {
             int d;
             try {
-                d = Integer.parseInt("" + insuranceNumber.charAt(i));
+                d = Integer.parseInt("" + tajNumber.charAt(i));
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException("One of the Character is not number!");
             }
             odd += (d * 3);
 
         }
-        boolean osztas = (even + odd) % 10 == Integer.parseInt("" + insuranceNumber.charAt(b - 1));
+        return odd;
+    }
 
-        if (!osztas) {
-            throw new IllegalArgumentException("Health insurance number is wrong!");
+    public int getEven(String tajNumber, int b) {
+        int even = 0;
+        for (int i = 1; i < b - 1; i = i + 2) {
+            int d;
+            try {
+                d = Integer.parseInt("" + tajNumber.charAt(i));
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("One of the Character is not number!");
+            }
+            even += (d * 7);
         }
-
-
+        return even;
     }
 
 }

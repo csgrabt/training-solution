@@ -1,6 +1,6 @@
-package closingproject.Language;
+package closingproject.businesslogiclayer.language;
 
-import closingproject.CitizenDao;
+import closingproject.dataacceslayer.CitizenDao;
 import org.mariadb.jdbc.MariaDbDataSource;
 
 public class MessageHun {
@@ -98,12 +98,6 @@ public class MessageHun {
         System.out.println("Adja meg a fájl elérési útvonalát(pl: C:/alma/alma.txt)!");
     }
 
-    public static void printTheNumberOfVaccinaDateOfVaccinaTypeOfVaccina(MariaDbDataSource dataSource, CitizenDao cd, String taj, int numberOfVaccinations) {
-        System.out.println("Oltások száma: " + numberOfVaccinations);
-        System.out.println("Az oltás dátuma: " + cd.dateOfVaccination(dataSource, taj));
-        System.out.println("Az oltás típusa: " + cd.typeOfVaccination(dataSource, taj));
-    }
-
     public static void defultMessageSwithIn4thMenu(int numberOfVaccinations) {
         System.out.println(("Oltások száma: " + numberOfVaccinations + ", nincs szükség több oltásra! "));
     }
@@ -149,6 +143,7 @@ public class MessageHun {
     public static String getStatusWhenTheVaccinationIsOk() {
         return "OK";
     }
+
     public static String statusWhenVaccinationIsNotOk() {
         return "not ok";
     }
@@ -156,16 +151,43 @@ public class MessageHun {
     public static void whyItFailed() {
         System.out.println("Adja meg a meghiúsúlás okát:");
     }
-    public String errorMessageZipIsNotOk() {
-        return "Db does not contain the ZipCode, or digit is not 4!";
+
+    public static void printTheNumberOfVaccination(int numberOfVaccinations) {
+        System.out.println("Oltások száma: " + numberOfVaccinations);
+    }
+    public static String typeOfTheVaccination() {
+        return "Az oltás típusa: ";
     }
 
-    public String errorMessageAgeIsWrong() {
-        return "Age is not correct!";
+    public static String dateOfTheLastVaccination() {
+        return "Az oltás dátuma: ";
+    }
+    public static String newLine() {
+        return "\n";
     }
 
-    public String errorMessageCannotNull() {
-        return "Name can not be null or empty!";
+    public static String resultNote6() {
+        return "2. oltást megkapottak száma: ";
+    }
+
+    public static String resultNote5() {
+        return "1. oltást megkapottak száma: ";
+    }
+
+    public static String resultNote4() {
+        return "Nem oltottak száma: ";
+    }
+
+    public static String resultNote2() {
+        return "):" + newLine();
+    }
+
+    public static String resultNote1() {
+        return " város/település statisztikái (regisztrált lakosok száma: ";
+    }
+
+    public static String giveTheZipCodeForTheStatic() {
+        return "Adja meg az irányítószámot, ami alapján szürni szeretne!";
     }
 
 

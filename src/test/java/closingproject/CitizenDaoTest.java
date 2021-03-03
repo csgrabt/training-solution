@@ -1,5 +1,7 @@
 package closingproject;
 
+import closingproject.businesslogiclayer.Citizen;
+import closingproject.dataacceslayer.CitizenDao;
 import org.flywaydb.core.Flyway;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

@@ -1,8 +1,7 @@
-package closingproject;
+package closingproject.dataacceslayer;
 
+import closingproject.businesslogiclayer.Citizen;
 import org.mariadb.jdbc.MariaDbDataSource;
-import week13d04.Employee;
-import week15d04.Data;
 
 import javax.sql.DataSource;
 import java.io.BufferedReader;
@@ -14,9 +13,19 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static closingproject.businesslogiclayer.ProjectConfig.createDbConnection;
+
 
 public class CitizenDao {
+    private MariaDbDataSource dataSource = new MariaDbDataSource();
 
+    public CitizenDao() {
+        this.dataSource = createDbConnection(dataSource);
+    }
+
+    public MariaDbDataSource getDataSource() {
+        return dataSource;
+    }
 
     public String findCityByZipcode(DataSource dataSource, String zipCode) {
         String city = null;

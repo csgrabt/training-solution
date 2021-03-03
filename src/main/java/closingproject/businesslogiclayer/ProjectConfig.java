@@ -1,22 +1,26 @@
-package closingproject;
+package closingproject.businesslogiclayer;
 
-import org.flywaydb.core.Flyway;
+import closingproject.dataacceslayer.CitizenDao;
 import org.mariadb.jdbc.MariaDbDataSource;
 
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
-public class SysClosing {
+public class ProjectConfig {
     private final List<String> menuPoints = List.of("1", "2", "3", "4", "5", "6");
     private final Citizen cz = new Citizen();
-    private MariaDbDataSource dataSource = new MariaDbDataSource();
+    private final Scanner scanner = new Scanner(System.in);
     private final CitizenDao cd = new CitizenDao();
 
+    public CitizenDao getCd() {
+        return cd;
+    }
 
-    public SysClosing() {
-        this.dataSource = createDbConnection(dataSource);
+    public Scanner getScanner() {
+        return scanner;
     }
 
     public List<String> getMenuPoints() {
@@ -27,19 +31,9 @@ public class SysClosing {
         return cz;
     }
 
-    public void setDataSource(MariaDbDataSource dataSource) {
-        this.dataSource = dataSource;
-    }
 
-    public MariaDbDataSource getDataSource() {
-        return dataSource;
-    }
 
-    public CitizenDao getCd() {
-        return cd;
-    }
-
-    private static MariaDbDataSource createDbConnection(MariaDbDataSource dataSource) {
+    public static MariaDbDataSource createDbConnection(MariaDbDataSource dataSource) {
         try {
 
             dataSource.setUrl("jdbc:mariadb://localhost:3306/ClosingProject?useUnicode=true");

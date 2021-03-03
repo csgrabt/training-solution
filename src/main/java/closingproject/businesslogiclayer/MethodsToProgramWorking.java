@@ -1,5 +1,6 @@
-package closingproject;
+package closingproject.businesslogiclayer;
 
+import closingproject.dataacceslayer.CitizenDao;
 import org.mariadb.jdbc.MariaDbDataSource;
 
 import java.io.BufferedReader;
@@ -12,10 +13,12 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Scanner;
 
-import static closingproject.Language.MessageHun.*;
+import static closingproject.businesslogiclayer.language.MessageHun.*;
 
 
 public class MethodsToProgramWorking {
+    private static final CitizenDao cd = new CitizenDao();
+
     public static StringBuilder vaccinationListToPrint(List<Citizen> citizens) {
         StringBuilder sb = new StringBuilder();
         sb.append(generatedFileFirstRow());
@@ -59,21 +62,10 @@ public class MethodsToProgramWorking {
         }
     }
 
-    public static void recordingVaccination(MariaDbDataSource dataSource, CitizenDao cd, Scanner scanner, int citizen_id, int numberOfVaccinations) {
-        giveMeTheDate();
-        String date = scanner.nextLine();
-        try {
-            LocalDate dateToDB = LocalDate.parse(date);
-            typeOfVaccina();
-            String type = scanner.nextLine();
-            String status = getStatusWhenTheVaccinationIsOk();
-            cd.vaccinationSetTimeAndType(dataSource, dateToDB, type, citizen_id, status, numberOfVaccinations);
-        } catch (RuntimeException e) {
-            throw new IllegalArgumentException(invalidDateForm() + e.getMessage());
-        }
+    public static void dailyVaccinationsBasedOnZip(String zip) {
+        writeTheNamesBasedOnZipToPrint(
+                vaccinationListToPrint(cd.dailyVaccinationBasedOnZip(cd.getDataSource(), zip)));
     }
-
-
 }
 
 
