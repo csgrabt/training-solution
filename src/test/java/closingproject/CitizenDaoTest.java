@@ -168,9 +168,9 @@ class CitizenDaoTest {
     @Test
     void failedVaccinationTest() {
         cd.writeRegistrationToDB(dataSource, citizen);
-        cd.failedVaccination(dataSource, LocalDate.now(), "Várandós", 1, "Not Ok" );
+        cd.failedVaccination(LocalDate.now(), "Várandós", 1, "Not Ok" );
 
-        assertEquals("Várandós", cd.noteOfVaccinationFailed(dataSource, "000000000"));
+        assertEquals("Várandós", cd.noteOfVaccinationFailed("000000000"));
 
     }
 
@@ -185,9 +185,9 @@ class CitizenDaoTest {
         cd.vaccinationSetTimeAndType(LocalDate.now(), "Szar", 2, "OK", 0);
         cd.vaccinationSetTimeAndType(LocalDate.now(), "Szar", 3, "OK", 0);
 
-        assertEquals(2, cd.statisticBasedOnZip(dataSource,"5400").get(0));
-        assertEquals(2, cd.statisticBasedOnZip(dataSource,"5400").get(1));
-        assertEquals(1, cd.statisticBasedOnZip(dataSource,"5400").get(2));
+        assertEquals(2, cd.statisticBasedOnZip("5400").get(0));
+        assertEquals(2, cd.statisticBasedOnZip("5400").get(1));
+        assertEquals(1, cd.statisticBasedOnZip("5400").get(2));
 
     }
 
@@ -199,10 +199,7 @@ class CitizenDaoTest {
         cd.vaccinationSetTimeAndType(LocalDate.now(), "Szar", 1, "OK", 0);
         cd.vaccinationSetTimeAndType(LocalDate.of(2000,10,10), "Szar", 2, "OK", 0);
         cd.vaccinationSetTimeAndType(LocalDate.of(2000,10,10), "Szar", 5, "OK", 1);
-        assertEquals(3, cd.dailyVaccinationBasedOnZip(dataSource, "5400").size());
-        //  assertEquals(2, cd.statisticBasedOnZip(dataSource,"5400").get(1));
-      //  assertEquals(1, cd.statisticBasedOnZip(dataSource,"5400").get(2));
-
+        assertEquals(3, cd.dailyVaccinationBasedOnZip("5400").size());
     }
 
 

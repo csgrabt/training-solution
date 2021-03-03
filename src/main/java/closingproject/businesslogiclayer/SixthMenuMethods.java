@@ -13,7 +13,7 @@ public class SixthMenuMethods {
     }
 
     public static List<Integer> getListToStatistic(String zipCode) {
-        return cd.statisticBasedOnZip(cd.getDataSource(), zipCode);
+        return cd.statisticBasedOnZip(zipCode);
 
     }
 

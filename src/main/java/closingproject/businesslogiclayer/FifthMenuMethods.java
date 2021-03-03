@@ -12,7 +12,7 @@ public class FifthMenuMethods {
         try {
             int citizen_id = cd.searchCitizenIdBasedOnTaj(taj);
             LocalDate timeToDB = LocalDate.parse(date);
-            cd.failedVaccination(cd.getDataSource(), timeToDB, note, citizen_id, status);
+            cd.failedVaccination(timeToDB, note, citizen_id, status);
 
         } catch (Exception ioe) {
             System.out.println(ioe.getMessage());

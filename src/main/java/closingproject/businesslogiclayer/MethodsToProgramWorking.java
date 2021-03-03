@@ -64,7 +64,7 @@ public class MethodsToProgramWorking {
 
     public static void dailyVaccinationsBasedOnZip(String zip) {
         writeTheNamesBasedOnZipToPrint(
-                vaccinationListToPrint(cd.dailyVaccinationBasedOnZip(cd.getDataSource(), zip)));
+                vaccinationListToPrint(cd.dailyVaccinationBasedOnZip(zip)));
     }
 }
 
