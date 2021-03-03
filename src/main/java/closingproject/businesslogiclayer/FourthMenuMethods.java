@@ -33,7 +33,7 @@ public class FourthMenuMethods {
     }
 
     public static void typeOfVaccinationFromDB(String taj) {
-        System.out.println(typeOfTheVaccination() + cd.typeOfVaccination(cd.getDataSource(), taj));
+        System.out.println(typeOfTheVaccination() + cd.typeOfVaccination(taj));
     }
 
     public static void dateOfVaccinationFromDB(String taj) {

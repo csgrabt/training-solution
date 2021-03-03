@@ -241,7 +241,7 @@ public class CitizenDao {
         return timeOfVaccination;
     }
 
-    public String typeOfVaccination(DataSource dataSource, String taj) {
+    public String typeOfVaccination(String taj) {
         String typeOfVaccina = null;
         try (
                 Connection conn = dataSource.getConnection();

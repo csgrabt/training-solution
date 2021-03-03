@@ -136,7 +136,7 @@ class CitizenDaoTest {
     void vaccinationSetTimeAndTypeAllIsOK() {
         cd.writeRegistrationToDB(dataSource, citizen);
         cd.vaccinationSetTimeAndType(LocalDate.now(), "finom", 1, "OK", 1);
-        assertEquals("finom", cd.typeOfVaccination(dataSource, "000000000"));
+        assertEquals("finom", cd.typeOfVaccination("000000000"));
     }
 
 
