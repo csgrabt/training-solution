@@ -13,10 +13,10 @@ public class FirstMenuMethods{
     private static final CitizenDao cd = new CitizenDao();
 
     public static String getCityNameFromDB(Citizen cz, String nameOfTheCity, String zipCode) {
-        if (cz.validatorZipCode(zipCode, cd.getDataSource()))
+        if (cz.validatorZipCode(zipCode))
             try {
                 {
-                    nameOfTheCity = cd.findCityByZipcode(cd.getDataSource(), zipCode);
+                    nameOfTheCity = cd.findCityByZipcode(zipCode);
                 }
             } catch (IllegalArgumentException ie) {
                 fistMenuPrintln4(zipCode);

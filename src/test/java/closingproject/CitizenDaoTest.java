@@ -46,24 +46,16 @@ class CitizenDaoTest {
 
     @Test
     void zipCodeTestOK() {
-        assertEquals("Budapest", cd.findCityByZipcode(dataSource, "1007"));
-        assertEquals("Mezőtúr", cd.findCityByZipcode(dataSource, "5400"));
+        assertEquals("Budapest", cd.findCityByZipcode("1007"));
+        assertEquals("Mezőtúr", cd.findCityByZipcode("5400"));
     }
 
     @Test
     void zipCodeTestZipIsNotExits() {
         Exception ex = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            cd.findCityByZipcode(dataSource, "1000");
+            cd.findCityByZipcode("1000");
         });
         assertEquals("Db does not contain the ZipCode!", ex.getMessage());
-    }
-
-    @Test
-    void zipCodeTestDataBaseConnectionFailed() {
-        Exception ex1 = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            cd.findCityByZipcode(dataSource1, "1007");
-        });
-        assertEquals("Access denied for user 'alma'@'localhost' (using password: YES)", ex1.getMessage());
     }
 
     @Test

@@ -26,7 +26,7 @@ public class Citizen {
         if (validatorAge(age)) {
             throw new IllegalArgumentException("Age is not correct!");
         }
-        if (!validatorZipCode(zipCode, dataSource)) {
+        if (!validatorZipCode(zipCode)) {
             throw new IllegalArgumentException("Db does not contain the ZipCode, or digit is not 4!");
         }
         validatorHealthInsuranceNumber(healthInsuranceNumber);
@@ -100,13 +100,13 @@ public class Citizen {
         return name == null || name.isBlank();
     }
 
-    public boolean validatorZipCode(String zipCode, DataSource dataSource) {
+    public boolean validatorZipCode(String zipCode) {
         if (zipCode.length() != 4) {
             System.out.println("The zip code does not legal! (Must be 4 digits!)");
             return false;
         }
         try {
-            new CitizenDao().findCityByZipcode(dataSource, zipCode);
+            new CitizenDao().findCityByZipcode(zipCode);
         } catch (IllegalArgumentException io) {
             return false;
         }
