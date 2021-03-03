@@ -148,7 +148,7 @@ public class CitizenDao {
     }
 
 
-    public Integer numberOfVaccination(DataSource dataSource, String taj) {
+    public Integer numberOfVaccination(String taj) {
         int counter = 0;
         try (
                 Connection conn = dataSource.getConnection();
@@ -175,7 +175,7 @@ public class CitizenDao {
     }
 
 
-    public void vaccinationSetTimeAndType(DataSource dataSource, LocalDate date, String type, int id, String status, int numberOfVaccination) {
+    public void vaccinationSetTimeAndType(LocalDate date, String type, int id, String status, int numberOfVaccination) {
         try (Connection conn = dataSource.getConnection()) {
             conn.setAutoCommit(false);
             try (
@@ -211,7 +211,7 @@ public class CitizenDao {
     }
 
 
-    public String dateOfVaccination(DataSource dataSource, String taj) {
+    public String dateOfVaccination( String taj) {
         String timeOfVaccination = null;
 
         try (

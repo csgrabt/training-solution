@@ -105,25 +105,17 @@ class CitizenDaoTest {
     @Test
     void numberOfVaccination() {
         cd.writeRegisterFromFileToDb("TestClosingProject.txt", ";");
-        assertEquals(0, cd.numberOfVaccination(dataSource, "123456812"));
+        assertEquals(0, cd.numberOfVaccination("123456812"));
 
     }
 
-    @Test
-    void numberOfVaccinationSQLConnectionFailed() {
-        Exception ex1 = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            cd.writeRegisterFromFileToDb("TestClosingProject.txt", ";");
-            cd.numberOfVaccination(dataSource1, "123456812");
-        });
-        assertEquals("Access denied for user 'alma'@'localhost' (using password: YES)", ex1.getMessage());
 
-    }
 
     @Test
     void numberOfVaccinationTableNotContainedTajLengthIsWrong() {
         Exception ex1 = Assertions.assertThrows(IllegalArgumentException.class, () -> {
             cd.writeRegisterFromFileToDb("TestClosingProject.txt", ";");
-            cd.numberOfVaccination(dataSource, "1234568120");
+            cd.numberOfVaccination("1234568120");
         });
         assertEquals("The length of the insurance number is wrong!", ex1.getMessage());
 
@@ -133,7 +125,7 @@ class CitizenDaoTest {
     void numberOfVaccinationTableNotContainedTaj() {
         Exception ex1 = Assertions.assertThrows(IllegalArgumentException.class, () -> {
             cd.writeRegisterFromFileToDb("TestClosingProject.txt", ";");
-            cd.numberOfVaccination(dataSource, "000000000");
+            cd.numberOfVaccination("000000000");
         });
         assertEquals("The Database does not contained this TAJ number!", ex1.getMessage());
 
@@ -143,7 +135,7 @@ class CitizenDaoTest {
     @Test
     void vaccinationSetTimeAndTypeAllIsOK() {
         cd.writeRegistrationToDB(dataSource, citizen);
-        cd.vaccinationSetTimeAndType(dataSource, LocalDate.now(), "finom", 1, "OK", 1);
+        cd.vaccinationSetTimeAndType(LocalDate.now(), "finom", 1, "OK", 1);
         assertEquals("finom", cd.typeOfVaccination(dataSource, "000000000"));
     }
 
@@ -152,7 +144,7 @@ class CitizenDaoTest {
     void vaccinationSetTimeAndTypeRollBackTest() {
         Exception ex1 = Assertions.assertThrows(IllegalArgumentException.class, () -> {
             cd.writeRegistrationToDB(dataSource, citizen);
-            cd.vaccinationSetTimeAndType(dataSource, LocalDate.now(), "finom", 1, "OK", 3);
+            cd.vaccinationSetTimeAndType(LocalDate.now(), "finom", 1, "OK", 3);
 
         });
         assertEquals("Túl sok oltás: 3!", ex1.getMessage());
@@ -162,15 +154,15 @@ class CitizenDaoTest {
     @Test
     void dateOfVaccinationTest() {
         cd.writeRegistrationToDB(dataSource, citizen);
-        cd.vaccinationSetTimeAndType(dataSource, LocalDate.of(2020, 01, 30), "finom", 1, "OK", 1);
-        assertEquals("2020-01-30 00:00:00.0", cd.dateOfVaccination(dataSource, "000000000"));
+        cd.vaccinationSetTimeAndType(LocalDate.of(2020, 01, 30), "finom", 1, "OK", 1);
+        assertEquals("2020-01-30 00:00:00.0", cd.dateOfVaccination("000000000"));
     }
 
     @Test
     void dateOfVaccinationTajIsNotExitsInTheTable() {
         cd.writeRegistrationToDB(dataSource, citizen);
-        cd.vaccinationSetTimeAndType(dataSource, LocalDate.of(2020, 01, 30), "finom", 1, "OK", 1);
-        assertEquals(null, cd.dateOfVaccination(dataSource, "000000001"));
+        cd.vaccinationSetTimeAndType(LocalDate.of(2020, 01, 30), "finom", 1, "OK", 1);
+        assertEquals(null, cd.dateOfVaccination("000000001"));
     }
 
     @Test
@@ -188,10 +180,10 @@ class CitizenDaoTest {
     void statisticBasedOnZipTest() {
         cd.writeRegisterFromFileToDb("C:/Alma/alma.txt", ";");
         cd.writeRegistrationToDB(dataSource, citizen);
-        cd.vaccinationSetTimeAndType(dataSource, LocalDate.now(), "Szar", 1, "OK", 0);
-        cd.vaccinationSetTimeAndType(dataSource, LocalDate.now(), "Szar", 1, "OK", 1);
-        cd.vaccinationSetTimeAndType(dataSource, LocalDate.now(), "Szar", 2, "OK", 0);
-        cd.vaccinationSetTimeAndType(dataSource, LocalDate.now(), "Szar", 3, "OK", 0);
+        cd.vaccinationSetTimeAndType(LocalDate.now(), "Szar", 1, "OK", 0);
+        cd.vaccinationSetTimeAndType(LocalDate.now(), "Szar", 1, "OK", 1);
+        cd.vaccinationSetTimeAndType(LocalDate.now(), "Szar", 2, "OK", 0);
+        cd.vaccinationSetTimeAndType(LocalDate.now(), "Szar", 3, "OK", 0);
 
         assertEquals(2, cd.statisticBasedOnZip(dataSource,"5400").get(0));
         assertEquals(2, cd.statisticBasedOnZip(dataSource,"5400").get(1));
@@ -204,9 +196,9 @@ class CitizenDaoTest {
     void dailyVaccinationBasedOnZipTest() {
         cd.writeRegisterFromFileToDb("C:/Alma/alma.txt", ";");
         cd.writeRegistrationToDB(dataSource, citizen);
-        cd.vaccinationSetTimeAndType(dataSource, LocalDate.now(), "Szar", 1, "OK", 0);
-        cd.vaccinationSetTimeAndType(dataSource, LocalDate.of(2000,10,10), "Szar", 2, "OK", 0);
-        cd.vaccinationSetTimeAndType(dataSource, LocalDate.of(2000,10,10), "Szar", 5, "OK", 1);
+        cd.vaccinationSetTimeAndType(LocalDate.now(), "Szar", 1, "OK", 0);
+        cd.vaccinationSetTimeAndType(LocalDate.of(2000,10,10), "Szar", 2, "OK", 0);
+        cd.vaccinationSetTimeAndType(LocalDate.of(2000,10,10), "Szar", 5, "OK", 1);
         assertEquals(3, cd.dailyVaccinationBasedOnZip(dataSource, "5400").size());
         //  assertEquals(2, cd.statisticBasedOnZip(dataSource,"5400").get(1));
       //  assertEquals(1, cd.statisticBasedOnZip(dataSource,"5400").get(2));

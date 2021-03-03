@@ -18,14 +18,14 @@ public class FourthMenuMethods {
             typeOfVaccina();
             String type = scanner.nextLine();
             String status = getStatusWhenTheVaccinationIsOk();
-            cd.vaccinationSetTimeAndType(cd.getDataSource(), dateToDB, type, citizen_id, status, numberOfVaccinations);
+            cd.vaccinationSetTimeAndType(dateToDB, type, citizen_id, status, numberOfVaccinations);
         } catch (RuntimeException e) {
             throw new IllegalArgumentException(invalidDateForm() + e.getMessage());
         }
     }
 
     public static Integer getNumberOfVaccinations(String taj) {
-        return cd.numberOfVaccination(cd.getDataSource(), taj);
+        return cd.numberOfVaccination(taj);
     }
 
     public static Integer getCitizenIdBasedOnTaj(String taj) {
@@ -37,6 +37,6 @@ public class FourthMenuMethods {
     }
 
     public static void dateOfVaccinationFromDB(String taj) {
-        System.out.println(dateOfTheLastVaccination() + cd.dateOfVaccination(cd.getDataSource(), taj));
+        System.out.println(dateOfTheLastVaccination() + cd.dateOfVaccination(taj));
     }
 }
