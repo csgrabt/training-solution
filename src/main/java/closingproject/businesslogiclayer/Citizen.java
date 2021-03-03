@@ -4,8 +4,8 @@ import closingproject.dataacceslayer.CitizenDao;
 
 import javax.sql.DataSource;
 
-public class Citizen {
 
+public class Citizen {
     private int id;
     private String fullName;
     private String zipCode;
@@ -19,6 +19,7 @@ public class Citizen {
     public Citizen() {
 
     }
+
     public Citizen(String fullName, String zipCode, int age, String email, String healthInsuranceNumber, DataSource dataSource) {
         if (validatorName(fullName)) {
             throw new IllegalArgumentException("Name can not be null or empty!");
@@ -143,8 +144,6 @@ public class Citizen {
         if (!isValidTaj) {
             throw new IllegalArgumentException("Health insurance number is wrong!");
         }
-
-
     }
 
     public int getOdd(String tajNumber, int b) {
@@ -157,7 +156,6 @@ public class Citizen {
                 throw new IllegalArgumentException("One of the Character is not number!");
             }
             odd += (d * 3);
-
         }
         return odd;
     }
@@ -175,7 +173,6 @@ public class Citizen {
         }
         return even;
     }
-
 }
 
 
