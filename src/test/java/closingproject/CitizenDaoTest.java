@@ -1,6 +1,7 @@
 package closingproject;
 
 import closingproject.businesslogiclayer.Citizen;
+import closingproject.businesslogiclayer.ProjectConfig;
 import closingproject.businesslogiclayer.VaccinesType;
 import closingproject.dataacceslayer.CitizenDao;
 import org.flywaydb.core.Flyway;
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CitizenDaoTest {
+    ProjectConfig pc = new ProjectConfig();
     MariaDbDataSource dataSource = new MariaDbDataSource();
     CitizenDao cd = new CitizenDao();
     Citizen citizen;
@@ -38,7 +40,7 @@ class CitizenDaoTest {
             throw new IllegalArgumentException("Some problem with dataSource", se);
         }
 
-        flyway = Flyway.configure().dataSource(dataSource).load();
+        flyway = Flyway.configure().dataSource(pc.getCd().getDataSource()).load();
         flyway.clean();
         flyway.migrate();
         citizen = new Citizen("Kiss Géza", "1007", 35, "m@m", "000000000");
@@ -47,8 +49,8 @@ class CitizenDaoTest {
 
     @Test
     void zipCodeTestOK() {
-        assertEquals("Budapest", cd.findCityByZipCode("1007"));
-        assertEquals("Mezőtúr", cd.findCityByZipCode("5400"));
+        assertEquals("Budapest", pc.getCd().findCityByZipCode("1007"));
+        assertEquals("Mezőtúr", pc.getCd().findCityByZipCode("5400"));
     }
 
     @Test
@@ -111,7 +113,6 @@ class CitizenDaoTest {
     }
 
 
-
     @Test
     void numberOfVaccinationTableNotContainedTajLengthIsWrong() {
         Exception ex1 = Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -167,8 +168,6 @@ class CitizenDaoTest {
     }
 
 
-
-
     @Test
     void dateOfVaccinationTajIsNotExitsInTheTable() {
         cd.writeRegistrationToDB(dataSource, citizen);
@@ -179,12 +178,11 @@ class CitizenDaoTest {
     @Test
     void failedVaccinationTest() {
         cd.writeRegistrationToDB(dataSource, citizen);
-        cd.failedVaccination(LocalDate.now(), "Várandós", 1, "Not Ok" );
+        cd.failedVaccination(LocalDate.now(), "Várandós", 1, "Not Ok");
 
         assertEquals("Várandós", cd.noteOfVaccinationFailed("000000000"));
 
     }
-
 
 
     @Test
@@ -208,8 +206,8 @@ class CitizenDaoTest {
         cd.writeRegisterFromFileToDb("C:/Alma/alma.txt", ";");
         cd.writeRegistrationToDB(dataSource, citizen);
         cd.vaccinationSetTimeAndType(LocalDate.now(), "Szar", 1, "OK", 0);
-        cd.vaccinationSetTimeAndType(LocalDate.of(2000,10,10), "Szar", 2, "OK", 0);
-        cd.vaccinationSetTimeAndType(LocalDate.of(2000,10,10), "Szar", 5, "OK", 1);
+        cd.vaccinationSetTimeAndType(LocalDate.of(2000, 10, 10), "Szar", 2, "OK", 0);
+        cd.vaccinationSetTimeAndType(LocalDate.of(2000, 10, 10), "Szar", 5, "OK", 1);
         assertEquals(3, cd.dailyVaccinationBasedOnZip("5400").size());
     }
 

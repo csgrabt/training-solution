@@ -1,6 +1,7 @@
 package closingproject.dataacceslayer;
 
 import closingproject.businesslogiclayer.Citizen;
+import closingproject.businesslogiclayer.DatabaseConfiguration;
 import org.mariadb.jdbc.MariaDbDataSource;
 
 import javax.sql.DataSource;
@@ -21,6 +22,8 @@ public class CitizenDao {
 
     public CitizenDao() {
         createDbConnection(dataSource);
+
+
     }
 
     public MariaDbDataSource getDataSource() {
@@ -122,7 +125,7 @@ public class CitizenDao {
                 Connection conn = dataSource.getConnection();
                 PreparedStatement ps =
                         conn.prepareStatement("select citizen_id from citizens where taj = ?");
-                ) {
+        ) {
             ps.setString(1, taj);
             id = getCitizrnIdFromDB(ps);
         } catch (SQLException sql) {
@@ -186,35 +189,40 @@ public class CitizenDao {
 
     public void vaccinationSetTimeAndType(LocalDate date, String type, int id, String status, int numberOfVaccination) {
         try (Connection conn = dataSource.getConnection()) {
-            conn.setAutoCommit(false);
-            try (
-                    PreparedStatement ps =
-                            conn.prepareStatement("insert into Vaccinations(citizen_id, vaccination_date, status, vaccination_type) values (?, ?, ?, ?)")) {
-
-                ps.setInt(1, id);
-                ps.setDate(2, java.sql.Date.valueOf(date));
-                ps.setString(3, status);
-                ps.setString(4, type);
-                ps.executeUpdate();
-            }
-            try (
-                    PreparedStatement ps =
-                            conn.prepareStatement("Update citizens set  number_of_vaccination = ?, last_vaccination = ? where citizen_id = ? ")) {
-
-                errorHandling(numberOfVaccination);
-                ps.setInt(1, numberOfVaccination + 1);
-                ps.setDate(2, java.sql.Date.valueOf(date));
-                ps.setInt(3, id);
-                ps.executeUpdate();
-
-                conn.commit();
-            } catch (SQLException | IllegalStateException se) {
-                conn.rollback();
-                throw new IllegalArgumentException(se.getMessage(), se);
-            }
+            ps(conn, date, type, id, status, numberOfVaccination);
         } catch (SQLException sql) {
             throw new IllegalArgumentException(sql.getMessage());
         }
+    }
+
+
+    private void ps(Connection conn, LocalDate date, String type, int id, String status, int numberOfVaccination) throws SQLException {
+        conn.setAutoCommit(false);
+        try (
+                PreparedStatement ps =
+                        conn.prepareStatement("insert into Vaccinations(citizen_id, vaccination_date, status, vaccination_type) values (?, ?, ?, ?)");
+                PreparedStatement ps1 =
+                        conn.prepareStatement("Update citizens set  number_of_vaccination = ?, last_vaccination = ? where citizen_id = ? ")) {
+
+            ps.setInt(1, id);
+            ps.setDate(2, java.sql.Date.valueOf(date));
+            ps.setString(3, status);
+            ps.setString(4, type);
+
+            ps.executeUpdate();
+
+            errorHandling(numberOfVaccination);
+            ps1.setInt(1, numberOfVaccination + 1);
+            ps1.setDate(2, java.sql.Date.valueOf(date));
+            ps1.setInt(3, id);
+            ps1.executeUpdate();
+
+            conn.commit();
+        } catch (SQLException | IllegalStateException se) {
+            conn.rollback();
+            throw new IllegalArgumentException(se.getMessage(), se);
+        }
+
     }
 
     private void errorHandling(int numberOfVaccination) {
@@ -224,13 +232,12 @@ public class CitizenDao {
     }
 
 
-    public String dateOfVaccination( String taj) {
+    public String dateOfVaccination(String taj) {
         String timeOfVaccination = null;
 
         try (Connection conn = dataSource.getConnection();
-                PreparedStatement ps =
-                        conn.prepareStatement("select last_vaccination from citizens where taj = ?"))
-        {
+             PreparedStatement ps =
+                     conn.prepareStatement("select last_vaccination from citizens where taj = ?")) {
             ps.setString(1, taj);
 
             try (ResultSet rs = ps.executeQuery()) {
