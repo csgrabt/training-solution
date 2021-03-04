@@ -1,5 +1,6 @@
 package closingproject.businesslogiclayer;
 
+import closingproject.businesslogiclayer.language.LanguageConfiguration;
 import closingproject.dataacceslayer.CitizenDao;
 import org.mariadb.jdbc.MariaDbDataSource;
 
@@ -15,6 +16,20 @@ public class ProjectConfig {
     private final Scanner scanner = new Scanner(System.in);
     private final CitizenDao cd = new CitizenDao();
     private final List<String> vaccinaMenu = List.of("A","B","C","D","E");
+    private final List<String> languageMenu = List.of("A","B");
+    private LanguageConfiguration lg;
+
+    public void setLg(LanguageConfiguration lg) {
+        this.lg = lg;
+    }
+
+    public LanguageConfiguration getLg() {
+        return lg;
+    }
+
+    public List<String> getLanguageMenu() {
+        return languageMenu;
+    }
 
     public CitizenDao getCd() {
         return cd;

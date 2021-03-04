@@ -1,6 +1,7 @@
 package closingproject.businesslogiclayer.language;
 
 
+import closingproject.businesslogiclayer.ProjectConfig;
 import closingproject.businesslogiclayer.VaccinesType;
 
 public class MessageHun {
@@ -16,9 +17,9 @@ public class MessageHun {
         System.out.println("Adja meg, mit szeretne tenni:");
     }
 
-    public static void menuPrintln1() {
+    public static void menuPrintln1(ProjectConfig pc) {
         System.out.println(
-                "1. Regisztráció" + "\n" +
+                pc.getLg().get1() + "\n" +
                         "2. Tömeges regisztráció" + "\n" +
                         "3. Generálás" + "\n" +
                         "4. Oltás" + "\n" +

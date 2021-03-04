@@ -1,6 +1,7 @@
 package closingproject.presentationlayer;
 
 import closingproject.businesslogiclayer.ProjectConfig;
+import closingproject.businesslogiclayer.language.Language;
 
 import java.util.Scanner;
 
@@ -8,17 +9,18 @@ import static closingproject.businesslogiclayer.language.MessageHun.*;
 
 public class TheMenu {
     public static void menu(ProjectConfig sys) {
+        Scanner scanner = sys.getScanner();
+        //languageSelector(sys, scanner);
         String progress;
         do {
-            menuPrintln1();
+            menuPrintln1(sys);
             menuPrintln2();
-            Scanner scanner = sys.getScanner();
             int number = menuSelection(sys);
             switch (number) {
                 case 1 -> FirstMenuPoint.firstMenuPoint(sys.getCz(), scanner);
                 case 2 -> SecondMenuPoint.secondMenuPoint(scanner);
                 case 3 -> ThirdMenuPoint.thirdMenuPoint(scanner);
-                case 4 -> FourthMenuPoint.fourthMenuPoint(scanner,sys.getVaccinaMenu());
+                case 4 -> FourthMenuPoint.fourthMenuPoint(scanner, sys.getVaccinaMenu());
                 case 5 -> FifthMenuPoint.fifthMenuPoint(scanner);
                 case 6 -> SixthMenuPoint.sixthMenuPoint(scanner);
             }
@@ -26,6 +28,11 @@ public class TheMenu {
             progress = scanner.nextLine();
         } while (progress.equals("1"));
     }
+
+   // private static void languageSelector(ProjectConfig sys, Scanner scanner) {
+
+
+
 
     private static int menuSelection(ProjectConfig sys) {
         int number = 0;
@@ -41,7 +48,8 @@ public class TheMenu {
                 menuPrintln3();
             }
         } while (menu);
-   return number;}
+        return number;
+    }
 
 
 }
