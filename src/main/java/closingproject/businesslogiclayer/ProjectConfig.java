@@ -37,11 +37,11 @@ public class ProjectConfig {
     }
 
     public static MariaDbDataSource createDbConnection(MariaDbDataSource dataSource) {
+        DatabaseConfiguration dc = new DatabaseConfiguration();
         try {
-
-            dataSource.setUrl("jdbc:mariadb://localhost:3306/ClosingProject?useUnicode=true");
-            dataSource.setUser("alma");
-            dataSource.setPassword("alma");
+            dataSource.setUrl(dc.getUrl());
+            dataSource.setUser(dc.getUser());
+            dataSource.setPassword(dc.getPassword());
 
         } catch (SQLException se) {
             throw new IllegalArgumentException("Some problem with dataSource", se);
