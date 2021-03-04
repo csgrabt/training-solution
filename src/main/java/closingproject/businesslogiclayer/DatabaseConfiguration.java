@@ -53,10 +53,4 @@ public class DatabaseConfiguration {
     }
 
 
-    public static void main(String[] args) {
-        DatabaseConfiguration db = new DatabaseConfiguration();
-
-        System.out.println(db.getUrl());
-    }
-
 }
