@@ -14,7 +14,7 @@ public class TheMenu {
         String progress;
         do {
             menuPrintln1(sys);
-            menuPrintln2();
+            menuPrintln2(sys);
             int number = menuSelection(sys);
             switch (number) {
                 case 1 -> FirstMenuPoint.firstMenuPoint(sys.getCz(), scanner);
@@ -24,14 +24,19 @@ public class TheMenu {
                 case 5 -> FifthMenuPoint.fifthMenuPoint(scanner);
                 case 6 -> SixthMenuPoint.sixthMenuPoint(scanner);
             }
+            if (exit(number)) return;
             menuPrintln4();
             progress = scanner.nextLine();
         } while (progress.equals("1"));
     }
 
-   // private static void languageSelector(ProjectConfig sys, Scanner scanner) {
 
-
+    private static boolean exit(int number) {
+        if(number == 7){
+            return true;
+        }
+        return false;
+    }
 
 
     private static int menuSelection(ProjectConfig sys) {

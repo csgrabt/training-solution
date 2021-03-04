@@ -13,18 +13,19 @@ public class MessageHun {
         System.out.println("Nem létező menüpont!");
     }
 
-    public static void menuPrintln2() {
-        System.out.println("Adja meg, mit szeretne tenni:");
+    public static void menuPrintln2(ProjectConfig pc) {
+        System.out.println(pc.getLg().get7());
     }
 
     public static void menuPrintln1(ProjectConfig pc) {
         System.out.println(
                 pc.getLg().get1() + "\n" +
-                        "2. Tömeges regisztráció" + "\n" +
-                        "3. Generálás" + "\n" +
-                        "4. Oltás" + "\n" +
-                        "5. Oltás meghiúsulás" + "\n" +
-                        "6. Riport");
+                        pc.getLg().get2() + "\n" +
+                        pc.getLg().get3() + "\n" +
+                        pc.getLg().get4() + "\n" +
+                        pc.getLg().get5() + "\n" +
+                        pc.getLg().get6() +"\n" +
+                        pc.getLg().get8());
     }
 
     public static void fistMenuPrintln13() {

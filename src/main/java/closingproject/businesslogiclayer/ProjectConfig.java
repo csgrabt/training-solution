@@ -11,12 +11,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ProjectConfig {
-    private final List<String> menuPoints = List.of("1", "2", "3", "4", "5", "6");
+    private final List<String> menuPoints = List.of("1", "2", "3", "4", "5", "6", "7");
     private final Citizen cz = new Citizen();
     private final Scanner scanner = new Scanner(System.in);
     private final CitizenDao cd = new CitizenDao();
-    private final List<String> vaccinaMenu = List.of("A","B","C","D","E");
-    private final List<String> languageMenu = List.of("A","B");
+    private final List<String> vaccinaMenu = List.of("A", "B", "C", "D", "E");
+    private final List<String> languageMenu = List.of("A", "B");
     private LanguageConfiguration lg;
 
     public void setLg(LanguageConfiguration lg) {
@@ -28,7 +28,7 @@ public class ProjectConfig {
     }
 
     public List<String> getLanguageMenu() {
-        return languageMenu;
+        return new ArrayList<>(languageMenu);
     }
 
     public CitizenDao getCd() {
@@ -48,7 +48,7 @@ public class ProjectConfig {
     }
 
     public List<String> getVaccinaMenu() {
-        return vaccinaMenu;
+        return new ArrayList<>(vaccinaMenu);
     }
 
     public static MariaDbDataSource createDbConnection(MariaDbDataSource dataSource) {

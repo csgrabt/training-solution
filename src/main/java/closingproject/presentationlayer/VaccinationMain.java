@@ -4,7 +4,6 @@ import closingproject.businesslogiclayer.ProjectConfig;
 import closingproject.businesslogiclayer.language.Language;
 import closingproject.businesslogiclayer.language.LanguageConfiguration;
 import org.flywaydb.core.Flyway;
-
 import java.util.Scanner;
 
 import static closingproject.presentationlayer.TheMenu.menu;
