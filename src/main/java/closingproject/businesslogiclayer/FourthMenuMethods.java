@@ -20,9 +20,14 @@ public class FourthMenuMethods {
             LocalDate dateToDB = LocalDate.parse(date);
             String type;
             type = setTheTypeOfVaccina(scanner, listVaccinaMenu);
-
             String status = getStatusWhenTheVaccinationIsOk();
-            cd.vaccinationSetTimeAndType(dateToDB, VaccinesType.valueOf(type.toUpperCase()).getName(), citizen_id, status, numberOfVaccinations);
+
+           Citizen cz = new Citizen(citizen_id, VaccinesType.valueOf(type.toUpperCase()).getName(), numberOfVaccinations, status, dateToDB);
+
+            cd.vaccinationSetTimeAndType(cz);
+
+
+
         } catch (RuntimeException e) {
             throw new IllegalArgumentException(invalidDateForm() + e.getMessage());
         }

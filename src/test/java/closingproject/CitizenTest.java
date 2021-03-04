@@ -39,14 +39,14 @@ class CitizenTest {
                 "m@m",
                 "123456788",
                 "Kínai szar",
-                "5");
+                5);
         assertEquals("Árvíztűrő Tükörfúrógép", citizen.getFullName());
         assertEquals("5400", citizen.getZipCode());
         assertEquals(53, citizen.getAge());
         assertEquals("m@m", citizen.getEmail());
         assertEquals("123456788", citizen.getHealthInsuranceNumber());
         assertEquals("Kínai szar", citizen.getVaccinationType());
-        assertEquals("5", citizen.getNumberOfVaccination());
+        assertEquals(5, citizen.getNumberOfVaccination());
     }
 
 

@@ -35,7 +35,7 @@ public class MethodsToProgramWorking {
                         .replace("{age}", Integer.toString(citizens.get(i).getAge()))
                         .replace("{email}", citizens.get(i).getEmail())
                         .replace("{taj}", citizens.get(i).getHealthInsuranceNumber())
-                        .replace("{number_of_vaccination}", citizens.get(i).getNumberOfVaccination());
+                        .replace("{number_of_vaccination}", Integer.toString(citizens.get(i).getNumberOfVaccination()));
 
                 sb.append(template1);
 

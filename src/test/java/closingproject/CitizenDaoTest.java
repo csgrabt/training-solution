@@ -63,19 +63,12 @@ class CitizenDaoTest {
 
     @Test
     void writeRegistrationToDb() {
-        cd.writeRegistrationToDB(dataSource, citizen);
+        cd.writeRegistrationToDB(citizen);
 
         assertEquals(1, cd.searchCitizenIdBasedOnTaj("000000000"));
     }
 
 
-    @Test
-    void writeRegistrationToDbConnectionFailed() {
-        Exception ex1 = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            cd.writeRegistrationToDB(dataSource1, citizen);
-        });
-        assertEquals("Something went wrong during writing database", ex1.getMessage());
-    }
 
     @Test
     void writeRegisterFromFileToDbTest() {
@@ -136,8 +129,15 @@ class CitizenDaoTest {
 
     @Test
     void vaccinationSetTimeAndTypeAllIsOK() {
-        cd.writeRegistrationToDB(dataSource, citizen);
-        cd.vaccinationSetTimeAndType(LocalDate.now(), "finom", 1, "OK", 1);
+        cd.writeRegistrationToDB(citizen);
+        Citizen cz = new Citizen(
+                1,
+                "finom",
+                1, "ok",
+                LocalDate.now()
+        );
+
+        cd.vaccinationSetTimeAndType(cz);
         assertEquals("finom", cd.typeOfVaccination("000000000"));
     }
 
@@ -145,8 +145,17 @@ class CitizenDaoTest {
     @Test
     void vaccinationSetTimeAndTypeRollBackTest() {
         Exception ex1 = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            cd.writeRegistrationToDB(dataSource, citizen);
-            cd.vaccinationSetTimeAndType(LocalDate.now(), "finom", 1, "OK", 3);
+            cd.writeRegistrationToDB(citizen);
+            Citizen cz = new Citizen(
+                    1,
+                    "finom",
+                    3,
+                    "ok",
+                    LocalDate.now()
+            );
+
+
+            cd.vaccinationSetTimeAndType(cz);
 
         });
         assertEquals("Túl sok oltás: 3!", ex1.getMessage());
@@ -155,29 +164,57 @@ class CitizenDaoTest {
 
     @Test
     void dateOfVaccinationTest() {
-        cd.writeRegistrationToDB(dataSource, citizen);
-        cd.vaccinationSetTimeAndType(LocalDate.of(2020, 01, 30), "finom", 1, "OK", 1);
+        cd.writeRegistrationToDB(citizen);
+        Citizen cz = new Citizen(
+                1,
+                "finom",
+                1,
+                "OK",
+                LocalDate.of(2020, 01, 30)
+        );
+
+
+        cd.vaccinationSetTimeAndType(cz);
         assertEquals("2020-01-30 00:00:00.0", cd.dateOfVaccination("000000000"));
     }
 
     @Test
     void dateOfVaccinationTestByEnum() {
-        cd.writeRegistrationToDB(dataSource, citizen);
-        cd.vaccinationSetTimeAndType(LocalDate.of(2020, 01, 30), VaccinesType.D.getName(), 1, "OK", 1);
+        cd.writeRegistrationToDB(citizen);
+        Citizen cz = new Citizen(
+                1,
+                VaccinesType.D.getName(),
+                1,
+                "OK",
+                LocalDate.of(2020, 01, 30)
+        );
+
+
+
+        cd.vaccinationSetTimeAndType(cz);
         assertEquals("2020-01-30 00:00:00.0", cd.dateOfVaccination("000000000"));
     }
 
 
     @Test
     void dateOfVaccinationTajIsNotExitsInTheTable() {
-        cd.writeRegistrationToDB(dataSource, citizen);
-        cd.vaccinationSetTimeAndType(LocalDate.of(2020, 01, 30), "finom", 1, "OK", 1);
-        assertEquals(null, cd.dateOfVaccination("000000001"));
+        cd.writeRegistrationToDB(citizen);
+
+        Citizen cz = new Citizen(
+                1,
+                "finom",
+                1,
+                "OK",
+                LocalDate.of(2020, 01, 30)
+        );
+
+        cd.vaccinationSetTimeAndType(cz);
+        assertEquals(null, cd.dateOfVaccination("001100000"));
     }
 
     @Test
     void failedVaccinationTest() {
-        cd.writeRegistrationToDB(dataSource, citizen);
+        cd.writeRegistrationToDB(citizen);
         cd.failedVaccination(LocalDate.now(), "Várandós", 1, "Not Ok");
 
         assertEquals("Várandós", cd.noteOfVaccinationFailed("000000000"));
@@ -188,11 +225,17 @@ class CitizenDaoTest {
     @Test
     void statisticBasedOnZipTest() {
         cd.writeRegisterFromFileToDb("C:/Alma/alma.txt", ";");
-        cd.writeRegistrationToDB(dataSource, citizen);
-        cd.vaccinationSetTimeAndType(LocalDate.now(), "Szar", 1, "OK", 0);
-        cd.vaccinationSetTimeAndType(LocalDate.now(), "Szar", 1, "OK", 1);
-        cd.vaccinationSetTimeAndType(LocalDate.now(), "Szar", 2, "OK", 0);
-        cd.vaccinationSetTimeAndType(LocalDate.now(), "Szar", 3, "OK", 0);
+        cd.writeRegistrationToDB(citizen);
+        Citizen cz1 = new Citizen(1, "finom", 0, "OK", LocalDate.now());
+        Citizen cz2 = new Citizen(1, "finom", 1, "OK", LocalDate.now());
+        Citizen cz3 = new Citizen(2, "finom", 0, "OK", LocalDate.now());
+        Citizen cz4 = new Citizen(3, "finom", 0, "OK", LocalDate.now());
+
+
+        cd.vaccinationSetTimeAndType(cz1);
+        cd.vaccinationSetTimeAndType(cz2);
+        cd.vaccinationSetTimeAndType(cz3);
+        cd.vaccinationSetTimeAndType(cz4);
 
         assertEquals(2, cd.statisticBasedOnZip("5400").get(0));
         assertEquals(2, cd.statisticBasedOnZip("5400").get(1));
@@ -204,10 +247,18 @@ class CitizenDaoTest {
     @Test
     void dailyVaccinationBasedOnZipTest() {
         cd.writeRegisterFromFileToDb("C:/Alma/alma.txt", ";");
-        cd.writeRegistrationToDB(dataSource, citizen);
-        cd.vaccinationSetTimeAndType(LocalDate.now(), "Szar", 1, "OK", 0);
-        cd.vaccinationSetTimeAndType(LocalDate.of(2000, 10, 10), "Szar", 2, "OK", 0);
-        cd.vaccinationSetTimeAndType(LocalDate.of(2000, 10, 10), "Szar", 5, "OK", 1);
+        cd.writeRegistrationToDB(citizen);
+        Citizen cz1 = new Citizen(1, "finom", 1, "OK", LocalDate.now());
+        Citizen cz2 = new Citizen(2, "finom", 0, "OK", LocalDate.of(2000, 10, 10));
+        Citizen cz3 = new Citizen(5, "finom", 1, "OK", LocalDate.of(2000, 10, 10));
+
+
+
+
+
+        cd.vaccinationSetTimeAndType(cz1);
+        cd.vaccinationSetTimeAndType(cz2);
+        cd.vaccinationSetTimeAndType(cz3);
         assertEquals(3, cd.dailyVaccinationBasedOnZip("5400").size());
     }
 

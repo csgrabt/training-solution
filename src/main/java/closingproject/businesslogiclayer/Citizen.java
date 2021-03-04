@@ -3,6 +3,7 @@ package closingproject.businesslogiclayer;
 import closingproject.dataacceslayer.CitizenDao;
 
 import javax.sql.DataSource;
+import java.time.LocalDate;
 
 
 public class Citizen {
@@ -13,12 +14,16 @@ public class Citizen {
     private String email;
     private String healthInsuranceNumber;
     private String vaccinationType;
-    private String numberOfVaccination;
+    private int numberOfVaccination;
+    private String status;
+    private LocalDate lastVaccination;
 
 
     public Citizen() {
 
     }
+
+
 
     public Citizen(String fullName, String zipCode, int age, String email, String healthInsuranceNumber) {
         if (validatorName(fullName)) {
@@ -40,7 +45,7 @@ public class Citizen {
     }
 
 
-    public Citizen(String fullName, String zipCode, int age, String email, String healthInsuranceNumber, String vaccinationType, String numberOfVaccination) {
+    public Citizen(String fullName, String zipCode, int age, String email, String healthInsuranceNumber, String vaccinationType, int numberOfVaccination) {
         this.fullName = fullName;
         this.zipCode = zipCode;
         this.age = age;
@@ -59,8 +64,23 @@ public class Citizen {
         this.healthInsuranceNumber = healthInsuranceNumber;
     }
 
+    public Citizen(int id, String vaccinationType, int numberOfVaccination, String status, LocalDate lastVaccination) {
+        this.id = id;
+        this.vaccinationType = vaccinationType;
+        this.numberOfVaccination = numberOfVaccination;
+        this.status = status;
+        this.lastVaccination = lastVaccination;
 
-    public String getNumberOfVaccination() {
+    }
+
+    public LocalDate getLastVaccination() {
+        return lastVaccination;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+    public int getNumberOfVaccination() {
         return numberOfVaccination;
     }
 

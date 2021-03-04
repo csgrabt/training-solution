@@ -1,10 +1,7 @@
 package closingproject.dataacceslayer;
 
 import closingproject.businesslogiclayer.Citizen;
-import closingproject.businesslogiclayer.DatabaseConfiguration;
 import org.mariadb.jdbc.MariaDbDataSource;
-
-import javax.sql.DataSource;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -64,7 +61,7 @@ public class CitizenDao {
     }
 
 
-    public void writeRegistrationToDB(DataSource dataSource, Citizen citizen) {
+    public void writeRegistrationToDB(Citizen citizen) {
         try (Connection conn = dataSource.getConnection();
              PreparedStatement stmt = conn.prepareStatement("insert into citizens(citizen_name, zip, age, email, taj) values (?, ?, ?, ?, ?)")) {
             stmt.setString(1, citizen.getFullName());
@@ -187,16 +184,16 @@ public class CitizenDao {
     }
 
 
-    public void vaccinationSetTimeAndType(LocalDate date, String type, int id, String status, int numberOfVaccination) {
+    public void vaccinationSetTimeAndType(Citizen cz) {
         try (Connection conn = dataSource.getConnection()) {
-            ps(conn, date, type, id, status, numberOfVaccination);
+            setTimeAndTypePreparedStatement(conn, cz);
         } catch (SQLException sql) {
             throw new IllegalArgumentException(sql.getMessage());
         }
     }
 
 
-    private void ps(Connection conn, LocalDate date, String type, int id, String status, int numberOfVaccination) throws SQLException {
+    private void setTimeAndTypePreparedStatement(Connection conn, Citizen cz) throws SQLException {
         conn.setAutoCommit(false);
         try (
                 PreparedStatement ps =
@@ -204,17 +201,17 @@ public class CitizenDao {
                 PreparedStatement ps1 =
                         conn.prepareStatement("Update citizens set  number_of_vaccination = ?, last_vaccination = ? where citizen_id = ? ")) {
 
-            ps.setInt(1, id);
-            ps.setDate(2, java.sql.Date.valueOf(date));
-            ps.setString(3, status);
-            ps.setString(4, type);
+            ps.setInt(1, cz.getId());
+            ps.setDate(2, java.sql.Date.valueOf(cz.getLastVaccination()));
+            ps.setString(3, cz.getStatus());
+            ps.setString(4, cz.getVaccinationType());
 
             ps.executeUpdate();
 
-            errorHandling(numberOfVaccination);
-            ps1.setInt(1, numberOfVaccination + 1);
-            ps1.setDate(2, java.sql.Date.valueOf(date));
-            ps1.setInt(3, id);
+            errorHandling(cz);
+            ps1.setInt(1, cz.getNumberOfVaccination() + 1);
+            ps1.setDate(2, java.sql.Date.valueOf(cz.getLastVaccination()));
+            ps1.setInt(3, cz.getId());
             ps1.executeUpdate();
 
             conn.commit();
@@ -225,9 +222,9 @@ public class CitizenDao {
 
     }
 
-    private void errorHandling(int numberOfVaccination) {
-        if (numberOfVaccination >= 2) {
-            throw new IllegalStateException("Túl sok oltás: " + numberOfVaccination + "!");
+    private void errorHandling(Citizen cz) {
+        if (cz.getNumberOfVaccination() >= 2) {
+            throw new IllegalStateException("Túl sok oltás: " + cz.getNumberOfVaccination() + "!");
         }
     }
 
@@ -359,7 +356,7 @@ public class CitizenDao {
                                     rs.getString(4),
                                     rs.getString(5),
                                     rs.getString(6),
-                                    rs.getString(7)));
+                                    rs.getInt(7)));
                 }
             } catch (SQLException sql) {
                 throw new IllegalArgumentException("No data", sql);
