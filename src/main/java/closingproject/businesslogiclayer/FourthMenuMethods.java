@@ -1,7 +1,10 @@
 package closingproject.businesslogiclayer;
 
 import closingproject.dataacceslayer.CitizenDao;
+
+import java.sql.SQLOutput;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 import static closingproject.businesslogiclayer.language.MessageHun.*;
 import static closingproject.businesslogiclayer.language.MessageHun.invalidDateForm;
@@ -10,18 +13,34 @@ import static closingproject.businesslogiclayer.language.MessageHun.invalidDateF
 public class FourthMenuMethods {
     public static final CitizenDao cd = new CitizenDao();
 
-    public static void recordingVaccination(Scanner scanner, int citizen_id, int numberOfVaccinations) {
+    public static void recordingVaccination(Scanner scanner, int citizen_id, int numberOfVaccinations, List<String> listVaccinaMenu) {
         giveMeTheDate();
         String date = scanner.nextLine();
         try {
             LocalDate dateToDB = LocalDate.parse(date);
-            typeOfVaccina();
-            String type = scanner.nextLine();
+            String type;
+            type = setTheTypeOfVaccina(scanner, listVaccinaMenu);
+
             String status = getStatusWhenTheVaccinationIsOk();
-            cd.vaccinationSetTimeAndType(dateToDB, type, citizen_id, status, numberOfVaccinations);
+            cd.vaccinationSetTimeAndType(dateToDB, VaccinesType.valueOf(type.toUpperCase()).getName(), citizen_id, status, numberOfVaccinations);
         } catch (RuntimeException e) {
             throw new IllegalArgumentException(invalidDateForm() + e.getMessage());
         }
+    }
+
+    private static String setTheTypeOfVaccina(Scanner scanner, List<String> listVaccinaMenu) {
+        boolean vaccinaMenu = true;
+        String type;
+        do {
+            typeOfVaccina();
+            type = scanner.nextLine();
+        if (listVaccinaMenu.contains(type.toUpperCase())){
+         vaccinaMenu = false;
+        }else{
+            System.out.println("A megadott menüpont nem létezik/nem elérhető vakcina, adja meg a típust újra!");
+        }
+        }while(vaccinaMenu);
+        return type;
     }
 
     public static Integer getNumberOfVaccinations(String taj) {

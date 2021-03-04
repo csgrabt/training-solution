@@ -1,6 +1,8 @@
 package closingproject.businesslogiclayer.language;
 
 
+import closingproject.businesslogiclayer.VaccinesType;
+
 public class MessageHun {
     public static void menuPrintln4() {
         System.out.println("Mit kíván tenni? \n Üssön 1-est majd entert, hogy visszatérjen a főmenübe! \n Minden más karakter bevitelével kilép a programból!");
@@ -113,8 +115,17 @@ public class MessageHun {
         return "Invalid data form";
     }
 
+
     public static void typeOfVaccina() {
-        System.out.println("Adja meg a vakcina típusát!");
+        System.out.println("Valassza ki a vakcian típusát:\n" +
+                "A. " + VaccinesType.A.getName() + "\n" +
+                "B. " + VaccinesType.B.getName() + "\n" +
+                "C. " + VaccinesType.C.getName() + "\n" +
+                "D. " + VaccinesType.D.getName() + "\n" +
+                "E. " + VaccinesType.E.getName() + "\n" +
+                "F. " + VaccinesType.F.getName() + "\n" +
+                "G. " + VaccinesType.G.getName());
+
     }
 
     public static void giveMeTheDate() {

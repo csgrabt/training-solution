@@ -18,7 +18,7 @@ public class TheMenu {
                 case 1 -> FirstMenuPoint.firstMenuPoint(sys.getCz(), scanner);
                 case 2 -> SecondMenuPoint.secondMenuPoint(scanner);
                 case 3 -> ThirdMenuPoint.thirdMenuPoint(scanner);
-                case 4 -> FourthMenuPoint.fourthMenuPoint(scanner);
+                case 4 -> FourthMenuPoint.fourthMenuPoint(scanner,sys.getVaccinaMenu());
                 case 5 -> FifthMenuPoint.fifthMenuPoint(scanner);
                 case 6 -> SixthMenuPoint.sixthMenuPoint(scanner);
             }

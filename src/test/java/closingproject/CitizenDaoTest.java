@@ -1,6 +1,7 @@
 package closingproject;
 
 import closingproject.businesslogiclayer.Citizen;
+import closingproject.businesslogiclayer.VaccinesType;
 import closingproject.dataacceslayer.CitizenDao;
 import org.flywaydb.core.Flyway;
 import org.junit.jupiter.api.Assertions;
@@ -157,6 +158,16 @@ class CitizenDaoTest {
         cd.vaccinationSetTimeAndType(LocalDate.of(2020, 01, 30), "finom", 1, "OK", 1);
         assertEquals("2020-01-30 00:00:00.0", cd.dateOfVaccination("000000000"));
     }
+
+    @Test
+    void dateOfVaccinationTestByEnum() {
+        cd.writeRegistrationToDB(dataSource, citizen);
+        cd.vaccinationSetTimeAndType(LocalDate.of(2020, 01, 30), VaccinesType.D.getName(), 1, "OK", 1);
+        assertEquals("2020-01-30 00:00:00.0", cd.dateOfVaccination("000000000"));
+    }
+
+
+
 
     @Test
     void dateOfVaccinationTajIsNotExitsInTheTable() {

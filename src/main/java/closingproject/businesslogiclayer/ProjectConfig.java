@@ -14,6 +14,7 @@ public class ProjectConfig {
     private final Citizen cz = new Citizen();
     private final Scanner scanner = new Scanner(System.in);
     private final CitizenDao cd = new CitizenDao();
+    private final List<String> vaccinaMenu = List.of("A","B","C","D","E");
 
     public CitizenDao getCd() {
         return cd;
@@ -31,7 +32,9 @@ public class ProjectConfig {
         return cz;
     }
 
-
+    public List<String> getVaccinaMenu() {
+        return vaccinaMenu;
+    }
 
     public static MariaDbDataSource createDbConnection(MariaDbDataSource dataSource) {
         try {

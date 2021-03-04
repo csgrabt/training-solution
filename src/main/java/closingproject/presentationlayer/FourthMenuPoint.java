@@ -1,5 +1,6 @@
 package closingproject.presentationlayer;
 
+import java.util.List;
 import java.util.Scanner;
 
 import static closingproject.businesslogiclayer.FourthMenuMethods.*;
@@ -8,7 +9,7 @@ import static closingproject.businesslogiclayer.language.MessageHun.*;
 
 public class FourthMenuPoint {
 
-    public static void fourthMenuPoint(Scanner scanner) {
+    public static void fourthMenuPoint(Scanner scanner, List<String> listVaccinaMenu) {
         try {
 
             giveTheTajNumber();
@@ -21,13 +22,13 @@ public class FourthMenuPoint {
 
             switch (numberOfVaccinations) {
                 case 0:
-                    recordingVaccination(scanner, citizen_id, numberOfVaccinations);
+                    recordingVaccination(scanner, citizen_id, numberOfVaccinations, listVaccinaMenu);
                     break;
                 case 1:
                     printTheNumberOfVaccination(numberOfVaccinations);
                     dateOfVaccinationFromDB(taj);
                     typeOfVaccinationFromDB(taj);
-                    recordingVaccination(scanner, citizen_id, numberOfVaccinations);
+                    recordingVaccination(scanner, citizen_id, numberOfVaccinations, listVaccinaMenu);
 
                     break;
                 default:
