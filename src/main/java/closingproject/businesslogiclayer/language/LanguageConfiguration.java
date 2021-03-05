@@ -10,7 +10,7 @@ public class LanguageConfiguration {
 
     private static final String ENCODING_UTF8 = "UTF-8";
     private Properties config;
-    private String language = "/eng.txt";
+    private String language = "/start.txt";
 
 
     public void setLanguage(String language) {
@@ -53,38 +53,13 @@ public class LanguageConfiguration {
         }
     }
 
-    public String getTest() {
-        return config.getProperty("test");
+
+    public String getMessage(String string){
+        return config.getProperty(string);
     }
 
-public String get1(){
-        return  config.getProperty("1");
-}
 
-    public String get2(){
-        return  config.getProperty("2");
-    }
-    public String get3(){
-        return  config.getProperty("3");
-    }
-    public String get4(){
-        return  config.getProperty("4");
-    }
 
-    public String get5(){
-        return  config.getProperty("5");
-    }
 
-    public String get6(){
-        return  config.getProperty("6");
-    }
-
-    public String get7(){
-        return  config.getProperty("7");
-    }
-
-    public String get8(){
-        return  config.getProperty("8");
-    }
 
 }

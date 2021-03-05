@@ -19,9 +19,9 @@ public class VaccinationMain {
         String language;
         Scanner scanner = config.getScanner();
         do {
-            System.out.println("Adja meg a nyelvet/Select a language:" + "\n" +
-                    "A. MAGYAR (Üssön A-t)" + "\n" +
-                    "B. ENGLISH (press B)");
+            System.out.println( config.getLg().getMessage("select")+ config.getLg().getMessage("newRow") +
+                    config.getLg().getMessage("A") + config.getLg().getMessage("newRow") +
+                    config.getLg().getMessage("B"));
             language = scanner.nextLine();
         } while (
                 !(config.getLanguageMenu().contains(language.toUpperCase()))
@@ -31,7 +31,7 @@ public class VaccinationMain {
         config.setLg(new LanguageConfiguration(Language.valueOf(language.toUpperCase()).getFilename()));
 
 
-        menu(config);
+        menu(config, scanner);
     }
 }
 

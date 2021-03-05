@@ -17,7 +17,7 @@ public class ProjectConfig {
     private final CitizenDao cd = new CitizenDao();
     private final List<String> vaccinaMenu = List.of("A", "B", "C", "D", "E");
     private final List<String> languageMenu = List.of("A", "B");
-    private LanguageConfiguration lg;
+    private LanguageConfiguration lg = new LanguageConfiguration("/start.txt");
 
     public void setLg(LanguageConfiguration lg) {
         this.lg = lg;

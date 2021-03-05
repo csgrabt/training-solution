@@ -8,9 +8,8 @@ import java.util.Scanner;
 import static closingproject.businesslogiclayer.language.MessageHun.*;
 
 public class TheMenu {
-    public static void menu(ProjectConfig sys) {
-        Scanner scanner = sys.getScanner();
-        //languageSelector(sys, scanner);
+    public static void menu(ProjectConfig sys, Scanner scanner) {
+       // Scanner scanner = sys.getScanner();
         String progress;
         do {
             menuPrintln1(sys);

@@ -10,7 +10,7 @@ class LanguageConfigurationTest {
     void get1HUN() {
         LanguageConfiguration l = new LanguageConfiguration("/HUN.txt");
 
-    assertEquals("alma", l.getTest());
+    assertEquals("alma", l.getMessage("test"));
 
     }
 
@@ -19,7 +19,7 @@ class LanguageConfigurationTest {
     void get1ENG() {
         LanguageConfiguration l = new LanguageConfiguration("/eng.txt");
 
-        assertEquals("apple", l.getTest());
+        assertEquals("apple", l.getMessage("test"));
 
     }
 }

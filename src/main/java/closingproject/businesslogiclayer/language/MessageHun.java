@@ -14,18 +14,18 @@ public class MessageHun {
     }
 
     public static void menuPrintln2(ProjectConfig pc) {
-        System.out.println(pc.getLg().get7());
+        System.out.println(pc.getLg().getMessage("7"));
     }
 
     public static void menuPrintln1(ProjectConfig pc) {
         System.out.println(
-                pc.getLg().get1() + "\n" +
-                        pc.getLg().get2() + "\n" +
-                        pc.getLg().get3() + "\n" +
-                        pc.getLg().get4() + "\n" +
-                        pc.getLg().get5() + "\n" +
-                        pc.getLg().get6() +"\n" +
-                        pc.getLg().get8());
+                pc.getLg().getMessage("1") + "\n" +
+                        pc.getLg().getMessage("2") + "\n" +
+                        pc.getLg().getMessage("3") + "\n" +
+                        pc.getLg().getMessage("4") + "\n" +
+                        pc.getLg().getMessage("5") + "\n" +
+                        pc.getLg().getMessage("6") +"\n" +
+                        pc.getLg().getMessage("8"));
     }
 
     public static void fistMenuPrintln13() {
