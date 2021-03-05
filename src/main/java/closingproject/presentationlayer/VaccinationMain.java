@@ -5,8 +5,6 @@ import closingproject.businesslogiclayer.language.Language;
 import closingproject.businesslogiclayer.language.LanguageConfiguration;
 import org.flywaydb.core.Flyway;
 
-import java.sql.SQLException;
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 import static closingproject.presentationlayer.TheMenu.menu;
