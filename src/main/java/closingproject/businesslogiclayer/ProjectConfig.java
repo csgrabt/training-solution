@@ -11,20 +11,25 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ProjectConfig {
+    public  final String MENU_CONTROL = "1";
     private final List<String> menuPoints = List.of("1", "2", "3", "4", "5", "6", "7");
     private final Citizen cz = new Citizen();
     private final Scanner scanner = new Scanner(System.in);
     private final CitizenDao cd = new CitizenDao();
     private final List<String> vaccinaMenu = List.of("A", "B", "C", "D", "E");
     private final List<String> languageMenu = List.of("A", "B");
-    private LanguageConfiguration lg = new LanguageConfiguration("/start.txt");
+    private LanguageConfiguration language = new LanguageConfiguration();
 
-    public void setLg(LanguageConfiguration lg) {
-        this.lg = lg;
+    public String getMENU_CONTROL() {
+        return MENU_CONTROL;
     }
 
-    public LanguageConfiguration getLg() {
-        return lg;
+    public void setLanguage(LanguageConfiguration lg) {
+        this.language = lg;
+    }
+
+    public LanguageConfiguration getLanguage() {
+        return language;
     }
 
     public List<String> getLanguageMenu() {

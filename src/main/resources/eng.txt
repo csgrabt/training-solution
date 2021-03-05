@@ -7,3 +7,4 @@ test = apple
 6 = 6. Report
 7 = What would like to do:
 8 = 7. Exit
+9 = Some problem with dataSource, check the db.properties file!

@@ -19,8 +19,6 @@ public class CitizenDao {
 
     public CitizenDao() {
         createDbConnection(dataSource);
-
-
     }
 
     public MariaDbDataSource getDataSource() {

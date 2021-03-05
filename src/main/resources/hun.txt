@@ -7,3 +7,4 @@ test = alma
 6 = 6. Riport
 7 = Adja meg, mit szeretne tenni:
 8 = 7. Kilépés
+9 = Probléma az adatbázis kapcsolattal, ellenőrízze a db.properties fájlt!

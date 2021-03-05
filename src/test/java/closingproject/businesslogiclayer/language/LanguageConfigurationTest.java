@@ -22,4 +22,14 @@ class LanguageConfigurationTest {
         assertEquals("apple", l.getMessage("test"));
 
     }
+
+@Test
+    void getStart(){
+    LanguageConfiguration l = new LanguageConfiguration();
+
+    assertEquals("Adja meg a nyelvet/Select a language:", l.getMessage("select"));
+
+    }
+
+
 }

@@ -1,7 +1,7 @@
 package closingproject.presentationlayer;
 
 import closingproject.businesslogiclayer.ProjectConfig;
-import closingproject.businesslogiclayer.language.Language;
+
 
 import java.util.Scanner;
 
@@ -9,7 +9,6 @@ import static closingproject.businesslogiclayer.language.MessageHun.*;
 
 public class TheMenu {
     public static void menu(ProjectConfig sys, Scanner scanner) {
-       // Scanner scanner = sys.getScanner();
         String progress;
         do {
             menuPrintln1(sys);
@@ -26,7 +25,7 @@ public class TheMenu {
             if (exit(number)) return;
             menuPrintln4();
             progress = scanner.nextLine();
-        } while (progress.equals("1"));
+        } while (progress.equals(sys.MENU_CONTROL));
     }
 
 

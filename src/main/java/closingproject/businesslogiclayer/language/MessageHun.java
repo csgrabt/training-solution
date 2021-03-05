@@ -1,10 +1,10 @@
 package closingproject.businesslogiclayer.language;
 
-
 import closingproject.businesslogiclayer.ProjectConfig;
 import closingproject.businesslogiclayer.VaccinesType;
 
 public class MessageHun {
+
     public static void menuPrintln4() {
         System.out.println("Mit kíván tenni? \n Üssön 1-est majd entert, hogy visszatérjen a főmenübe! \n Minden más karakter bevitelével kilép a programból!");
     }
@@ -14,18 +14,18 @@ public class MessageHun {
     }
 
     public static void menuPrintln2(ProjectConfig pc) {
-        System.out.println(pc.getLg().getMessage("7"));
+        System.out.println(pc.getLanguage().getMessage("7"));
     }
 
     public static void menuPrintln1(ProjectConfig pc) {
         System.out.println(
-                pc.getLg().getMessage("1") + "\n" +
-                        pc.getLg().getMessage("2") + "\n" +
-                        pc.getLg().getMessage("3") + "\n" +
-                        pc.getLg().getMessage("4") + "\n" +
-                        pc.getLg().getMessage("5") + "\n" +
-                        pc.getLg().getMessage("6") +"\n" +
-                        pc.getLg().getMessage("8"));
+                pc.getLanguage().getMessage("1") + "\n" +
+                        pc.getLanguage().getMessage("2") + "\n" +
+                        pc.getLanguage().getMessage("3") + "\n" +
+                        pc.getLanguage().getMessage("4") + "\n" +
+                        pc.getLanguage().getMessage("5") + "\n" +
+                        pc.getLanguage().getMessage("6") +"\n" +
+                        pc.getLanguage().getMessage("8"));
     }
 
     public static void fistMenuPrintln13() {
