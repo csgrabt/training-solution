@@ -11,8 +11,8 @@ public class TheMenu {
     public static void menu(ProjectConfig sys, Scanner scanner) {
         String progress;
         do {
-            menuPrintln1(sys);
-            menuPrintln2(sys);
+            printTheMenuPoints(sys);
+            giveMeANumber(sys);
             int number = menuSelection(sys);
             switch (number) {
                 case 1 -> FirstMenuPoint.firstMenuPoint(sys.getCz(), scanner);
@@ -23,7 +23,7 @@ public class TheMenu {
                 case 6 -> SixthMenuPoint.sixthMenuPoint(scanner);
             }
             if (exit(number)) return;
-            menuPrintln4();
+            exitOrMainMenuAgain();
             progress = scanner.nextLine();
         } while (progress.equals(sys.MENU_CONTROL));
     }
@@ -48,7 +48,7 @@ public class TheMenu {
                 menu = false;
 
             } else {
-                menuPrintln3();
+                menuPointIsNotExits();
             }
         } while (menu);
         return number;

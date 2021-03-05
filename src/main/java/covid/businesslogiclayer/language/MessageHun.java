@@ -5,19 +5,19 @@ import covid.businesslogiclayer.VaccinesType;
 
 public class MessageHun {
 
-    public static void menuPrintln4() {
+    public static void exitOrMainMenuAgain() {
         System.out.println("Mit kíván tenni? \n Üssön 1-est majd entert, hogy visszatérjen a főmenübe! \n Minden más karakter bevitelével kilép a programból!");
     }
 
-    public static void menuPrintln3() {
+    public static void menuPointIsNotExits() {
         System.out.println("Nem létező menüpont!");
     }
 
-    public static void menuPrintln2(ProjectConfig pc) {
+    public static void giveMeANumber(ProjectConfig pc) {
         System.out.println(pc.getLanguage().getMessage("7"));
     }
 
-    public static void menuPrintln1(ProjectConfig pc) {
+    public static void printTheMenuPoints(ProjectConfig pc) {
         System.out.println(
                 pc.getLanguage().getMessage("1") + "\n" +
                         pc.getLanguage().getMessage("2") + "\n" +
