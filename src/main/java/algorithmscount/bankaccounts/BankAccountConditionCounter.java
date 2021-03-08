@@ -1,18 +1,17 @@
 package algorithmscount.bankaccounts;
 
-import algorithmscount.bankaccounts.BankAccount;
 
 import java.util.List;
 
 public class BankAccountConditionCounter {
     public int countWithBalanceGreaterThan(List<BankAccount> bankAccounts, int i) {
         int a = 0;
-        for (BankAccount b: bankAccounts) { if ( i < b.getBalance())
-            { a++;}
+        for (BankAccount b : bankAccounts) {
+            if (i < b.getBalance()) {
+                a++;
+            }
         }
-
-
-  return a;
+        return a;
     }
 }
 
