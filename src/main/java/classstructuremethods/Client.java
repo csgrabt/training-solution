@@ -1,5 +1,13 @@
 package classstructuremethods;
-
+/*Hozz létre egy Client osztályt, melynek három private attribútuma van:
+név (name), születési év (year) és cím (address).
+Típusaik rendre String, int és String!
+Mind a három attribútumra legyen lekérdező és módosító metódus!
+Legyen egy public void migrate(String address) metódusa is,
+mely az ügyfél elköltözését implementálja,
+valójában beállítja a tárolt címet az új,
+paraméterként átadott címre.
+*/
 public class Client {
 
     private String name;
