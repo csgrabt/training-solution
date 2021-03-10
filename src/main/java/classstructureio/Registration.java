@@ -1,7 +1,5 @@
 package classstructureio;
-/*A main metódusban kérd be a felhasználótól a nevét és az email címét,
-majd írd ki, hogy milyen adatokkal regisztrált!
-*/
+
 import java.util.Scanner;
 
 
