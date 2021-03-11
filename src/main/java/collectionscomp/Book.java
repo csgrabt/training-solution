@@ -1,10 +1,10 @@
 package collectionscomp;
 
-public class Book implements Comparable<Book>{
+public class Book implements Comparable<Book> {
 
-    private int regNumber;
-    private String title;
-    private String author;
+    private final int regNumber;
+    private final String title;
+    private final String author;
 
 
     public Book(int regNumber, String title, String author) {

@@ -19,7 +19,7 @@ public class OrderedLibrary {
                 return o1.getTitle().compareTo(o2.getTitle());
             }
         });
-        return bookList;
+        return new ArrayList<>(bookList);
     }
 
     public List<Book> orderedByAuthor() {
@@ -38,8 +38,9 @@ public class OrderedLibrary {
     public List<String> orderedByTitleLocale(Locale locale) {
         List<String> titleList = new ArrayList<>();
 
-        for (Book item:bookList
-             ) {titleList.add(item.getTitle());
+        for (Book item : bookList
+        ) {
+            titleList.add(item.getTitle());
 
         }
 

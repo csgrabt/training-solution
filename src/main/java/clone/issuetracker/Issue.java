@@ -18,16 +18,16 @@ public class Issue {
 
     }
 
-    public Issue(Issue issue, CopyMode copyMode){
+    public Issue(Issue issue, CopyMode copyMode) {
         name = issue.name;
         time = issue.time;
         status = issue.status;
-        if(copyMode.equals(CopyMode.WITH_COMMENTS)){
+        if (copyMode.equals(CopyMode.WITH_COMMENTS)) {
             List<Comment> tmp = new ArrayList<>();
-            for (Comment comment: issue.comments){
+            for (Comment comment : issue.comments) {
                 tmp.add(new Comment(comment));
             }
-            comments=tmp;
+            comments = tmp;
 
         }
     }
@@ -56,11 +56,4 @@ public class Issue {
         this.time = time;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
 }
