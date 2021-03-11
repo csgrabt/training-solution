@@ -1,4 +1,4 @@
-package classstructuremethods;
+package classstructuremethods.client;
 /*
 Hozz létre egy main() metódust egy ClientMain osztályban,
 amelyben kipróbálod az osztály működését! Példányosítani kell egy objektumot a Client osztály alapján,

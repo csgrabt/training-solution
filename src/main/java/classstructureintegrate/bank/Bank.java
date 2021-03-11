@@ -1,4 +1,4 @@
-package classstructureconstructors;
+package classstructureintegrate.bank;
 
 import java.util.Scanner;
 

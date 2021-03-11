@@ -1,4 +1,4 @@
-package classstructuremethods;
+package classstructuremethods.client;
 /*Hozz létre egy Client osztályt, melynek három private attribútuma van:
 név (name), születési év (year) és cím (address).
 Típusaik rendre String, int és String!

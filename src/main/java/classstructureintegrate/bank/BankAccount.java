@@ -1,8 +1,8 @@
-package classstructureconstructors;
+package classstructureintegrate.bank;
 
 public class BankAccount {
 
-    private String accountNumber;
+    private final String accountNumber;
     private String owner;
     private int balance;
 
