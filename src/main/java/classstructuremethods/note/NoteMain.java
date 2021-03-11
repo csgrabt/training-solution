@@ -1,4 +1,4 @@
-package classstructuremethods;
+package classstructuremethods.note;
 
 /*Teszteld az osztályod a NoteMain osztály main() metódusából!
 A Note tartalmának megjelenítésekor használd a getNoteText() metódust!*/

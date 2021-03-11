@@ -1,4 +1,4 @@
-package classstructureintegrate;
+package classstructureintegrate.product;
 
 import java.util.Scanner;
 

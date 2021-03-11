@@ -1,4 +1,4 @@
-package classstructuremethods;
+package classstructuremethods.note;
 /*Készíts egy Note osztályt, melyben a felhasználó rövid szöveges jegyzetét tárolod.
 Tárolni kell a felhasználó nevét (name), a jegyzet témáját (topic) és szövegét (text).
 Fejlesztés során ezentúl mindig tartsd be az information hiding elvet, azaz az attribútumok legyenek privátak,

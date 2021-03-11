@@ -1,4 +1,4 @@
-package classstructureconstructors;
+package classstructureconstructors.store;
 
 public class Store {
 
