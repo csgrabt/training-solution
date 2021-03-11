@@ -1,6 +1,6 @@
 package week13d02;
 
-import statements.Time;
+import statements.Time.Time;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,6 +1,6 @@
 package week13d02;
 
-import statements.Time;
+import statements.Time.Time;
 
 public class Flight {
 private final String flightNumber;
