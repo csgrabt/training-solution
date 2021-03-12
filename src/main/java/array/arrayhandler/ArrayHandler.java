@@ -28,5 +28,7 @@ public class ArrayHandler {
 
         System.out.println(ah.contains(array, 20));
         System.out.println(ah.find(array, 2));
+
+
     }
 }

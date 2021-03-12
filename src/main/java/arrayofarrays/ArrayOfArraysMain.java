@@ -22,7 +22,7 @@ public class ArrayOfArraysMain {
     public static void main(String[] args) {
         ArrayOfArraysMain arrayOfArraysMain = new ArrayOfArraysMain();
 
-        arrayOfArraysMain.multiplicationTable(1);
+        arrayOfArraysMain.multiplicationTable(5);
 
 
     }
