@@ -5,13 +5,14 @@ import java.util.Arrays;
 public class TriangularMatrix {
 
     public int[][] triangularMatrix(int size) {
-        int[][] array = new int[size + 1][];
+        int[][] array = new int[size][];
 
-        for (int i = 1; i <= size; i++) {
-            array[i] = new int[i];
+        for (int i = 0; i < size; i++) {
+            array[i] = new int[i+1];
 
-            Arrays.fill(array[i], i - 1);
-            System.out.println(Arrays.toString(array[i]));
+             {
+                Arrays.fill(array[i], i);
+            }
         }
         return array;
     }
@@ -19,6 +20,8 @@ public class TriangularMatrix {
 
     public static void main(String[] args) {
         TriangularMatrix triangularMatrix = new TriangularMatrix();
-        triangularMatrix.triangularMatrix(10);
+        int[][] array = triangularMatrix.triangularMatrix(5);
+
+        System.out.println(Arrays.deepToString(array));
     }
 }
