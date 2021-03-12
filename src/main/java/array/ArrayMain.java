@@ -3,10 +3,10 @@ package array;
 public class ArrayMain {
 
     public static void main(String[] args) {
-        //String[] a = {"Hétfő", "Kedd", "Szerda", "Csütörtök", "Péntek", "Szombat", "Vasárnap"};
+        String[] a = {"Hétfő", "Kedd", "Szerda", "Csütörtök", "Péntek", "Szombat", "Vasárnap"};
 
-        //System.out.println(a[1]);
-        //System.out.println(a.length);
+        System.out.println(a[1]);
+        System.out.println(a.length);
 
 
         int[] b = new int[5];
