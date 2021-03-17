@@ -1,6 +1,6 @@
-package week05d03;
+package week05d03.junior;
 import org.junit.jupiter.api.Test;
-import week05d02.ChangeLetter;
+import week05d03.junior.ListCounter;
 
 import java.util.ArrayList;
 import java.util.List;

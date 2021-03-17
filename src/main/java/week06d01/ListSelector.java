@@ -1,8 +1,5 @@
 package week06d01;
 
-import week05d03.ListCounter;
-
-import java.util.ArrayList;
 import java.util.List;
 
 
