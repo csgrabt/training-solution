@@ -2,8 +2,6 @@ package week05d05;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.parallel.Execution;
-import week05d04.Product;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

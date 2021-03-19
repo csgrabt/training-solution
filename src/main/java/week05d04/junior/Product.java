@@ -1,4 +1,4 @@
-package week05d04;
+package week05d04.junior;
 
 import java.time.LocalDate;
 

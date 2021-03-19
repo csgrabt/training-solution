@@ -1,5 +1,7 @@
 package week05d04;
 import org.junit.jupiter.api.Test;
+import week05d04.junior.Product;
+import week05d04.junior.Store;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
