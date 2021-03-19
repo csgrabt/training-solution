@@ -21,7 +21,7 @@ public class Product {
         if (this.currency.equals(currency)) {
             return this.price;
         } else {
-            return this.price * ((double) this.currency.getExchangeRate()/currency.getExchangeRate());
+            return this.price * ((double) this.currency.getExchangeRate() / currency.getExchangeRate());
         }
     }
 }
