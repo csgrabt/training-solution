@@ -3,8 +3,8 @@ package week05d04.junior;
 import java.time.LocalDate;
 
 public class Product {
-private String name;
-private LocalDate expirationDate;
+    private final String name;
+    private final LocalDate expirationDate;
 
     public Product(String name, int year, int month, int day) {
         this.name = name;
@@ -19,4 +19,6 @@ private LocalDate expirationDate;
     public LocalDate getExpirationDate() {
         return expirationDate;
     }
+
+
 }
