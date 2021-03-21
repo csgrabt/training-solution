@@ -13,7 +13,4 @@ public enum Currency {
         return exchangeRate;
     }
 
-    public void setExchangeRate(long exchangeRate) {
-        this.exchangeRate = exchangeRate;
-    }
 }

@@ -21,10 +21,4 @@ class ProductTest {
         assertEquals(600, product.convertPrice(Currency.HUF));
     }
 
-    @Test
-    void currencySetTest() {
-        Currency.USD.setExchangeRate(250);
-        assertEquals(250, Currency.USD.getExchangeRate());
-    }
-
 }
