@@ -1,4 +1,4 @@
-package week05d05;
+package week05d05.junior;
 
 public class User {
     private String firstName;
@@ -6,8 +6,12 @@ public class User {
     private String email;
 
     public User(String firstName, String lastName, String email) {
-        if (email.indexOf("@") ==  -1 ){throw new IllegalArgumentException("no @");}
-        if (email.indexOf(".") ==  -1 ){throw new IllegalArgumentException("no .");}
+        if (!email.contains("@")) {
+            throw new IllegalArgumentException("Email address does not contain \"@\"");
+        }
+        if (!email.contains(".")) {
+            throw new IllegalArgumentException("Email address does not contain \".\"");
+        }
 
         this.firstName = firstName;
         this.lastName = lastName;
@@ -26,10 +30,10 @@ public class User {
         return email;
     }
 
-    public String getFullName(){
-        String fullName = firstName +  " " + lastName;
+    public String getFullName() {
+        return firstName + " " + lastName;
 
-    return fullName;
+
     }
 
 
