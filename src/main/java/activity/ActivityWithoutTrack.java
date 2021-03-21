@@ -1,7 +1,7 @@
 package activity;
 
 public class ActivityWithoutTrack implements Activity {
-    private ActivityType activityType;
+    private final ActivityType activityType;
 
     public ActivityWithoutTrack(ActivityType activityType) {
         this.activityType = activityType;

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Track {
 
-    private List<TrackPoint> trackPoints = new ArrayList<>();
+    private final List<TrackPoint> trackPoints = new ArrayList<>();
 
 
     public List<TrackPoint> getTrackPoints() {
@@ -92,17 +92,6 @@ public class Track {
         return new Coordinate(latmax, lonmax);
     }
 
-
- /*   public double getRectangleArea() {
-        TrackPoint trackPoint1 = new TrackPoint(findMaximumCoordinate(), 0);
-        TrackPoint trackPoint2 = new TrackPoint(findMinimumCoordinate(), 0);
-        TrackPoint trackPoint3 = new TrackPoint(new Coordinate(trackPoint2.getCoordinate().getLatitude(), trackPoint1.getCoordinate().getLongitude()), 0);
-
-        double a = trackPoint1.getDistanceFrom(trackPoint3);
-        double b = trackPoint2.getDistanceFrom(trackPoint3);
-
-        return a*b;
-    }*/
 
     public double getRectangleArea() {
         Coordinate coordinate = findMaximumCoordinate();
