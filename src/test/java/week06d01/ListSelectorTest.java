@@ -2,6 +2,7 @@ package week06d01;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import week06d01.junior.ListSelector;
 
 import java.util.ArrayList;
 import java.util.List;
