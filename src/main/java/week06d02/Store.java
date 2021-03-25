@@ -105,8 +105,6 @@ public class Store {
         ) {
             fillTheMap(result, item);
         }
-
-
         return result;
     }
 
