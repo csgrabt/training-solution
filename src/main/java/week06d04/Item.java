@@ -1,18 +1,16 @@
 package week06d04;
 
 public class Item {
-    private int price;
-    private int month;
-    private String name;
+    private final int price;
+    private final int month;
+    private final String name;
 
     public Item(int price, int month, String name) {
-        if (month <=0 || month < 12){throw new IllegalArgumentException("Date is not valid!");}
-        if (price <= 0){throw new IllegalArgumentException("Price is not valid!");}
+        validator(price, month);
         this.price = price;
         this.month = month;
         this.name = name;
     }
-
 
     public int getPrice() {
         return price;
@@ -25,4 +23,10 @@ public class Item {
     public String getName() {
         return name;
     }
+
+    private void validator(int price, int month) {
+        if ( month > 12 || month < 0){throw new IllegalArgumentException("Date is not valid!");}
+        if (price <= 0){throw new IllegalArgumentException("Price is not valid!");}
+    }
+
 }

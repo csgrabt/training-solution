@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Budget {
-    private List<Item> items = new ArrayList<>();
+    private final List<Item> items;
 
 
     public Budget(List<Item> items) {
@@ -12,18 +12,15 @@ public class Budget {
     }
 
 
-public List getItemsByMonth(int month){
+    public List<Item> getItemsByMonth(int month) {
         List<Item> list = new ArrayList<>();
-       for (int i = 0; i < items.size(); i++){
-           if (items.get(i).getMonth() == month){
-               list.add(items.get(i));
-           }
-
-
-       }
-
-
-    return list;        }
+        for (Item item : items) {
+            if (item.getMonth() == month) {
+                list.add(item);
+            }
+        }
+        return list;
+    }
 
 
 }
