@@ -1,4 +1,4 @@
-package week06d04;
+package week06d04.junior;
 
 public class Item {
     private final int price;

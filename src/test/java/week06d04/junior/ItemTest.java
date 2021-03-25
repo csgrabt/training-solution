@@ -1,7 +1,8 @@
-package week06d04;
+package week06d04.junior;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import week06d04.junior.Item;
 
 import static org.junit.jupiter.api.Assertions.*;
 
