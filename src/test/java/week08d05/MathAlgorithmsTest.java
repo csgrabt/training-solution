@@ -2,10 +2,8 @@ package week08d05;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import week08d02.Lottery;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static week07d01.MathAlgorithms.isPrime;
 
 public class MathAlgorithmsTest {
 
