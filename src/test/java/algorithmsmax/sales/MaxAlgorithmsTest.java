@@ -7,8 +7,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
-public class MaxAlgorithmsTest {
+class MaxAlgorithmsTest {
 
     List<Salesperson> salespersons = Arrays.asList(
             new Salesperson("John", 600, 500),
@@ -19,7 +18,7 @@ public class MaxAlgorithmsTest {
     );
 
     @Test
-    public void testSelectSalesPersonWithMaxSalesAmount() {
+    void testSelectSalesPersonWithMaxSalesAmount() {
         SalesAmountMaxSelector maxAmount = new SalesAmountMaxSelector();
 
         assertEquals(700, maxAmount.selectSalesPersonWithMaxSalesAmount(salespersons).getAmount());
@@ -27,7 +26,7 @@ public class MaxAlgorithmsTest {
     }
 
     @Test
-    public void testSelectSalesPersonWithFurthestAboveTarget() {
+    void testSelectSalesPersonWithFurthestAboveTarget() {
         SalespersonWithFurthestAboveTargetSelector aboveTarget = new SalespersonWithFurthestAboveTargetSelector();
 
         assertEquals(600, aboveTarget.selectSalesPersonWithFurthestAboveTarget(salespersons).getDifferenceFromTarget());
@@ -36,7 +35,7 @@ public class MaxAlgorithmsTest {
     }
 
     @Test
-    public void testSelectSalesPersonWithFurthestBelowTarget() {
+    void testSelectSalesPersonWithFurthestBelowTarget() {
         SalespersonWithFurthestBelowTargetSelector belowTarget = new SalespersonWithFurthestBelowTargetSelector();
 
         assertEquals(-100, belowTarget.selectSalesPersonWithFurthestBelowTarget(salespersons).getDifferenceFromTarget());
