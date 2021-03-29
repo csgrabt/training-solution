@@ -13,6 +13,7 @@ public class SalespersonTest {
         assertEquals(1000, person.getAmount());
         assertEquals(200, person.getTarget());
         assertEquals(800, person.getDifferenceFromTarget());
+        assertEquals("Somebody", person.getName());
     }
 
 }

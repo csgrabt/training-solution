@@ -25,6 +25,6 @@ public class Salesperson {
 
     public int getDifferenceFromTarget() {
 
-        return amount-target;
+        return amount - target;
     }
 }
