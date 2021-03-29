@@ -1,4 +1,4 @@
-package week07d02;
+package week07d02.junior;
 
 public class DigitSum {
 

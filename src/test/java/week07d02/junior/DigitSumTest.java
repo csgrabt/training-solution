@@ -1,5 +1,6 @@
-package week07d02;
+package week07d02.junior;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -8,7 +9,7 @@ class DigitSumTest {
 
     @Test
     void digitSumTest() {
-        assertEquals(3, DigitSum.sumOfDigits(12));
+        Assertions.assertEquals(3, DigitSum.sumOfDigits(12));
     }
 
     @Test
