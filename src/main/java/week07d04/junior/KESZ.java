@@ -1,9 +1,9 @@
-package week07d04;
+package week07d04.junior;
 
 public enum KESZ {
-TRUE("kész"), FALSE("nincs kész");
+    TRUE("kész"), FALSE("nincs kész");
 
-private String description;
+    private String description;
 
 
     KESZ(String description) {
