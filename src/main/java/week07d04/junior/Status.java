@@ -1,12 +1,12 @@
 package week07d04.junior;
 
-public enum KESZ {
+public enum Status {
     TRUE("kész"), FALSE("nincs kész");
 
-    private String description;
+    private final String description;
 
 
-    KESZ(String description) {
+    Status(String description) {
         this.description = description;
     }
 

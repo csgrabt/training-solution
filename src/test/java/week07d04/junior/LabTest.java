@@ -28,21 +28,21 @@ class LabTest {
         assertEquals("kész", lab.getComplete().toString());
     }
 
-@Test
-    void completeNow(){
+    @Test
+    void completeNow() {
         lab.completed();
 
-    assertEquals(0, ChronoUnit.SECONDS.between(LocalDateTime.now(), lab.getCompletedAt()));
+        assertEquals(0, ChronoUnit.SECONDS.between(LocalDateTime.now(), lab.getCompletedAt()));
 
-}
+    }
 
-@Test
-    void completeAt(){
+    @Test
+    void completeAt() {
         lab.completed(LocalDateTime.of(2020, 2, 3, 15, 15));
 
         assertEquals("kész", lab.getComplete().toString());
 
-}
+    }
 
 
 }

@@ -5,18 +5,18 @@ import java.time.LocalDateTime;
 
 public class Lab {
     private final String title;
-    private Enum<KESZ> complete;
+    private Enum<Status> complete;
     private LocalDateTime completedAt;
 
     public Lab(String title) {
         this.title = title;
-        this.complete = KESZ.FALSE;
+        this.complete = Status.FALSE;
     }
 
     public Lab(String title, LocalDateTime completedAt) {
         this.title = title;
         this.completedAt = completedAt;
-        this.complete = KESZ.TRUE;
+        this.complete = Status.TRUE;
     }
 
 
@@ -24,7 +24,7 @@ public class Lab {
         return title;
     }
 
-    public Enum<KESZ> getComplete() {
+    public Enum<Status> getComplete() {
         return complete;
     }
 
@@ -34,12 +34,12 @@ public class Lab {
 
     public void completed(LocalDateTime completedAt) {
         this.completedAt = completedAt;
-        this.complete = KESZ.TRUE;
+        this.complete = Status.TRUE;
     }
 
     public void completed() {
         this.completedAt = LocalDateTime.now();
-        this.complete = KESZ.TRUE;
+        this.complete = Status.TRUE;
     }
 
 
