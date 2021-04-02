@@ -4,14 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Robot {
+    private static final List<String> VALID_CHARACTERS = List.of("L", "F", "J", "B");
+    private int x = 0;
+    private int y = 0;
 
-    private int x;
-    private int y;
-
-    public Robot(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
 
     public int getX() {
         return x;
@@ -21,47 +17,46 @@ public class Robot {
         return y;
     }
 
-    private List steps(String string){
-
-        String string2 = string.toUpperCase();
-        List<String> stepsList = new ArrayList<>() ;
-        for (int i = 0; i < string.length(); i++){
-            stepsList.add(string2.substring(i, i+1));
+    private List<String> steps(String string) {
+        if (string == null) {
+            throw new IllegalArgumentException("String is null!");
         }
-return stepsList;
+        List<String> stepsList = new ArrayList<>();
+        for (int i = 0; i < string.length(); i++) {
+            stepsList.add(string.substring(i, i + 1).toUpperCase());
+        }
+        return stepsList;
     }
 
 
-    public List<Robot> robotMoves(String string){
+    public String move(String string) {
 
-        List<String> stepsList =  steps(string);
-int y = 0;
-int x = 0;
-
-for (int i = 0; i < stepsList.size(); i++){
-    if (stepsList.get(i).equals("F")){y = y+1;}
-    if (stepsList.get(i).equals("L")){y = y-1;}
-    if (stepsList.get(i).equals("B")){x = x-1;}
-    if (stepsList.get(i).equals("J")){x = x+1;}
-}
-List<Robot> robotok = new ArrayList<>();
-   Robot robot = new Robot(x, y);
+        List<String> stepsList = steps(string);
 
 
-   robotok.add(robot);
+        for (String item : stepsList) {
+            if (!VALID_CHARACTERS.contains(item)) {
+                throw new IllegalArgumentException("The step is invalid!");
+            }
 
-  return robotok;}
-
-
-    public static void main(String[] args) {
-
-        Robot robot = new Robot(0,0);
-
-        System.out.println(robot.robotMoves("llll").get(0).getY());
-
-
+            if (item.equals("F")) {
+                y = y + 1;
+            }
+            if (item.equals("L")) {
+                y = y - 1;
+            }
+            if (item.equals("B")) {
+                x = x - 1;
+            }
+            if (item.equals("J")) {
+                x = x + 1;
+            }
+        }
+        return "y= " + getY() + "\n" + "x= " + getX();
     }
 
 
-
 }
+
+
+
