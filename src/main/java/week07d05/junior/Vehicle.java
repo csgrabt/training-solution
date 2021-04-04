@@ -1,8 +1,8 @@
-package week07d05;
+package week07d05.junior;
 
 public class Vehicle {
-protected Enum<TransmissionType> transmission;
-protected int numberOfGears;
+    protected Enum<TransmissionType> transmission;
+    protected int numberOfGears;
 
     public Vehicle() {
         this.transmission = TransmissionType.MANUAL;

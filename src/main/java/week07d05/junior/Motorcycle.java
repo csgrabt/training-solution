@@ -1,4 +1,4 @@
-package week07d05;
+package week07d05.junior;
 
 public class Motorcycle extends Truck{
 
