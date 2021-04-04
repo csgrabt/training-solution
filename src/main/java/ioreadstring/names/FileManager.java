@@ -2,6 +2,7 @@ package ioreadstring.names;
 
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class FileManager {
     public void readFromFile(){
         List<String> content;
         try {
-            content = Files.readAllLines(path);
+            content = Files.readAllLines(path, StandardCharsets.UTF_8);
         } catch (IOException e) {
             throw new IllegalStateException("Cannot read file!", e);
         }

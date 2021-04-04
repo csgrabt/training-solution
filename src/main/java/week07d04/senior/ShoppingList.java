@@ -11,6 +11,8 @@ public class ShoppingList {
     public long calculateSum(String path) {
         Path path1 = Path.of(path);
         long result = 0L;
+
+
         try (BufferedReader bf = Files.newBufferedReader(path1)) {
             String line;
 
