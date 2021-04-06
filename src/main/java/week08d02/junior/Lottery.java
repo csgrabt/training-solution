@@ -1,4 +1,4 @@
-package week08d02;
+package week08d02.junior;
 
 
 import java.util.*;

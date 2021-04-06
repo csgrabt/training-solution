@@ -1,6 +1,7 @@
-package week08d02;
+package week08d02.junior;
 
 import org.junit.jupiter.api.Test;
+import week08d02.junior.Lottery;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
