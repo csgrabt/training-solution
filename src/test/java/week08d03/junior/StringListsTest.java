@@ -3,11 +3,10 @@ package week08d03.junior;
 import org.junit.jupiter.api.Test;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static week08d03.StringLists.stringListsUnion;
+import static week08d03.junior.StringLists.stringListsUnion;
 
 class StringListsTest {
 
