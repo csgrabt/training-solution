@@ -1,4 +1,4 @@
-package week08d04;
+package week08d04.junior;
 
 public class GoodMood implements CanMark{
 
