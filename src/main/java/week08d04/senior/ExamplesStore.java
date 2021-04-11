@@ -1,6 +1,5 @@
 package week08d04.senior;
 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -16,10 +15,10 @@ public class ExamplesStore {
     public List<String> getTitlesOfExamples(String filename) {
         List<String> titles = new ArrayList<>();
 
-        try (
-                BufferedReader reader = new BufferedReader(
-                        new InputStreamReader(Objects.requireNonNull(
-                                ExamplesStore.class.getResourceAsStream(filename))))) {
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(
+                        Objects.requireNonNull(ExamplesStore.class.getResourceAsStream(filename))))) {
+
             dataProcess(titles, reader);
         } catch (
                 IOException ioe) {
@@ -36,5 +35,4 @@ public class ExamplesStore {
             }
         }
     }
-
 }
