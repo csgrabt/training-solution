@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SantaClaus {
-    List<Person> personList= new ArrayList<>();
+    List<Person> personList;
 
 
     public SantaClaus(List<Person> personList) {
@@ -12,17 +12,14 @@ public class SantaClaus {
     }
 
 
+    public void getThroughChimneys() {
 
- public void getThroughChimneys(List<Person> personList){
+        for (Person n : this.personList
+        ) {
+            n.setPresent();
 
-     for (Person n :personList
-          ) { n.setPresent();
-
-     }
+        }
     }
-
-
-
 
 
 }
