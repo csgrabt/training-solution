@@ -31,7 +31,7 @@ class SaveInputTest {
     @Test
     void saveInput() throws IOException {
         System.out.println(folder);
-    List<String> listReload = Files.readAllLines(file.toPath(), StandardCharsets.UTF_8);
+        List<String> listReload = Files.readAllLines(file.toPath(), StandardCharsets.UTF_8);
         assertEquals(list, listReload);
 
     }
