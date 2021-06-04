@@ -221,46 +221,4 @@ class CitizenDaoTest {
 
     }
 
-
-    @Test
-    void statisticBasedOnZipTest() {
-        cd.writeRegisterFromFileToDb("C:/Alma/alma.txt", ";");
-        cd.writeRegistrationToDB(citizen);
-        Citizen cz1 = new Citizen(1, "finom", 0, "OK", LocalDate.now());
-        Citizen cz2 = new Citizen(1, "finom", 1, "OK", LocalDate.now());
-        Citizen cz3 = new Citizen(2, "finom", 0, "OK", LocalDate.now());
-        Citizen cz4 = new Citizen(3, "finom", 0, "OK", LocalDate.now());
-
-
-        cd.vaccinationSetTimeAndType(cz1);
-        cd.vaccinationSetTimeAndType(cz2);
-        cd.vaccinationSetTimeAndType(cz3);
-        cd.vaccinationSetTimeAndType(cz4);
-
-        assertEquals(2, cd.statisticBasedOnZip("5400").get(0));
-        assertEquals(2, cd.statisticBasedOnZip("5400").get(1));
-        assertEquals(1, cd.statisticBasedOnZip("5400").get(2));
-
-    }
-
-
-    @Test
-    void dailyVaccinationBasedOnZipTest() {
-        cd.writeRegisterFromFileToDb("C:/Alma/alma.txt", ";");
-        cd.writeRegistrationToDB(citizen);
-        Citizen cz1 = new Citizen(1, "finom", 1, "OK", LocalDate.now());
-        Citizen cz2 = new Citizen(2, "finom", 0, "OK", LocalDate.of(2000, 10, 10));
-        Citizen cz3 = new Citizen(5, "finom", 1, "OK", LocalDate.of(2000, 10, 10));
-
-
-
-
-
-        cd.vaccinationSetTimeAndType(cz1);
-        cd.vaccinationSetTimeAndType(cz2);
-        cd.vaccinationSetTimeAndType(cz3);
-        assertEquals(3, cd.dailyVaccinationBasedOnZip("5400").size());
-    }
-
-
 }

@@ -11,22 +11,23 @@ public class SimpleTime {
         this.minute = minute;
     }
 
-    public SimpleTime(String str){
-        try { validator(str);
+    public SimpleTime(String str) {
+        try {
+            validator(str);
 
 
-     int hour1 = Integer.parseInt(str.substring(0, str.indexOf(":")));
-     int minute1 = Integer.parseInt(str.substring(str.indexOf(":") + 1));
+            int hour1 = Integer.parseInt(str.substring(0, str.indexOf(":")));
+            int minute1 = Integer.parseInt(str.substring(str.indexOf(":") + 1));
 
 
+            validator(hour, minute);
 
-    validator(hour, minute);
-
-        this.hour = hour1;
-        this.minute = minute1;
-        }catch (NumberFormatException ex){throw new InvalidTimeException("Time is not hh:mm");}
+            this.hour = hour1;
+            this.minute = minute1;
+        } catch (NumberFormatException ex) {
+            throw new InvalidTimeException("Time is not hh:mm");
+        }
     }
-
 
 
     public int getHour() {
@@ -38,24 +39,28 @@ public class SimpleTime {
     }
 
 
+    private void validator(int a, int b) {
+        if (a <= -1 || a >= 24) {
+            throw new InvalidTimeException("Hour is invalid (0-23)");
+        }
+        if (b <= -1 || b > 59) {
+            throw new InvalidTimeException("Minute is invalid (0-59)");
+        }
+    }
 
-private void validator(int a, int b) {
-    if (a <= -1 || a >= 24) {
-        throw new InvalidTimeException("Hour is invalid (0-23)");
-    }
-    if (b <= -1 || b > 59) {
-        throw new InvalidTimeException("Minute is invalid (0-59)");
-    }
-}
+    private void validator(String string) {
+        if (string == null) {
+            throw new InvalidTimeException("Time is null");
+        }
+        if (string.length() != 5 || string.indexOf(":") != 2) {
+            throw new InvalidTimeException("Time is not hh:mm");
+        }
 
-private void validator(String string){
-    if(string == null){
-        throw new InvalidTimeException("Time is null");
+        String[] array = string.split(":");
+        validator(Integer.parseInt(array[0]), Integer.parseInt(array[1]));
+
+
     }
-    if(string.length() !=5 || string.indexOf(":") !=2){
-        throw new InvalidTimeException("Time is not hh:mm");
-    }
-}
 
 
     @Override
