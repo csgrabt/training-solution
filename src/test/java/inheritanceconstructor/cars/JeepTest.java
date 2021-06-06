@@ -14,32 +14,6 @@ public class JeepTest {
         assertEquals("Tank capacity is less than fuel!", ex.getMessage());
     }
 
-    @Test
-    public void testCalculateRefillAmount() {
-        //Given
-        Jeep jeep = new Jeep(10.0, 30.0, 50.0, 40.0, 20.0);
-        //Then
-        assertEquals(40.0, jeep.calculateRefillAmount());
-    }
-
-    @Test
-    public void testDrive() {
-        //Given
-        Jeep jeep = new Jeep(10.0, 30.0, 50.0, 40.0, 20.0);
-        //When
-        jeep.drive(300);
-        //Then
-        assertEquals(0.0, jeep.getExtraFuel());
-        assertEquals(20.0, jeep.getFuel());
-    }
-
-    @Test
-    public void notEnoughFuelShouldThrowException() throws RuntimeException {
-        Jeep jeep = new Jeep(10.0, 30.0, 50.0, 40.0, 20.0);
-        Exception ex = assertThrows(RuntimeException.class, () -> jeep.drive(600));
-        assertEquals("Not enough fuel available!", ex.getMessage());
-    }
-
 
     @Test
     public void modifyFuelAmount1() {
@@ -63,11 +37,5 @@ public class JeepTest {
         assertEquals(40, jeep.getExtraFuel());
     }
 
-
-    @Test
-    public void notEnoughFuelShouldThrowException_1() throws RuntimeException {
-        Jeep jeep = new Jeep(10.0, 30.0, 100.0, 40.0, 20.0);
-        Exception ex = assertThrows(RuntimeException.class, () -> jeep.modifyFuelAmount(500));
-        assertEquals("Nincs ennyi hely!", ex.getMessage());}
 
 }

@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -25,10 +24,9 @@ class SumTest {
     void sum() {
 
 
-       // assertTrue(new Sum().sum(values, 4));
+        assertTrue(new Sum().sum(values, 4));
         assertFalse(new Sum().sum(values, 400));
-
-        //assertTrue(new Sum().sum2(values, 4));
-       //assertFalse(new Sum().sum2(values, 400));
+        assertTrue(new Sum().sum2(values, 4));
+        assertFalse(new Sum().sum2(values, 400));
     }
 }

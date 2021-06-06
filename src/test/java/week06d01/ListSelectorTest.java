@@ -21,6 +21,7 @@ class ListSelectorTest {
 
     @Test
     void listIsEmpty() {
+        list = new ArrayList<>();
         assertEquals("", listSelector.listSelector(list));
     }
 
