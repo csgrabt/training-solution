@@ -2,6 +2,7 @@ package exam03;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Cruise {
     private Boat boat;
@@ -62,57 +63,25 @@ public class Cruise {
 
 
     public List<String> getPassengerNamesOrdered() {
-        List<String> result = new ArrayList<>();
 
-
-        for (Passenger item : passengers
-        ) {
-            result.add(item.getName());
-
-        }
-
-        Collections.sort(result, new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                return o1.compareTo(o2);
-            }
-        });
-
-        return result;
+        return passengers.stream()
+                .map(Passenger::getName)
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     public double sumAllBookingsCharged() {
-        double result = 0;
+        return passengers.stream()
+                .mapToDouble(n -> n.getCruiseClass().getMultiply() * basicPrice)
+                .sum();
 
-        for (Passenger item : passengers
-        ) {
-            result += getPriceForPassenger(item);
-
-        }
-
-
-        return result;
     }
 
 
     public Map<CruiseClass, Integer> countPassengerByClass() {
 
-        Map<CruiseClass, Integer> result = new HashMap<>();
-
-
-        for (Passenger item : passengers
-        )
-            fillTheMap(result, item);
-
-
-        return result;
-    }
-
-    private void fillTheMap(Map<CruiseClass, Integer> result, Passenger item) {
-        if (!result.containsKey(item.getCruiseClass())) {
-            result.put(item.getCruiseClass(), 0);
-        }
-        result.put(item.getCruiseClass(), result.get(item.getCruiseClass()) + 1);
+        return passengers.stream()
+                .collect(Collectors.toMap(Passenger::getCruiseClass, n -> 1, Integer::sum));
     }
 
 

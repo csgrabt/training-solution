@@ -7,30 +7,32 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ListCounterTest {
+ class ListCounterTest {
 
 
     @Test
-    public void listCounterTestEmpty() {
+     void listCounterTestEmpty() {
         List<String> list = new ArrayList<>();
         ListCounter listCounter = new ListCounter();
         assertEquals(0, listCounter.counterAa(list));
-        assertEquals(0, list.size());
+        assertEquals(0, listCounter.counterAb(list));
+
     }
 
     @Test
-    public void listCounterTestA() {
+     void listCounterTestA() {
         List<String> list = new ArrayList<>();
         list.add("alma");
         list.add("barack");
 
         ListCounter listCounter = new ListCounter();
         assertEquals(1, listCounter.counterAa(list));
-        assertEquals(2, list.size());
+        assertEquals(1, listCounter.counterAb(list));
+
     }
 
     @Test
-    public void listCounterTestAa() {
+     void listCounterTestAa() {
         List<String> list = new ArrayList<>();
         list.add("alma");
         list.add("Alma");
@@ -38,11 +40,12 @@ public class ListCounterTest {
 
         ListCounter listCounter = new ListCounter();
         assertEquals(2, listCounter.counterAa(list));
-        assertEquals(3, list.size());
+        assertEquals(2, listCounter.counterAb(list));
+
     }
 
     @Test
-    public void listCounterTestNoAa() {
+     void listCounterTestNoAa() {
         List<String> list = new ArrayList<>();
         list.add("lma");
         list.add("lma");
@@ -50,7 +53,8 @@ public class ListCounterTest {
 
         ListCounter listCounter = new ListCounter();
         assertEquals(0, listCounter.counterAa(list));
-        assertEquals(3, list.size());
+        assertEquals(0, listCounter.counterAb(list));
+
     }
 
 

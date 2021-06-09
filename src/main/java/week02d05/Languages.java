@@ -5,25 +5,26 @@ import java.util.List;
 
 public class Languages {
     public static void main(String[] args) {
-        List<String> lista  = new ArrayList<>();
+        List<String> list = new ArrayList<>();
 
 
-        lista.add("Java");
-        lista.add("Python");
-        lista.add("JavaScript");
+        list.add("Java");
+        list.add("Python");
+        list.add("JavaScript");
 
 
-        for (String alma : lista) {
-            if (alma.length() > 5) {
-    System.out.println(alma);
-}
+        for (String item : list) {
+            if (item.length() > 5) {
+                System.out.println(item);
+            }
         }
 
-
+        list.stream()
+                .filter(n -> n.length() > 5)
+                .forEach(System.out::println);
 
 
     }
-
 
 
 }
