@@ -35,7 +35,7 @@ public class SsnValidator {
         }
         boolean osztas = (paros + paratlan) % 10 == Integer.parseInt("" + ssn.charAt(b-1));
 
-        if (hossz == true && osztas == true) {
+        if (hossz && osztas) {
             vegso = true;
         }
 
