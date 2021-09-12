@@ -1,6 +1,13 @@
-# Junior Java backend fejlesztő (6134005)
+# Junior Java backend fejlesztői (6134005) képzés 
 
 Ez a repository tartalmazza a Junior Java backend fejlesztő tematikáját és gyakorlati feladatainak megoldásait.
+
+## 
+
+**Képző intézmény:** Training360  
+**Vezető oktató, mentor:** [Viczián István](https://hu.linkedin.com/in/viczianistvan)  
+**Mentor:** [Bárczay Kristóf](https://hu.linkedin.com/in/krist%C3%B3f-b%C3%A1rczay-6aa0351b6)  
+**Mentor:** [Arold Ádám](https://hu.linkedin.com/in/adamarold)  
 
 ## Tematika
 
@@ -208,11 +215,4 @@ Ez a repository tartalmazza a Junior Java backend fejlesztő tematikáját és g
 * IV. projekt: Activity ([activity](https://github.com/csgrabt/training-solutions/tree/master/src/main/java/activity))
 
 
-
-## 
-
-**Képző intézmény:** Training360  
-**Vezető oktató, mentor:** [Viczián István](https://hu.linkedin.com/in/viczianistvan)  
-**Mentor:** [Bárczay Kristóf](https://hu.linkedin.com/in/krist%C3%B3f-b%C3%A1rczay-6aa0351b6)  
-**Mentor:** [Arold Ádám](https://hu.linkedin.com/in/adamarold)  
         
