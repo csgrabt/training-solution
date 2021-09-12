@@ -200,6 +200,15 @@ Ez a repository tartalmazza a Junior Java backend fejlesztő tematikáját és g
 * Haladó ResultSet
 * Blob
 
+## Projekt feladatok
+
+* I. projekt: MeetingRoom ([meetingrooms](https://github.com/csgrabt/training-solutions/tree/master/src/main/java/meetingrooms))
+* II. projekt: Schoolrecords ([schoolrecords](https://github.com/csgrabt/training-solutions/tree/master/src/main/java/schoolrecords))
+* III. projekt: Catalog ([catalog](https://github.com/csgrabt/training-solutions/tree/master/src/main/java/catalog))
+* IV. projekt: Activity ([activity](https://github.com/csgrabt/training-solutions/tree/master/src/main/java/activity))
+
+
+
 ## 
 
 **Képző intézmény:** Training360  
