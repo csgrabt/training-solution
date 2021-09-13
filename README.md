@@ -1,4 +1,4 @@
-# Junior Java backend fejlesztői (6134005) képzés 
+# Junior Java backend fejlesztői (06134005) képzés 
 
 Ez a repository tartalmazza a Junior Java backend fejlesztő tematikáját és gyakorlati feladatainak megoldásait.
 
